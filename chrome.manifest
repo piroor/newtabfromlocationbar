@@ -1,10 +1,10 @@
-content	openlinkintab	jar:chrome/openlinkintab.jar!/content/openlinkintab/
+content	newtabfromlocationbar	jar:chrome/newtabfromlocationbar.jar!/content/newtabfromlocationbar/
 
-overlay	chrome://browser/content/browser.xul	chrome://openlinkintab/content/openlinkintab.xul
+overlay	chrome://browser/content/browser.xul	chrome://newtabfromlocationbar/content/newtabfromlocationbar.xul
 
-locale	openlinkintab	en-US	jar:chrome/openlinkintab.jar!/locale/en-US/openlinkintab/
-locale	openlinkintab	ja	jar:chrome/openlinkintab.jar!/locale/ja/openlinkintab/
+locale	newtabfromlocationbar	en-US	jar:chrome/newtabfromlocationbar.jar!/locale/en-US/newtabfromlocationbar/
+locale	newtabfromlocationbar	ja	jar:chrome/newtabfromlocationbar.jar!/locale/ja/newtabfromlocationbar/
 
-override chrome://openlinkintab/skin/config.css	chrome://openlinkintab/skin/config-4.css	appversion>=4.0b5pre
+override chrome://newtabfromlocationbar/skin/config.css	chrome://newtabfromlocationbar/skin/config-4.css	appversion>=4.0b5pre
 
-resource openlinkintab-modules modules/
+resource newtabfromlocationbar-modules modules/

@@ -16,7 +16,7 @@ if (typeof window == 'undefined' ||
 	// See: http://github.com/piroor/fxaddonlibs/blob/master/namespace.jsm
 	try {
 		let ns = {};
-		Components.utils.import('resource://openlinkintab-modules/namespace.jsm', ns);
+		Components.utils.import('resource://newtabfromlocationbar-modules/namespace.jsm', ns);
 		/* var */ window = ns.getNamespaceFor('piro.sakura.ne.jp');
 	}
 	catch(e) {
@@ -209,11 +209,11 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 	    No ：子タブを開く
 	    Yes：兄弟としてタブを開く。ただし、このタブからのタブはすべて
 	         現在のタブと次の兄弟タブとの間に開かれ、仮想サブツリーとなる。
-	         →現在のタブに「__openlinkintab__next」プロパティが
+	         →現在のタブに「__autoNewTabHelper__next」プロパティが
 	           あるか？
-	           Yes：__openlinkintab__nextで示されたタブの直前に
+	           Yes：__autoNewTabHelper__nextで示されたタブの直前に
 	                新しい兄弟タブを挿入する。
-	           No ：現在のタブの次の兄弟タブのIDを__openlinkintab__next
+	           No ：現在のタブの次の兄弟タブのIDを__autoNewTabHelper__next
 	                プロパティに保持し、仮想の子タブを挿入する位置の
 	                基準とする。
 */
@@ -274,8 +274,8 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 					(insertNewChildAtFirst ?
 						nextTab :
 						(
-							this._getTabById(currentTab.__openlinkintab__next, b) ||
-							(nextTab ? (currentTab.__openlinkintab__next = this._getTabId(nextTab), nextTab) : null )
+							this._getTabById(currentTab.__autoNewTabHelper__next, b) ||
+							(nextTab ? (currentTab.__autoNewTabHelper__next = this._getTabId(nextTab), nextTab) : null )
 						)
 					);
 			lastRelated = insertBefore ? insertBefore.previousSibling : null ;

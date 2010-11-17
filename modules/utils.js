@@ -38,16 +38,16 @@ const EXPORTED_SYMBOLS = ['OpenLinkInTabUtils'];
 const Cc = Components.classes;
 const Ci = Components.interfaces;
  
-Components.utils.import('resource://openlinkintab-modules/prefs.js'); 
-Components.utils.import('resource://openlinkintab-modules/autoNewTabHelper.js');
+Components.utils.import('resource://newtabfromlocationbar-modules/prefs.js'); 
+Components.utils.import('resource://newtabfromlocationbar-modules/autoNewTabHelper.js');
 
-Components.utils.import('resource://openlinkintab-modules/namespace.jsm');
+Components.utils.import('resource://newtabfromlocationbar-modules/namespace.jsm');
 var window = getNamespaceFor('piro.sakura.ne.jp');
  
 var OpenLinkInTabUtils = { 
 	__proto__ : window['piro.sakura.ne.jp'].prefs,
 
-	kPREFROOT : 'extensions.openlinkintab@piro.sakura.ne.jp',
+	kPREFROOT : 'extensions.newtabfromlocationbar@piro.sakura.ne.jp',
 	
 	checkReadyToOpenNewTabOnLocationBar : function OLITUtils_checkReadyToOpenNewTabOnLocationBar(aURI, aModifier) 
 	{
