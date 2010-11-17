@@ -1,7 +1,7 @@
 <!ENTITY config.title        "New Tab from Location Bar Configuration">
 
 
-<!ENTITY config.tabs.urlbar.tab      "Location Bar">
+<!ENTITY config.tabs.urlbar      "Location Bar">
 
 <!ENTITY config.urlbar.caption       "Automatic New Tab Level for the Location Bar">
 <!ENTITY config.urlbar.none          "Lv.0 Nothing (Firefox default)">
