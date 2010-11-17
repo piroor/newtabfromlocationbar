@@ -11,7 +11,7 @@
  * for the specific language governing rights and limitations under the
  * License.
  *
- * The Original Code is the Open Link in New Tab.
+ * The Original Code is the New Tab from Location Bar.
  *
  * The Initial Developer of the Original Code is SHIMODA Hiroshi.
  * Portions created by the Initial Developer are Copyright (C) 2010
@@ -33,7 +33,7 @@
  *
  * ***** END LICENSE BLOCK ******/
  
-const EXPORTED_SYMBOLS = ['OpenLinkInTabUtils']; 
+const EXPORTED_SYMBOLS = ['NewTabFromLocationBarUtils']; 
 
 const Cc = Components.classes;
 const Ci = Components.interfaces;
@@ -44,12 +44,12 @@ Components.utils.import('resource://newtabfromlocationbar-modules/autoNewTabHelp
 Components.utils.import('resource://newtabfromlocationbar-modules/namespace.jsm');
 var window = getNamespaceFor('piro.sakura.ne.jp');
  
-var OpenLinkInTabUtils = { 
+var NewTabFromLocationBarUtils = { 
 	__proto__ : window['piro.sakura.ne.jp'].prefs,
 
 	kPREFROOT : 'extensions.newtabfromlocationbar@piro.sakura.ne.jp',
 	
-	checkReadyToOpenNewTabOnLocationBar : function OLITUtils_checkReadyToOpenNewTabOnLocationBar(aURI, aModifier) 
+	checkReadyToOpenNewTabOnLocationBar : function NTFLBUtils_checkReadyToOpenNewTabOnLocationBar(aURI, aModifier) 
 	{
 		var result = window['piro.sakura.ne.jp'].autoNewTabHelper.checkReadyToOpenNewTab({
 			uri      : aURI,
@@ -82,17 +82,17 @@ var OpenLinkInTabUtils = {
  
 /* Save/Load Prefs */ 
 	
-	getMyPref : function OLITUtils_getMyPref(aPrefstring) 
+	getMyPref : function NTFLBUtils_getMyPref(aPrefstring) 
 	{
 		return this.getPref(this.kPREFROOT+'.'+aPrefstring);
 	},
  
-	setMyPref : function OLITUtils_setMyPref(aPrefstring, aNewValue) 
+	setMyPref : function NTFLBUtils_setMyPref(aPrefstring, aNewValue) 
 	{
 		return this.setPref(this.kPREFROOT+'.'+aPrefstring, aNewValue);
 	},
  
-	clearMyPref : function OLITUtils_clearMyPref(aPrefstring) 
+	clearMyPref : function NTFLBUtils_clearMyPref(aPrefstring) 
 	{
 		return this.clearPref(this.kPREFROOT+'.'+aPrefstring);
 	}

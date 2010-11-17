@@ -1,8 +1,8 @@
-OpenLinkInTabService.overrideExtensionsPreInit = function OLITService_overrideExtensionsPreInit() {
+NewTabFromLocationBarService.overrideExtensionsPreInit = function NTFLBService_overrideExtensionsPreInit() {
 };
 
-OpenLinkInTabService.overrideExtensionsOnInitBefore = function OLITService_overrideExtensionsOnInitBefore() {
+NewTabFromLocationBarService.overrideExtensionsOnInitBefore = function NTFLBService_overrideExtensionsOnInitBefore() {
 };
 
-OpenLinkInTabService.overrideExtensionsOnInitAfter = function OLITService_overrideExtensionsOnInitAfter() {
+NewTabFromLocationBarService.overrideExtensionsOnInitAfter = function NTFLBService_overrideExtensionsOnInitAfter() {
 };

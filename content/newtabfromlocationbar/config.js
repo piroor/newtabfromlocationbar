@@ -1,5 +1,5 @@
-Components.utils.import('resource://treestyletab-modules/prefs.js', {});
-Components.utils.import('resource://treestyletab-modules/namespace.jsm');
+Components.utils.import('resource://newtabfromlocationbar-modules/prefs.js', {});
+Components.utils.import('resource://newtabfromlocationbar-modules/namespace.jsm');
 var prefs = getNamespaceFor('piro.sakura.ne.jp')['piro.sakura.ne.jp'].prefs;
 
 var gLoadLocationBarToNewTabScale,
@@ -7,21 +7,15 @@ var gLoadLocationBarToNewTabScale,
 
 function initUrlbarPane()
 {
-	gOpenLinkInTabScale = new ScaleSet(
-		['extensions.treestyletab.openOuterLinkInNewTab',
-		 'extensions.treestyletab.openAnyLinkInNewTab'],
-		'openLinkInNewTab-scale',
-		'openLinkInNewTab-labels'
-	);
 	gLoadLocationBarToNewTabScale = new ScaleSet(
-		['extensions.treestyletab.urlbar.loadDifferentDomainToNewTab',
-		 'extensions.treestyletab.urlbar.loadSameDomainToNewTab'],
+		['extensions.newtabfromlocationbar@piro.sakura.ne.jp.loadDifferentDomainToNewTab',
+		 'extensions.newtabfromlocationbar@piro.sakura.ne.jp.loadSameDomainToNewTab'],
 		'loadLocationBarToNewTab-scale',
 		'loadLocationBarToNewTab-labels'
 	);
 	gLoadLocationBarToChildTabScale = new ScaleSet(
-		['extensions.treestyletab.urlbar.loadSameDomainToNewTab.asChild',
-		 'extensions.treestyletab.urlbar.loadDifferentDomainToNewTab.asChild'],
+		['extensions.newtabfromlocationbar@piro.sakura.ne.jp.loadSameDomainToNewTab.asChild',
+		 'extensions.newtabfromlocationbar@piro.sakura.ne.jp.loadDifferentDomainToNewTab.asChild'],
 		'loadLocationBarToChildTab-scale',
 		'loadLocationBarToChildTab-labels'
 	);

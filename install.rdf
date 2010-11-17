@@ -4,7 +4,7 @@
          xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="newtabfromlocationbar@piro.sakura.ne.jp"
-                   em:name="Open Link in New Tab"
+                   em:name="New Tab from Location Bar"
                    em:version="0.1.2010111301"
                    em:creator="SHIMODA Hiroshi"
                    em:description="Loads links in new tabs, by conditions."
@@ -20,8 +20,8 @@
 
     <em:localized>
       <RDF:Description em:locale="en-US"
-                       em:name="Open Link in New Tab"
-                       em:description="Loads links in new tabs, by conditions."
+                       em:name="New Tab from Location Bar"
+                       em:description="Opens new tabs from the location bar, by conditions."
                        em:homepageURL="http://piro.sakura.ne.jp/xul/_newtabfromlocationbar.html.en"
                        em:creator="SHIMODA Hiroshi">
 		  <em:translator>Godai71.Extenzilla (it-IT locale)</em:translator>
@@ -38,8 +38,8 @@
     </em:localized>
     <em:localized>
       <RDF:Description em:locale="ja"
-                       em:name="リンクをタブで開く"
-                       em:description="リンクを条件に応じてタブで開きます。"
+                       em:name="ロケーションバーからタブを開く"
+                       em:description="ロケーションバーから条件に応じてタブを開きます。"
                        em:homepageURL="http://piro.sakura.ne.jp/xul/_newtabfromlocationbar.html"
                        em:creator="SHIMODA Hiroshi">
 		  <em:translator>Godai71.Extenzilla (it-IT locale)</em:translator>
