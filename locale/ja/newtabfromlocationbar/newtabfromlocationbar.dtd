@@ -1,7 +1,4 @@
-<!ENTITY config.title        "ツリー型タブの設定">
-
-<!ENTITY config.scale.min "最小">
-<!ENTITY config.scale.max "最大">
+<!ENTITY config.title        "ロケーションバーからタブを開く設定">
 
 
 <!ENTITY config.tabs.urlbar          "ロケーションバー">

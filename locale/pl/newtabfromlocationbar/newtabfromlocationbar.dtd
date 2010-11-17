@@ -1,7 +1,4 @@
-<!ENTITY config.title        "Tree Style Tab – ustawienia">
-
-<!ENTITY config.scale.min "min.">
-<!ENTITY config.scale.max "maks.">
+<!ENTITY config.title        "New Tab from Location Bar – ustawienia">
 
 <!ENTITY config.tabs.urlbar   "Pasek adresu">
 

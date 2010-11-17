@@ -1,7 +1,4 @@
-<!ENTITY config.title        "樹狀分頁設定">
-
-<!ENTITY config.scale.min "小">
-<!ENTITY config.scale.max "大">
+<!ENTITY config.title        "New Tab from Location Bar設定">
 
 
 <!ENTITY config.tabs.urlbar   "Location Bar">

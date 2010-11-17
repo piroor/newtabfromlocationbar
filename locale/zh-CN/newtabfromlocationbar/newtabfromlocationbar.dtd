@@ -1,7 +1,4 @@
-﻿<!ENTITY config.title        "Tree Style Tab 设置">
-
-<!ENTITY config.scale.min "最小">
-<!ENTITY config.scale.max "最大">
+﻿<!ENTITY config.title        "New Tab from Location Bar 设置">
 
 <!ENTITY config.tabs.urlbar   "从地址栏">
 

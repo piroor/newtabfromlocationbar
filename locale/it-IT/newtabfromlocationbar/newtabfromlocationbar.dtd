@@ -1,7 +1,4 @@
-<!ENTITY config.title        "Configurazione di Tree Style Tab">
-
-<!ENTITY config.scale.min "min">
-<!ENTITY config.scale.max "max">
+<!ENTITY config.title        "Configurazione di New Tab from Location Bar">
 
 <!ENTITY config.tabs.urlbar   "Location Bar">
 

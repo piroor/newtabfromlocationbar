@@ -1,7 +1,4 @@
-<!ENTITY config.title        "Tree Style Tab Konfiguration">
-
-<!ENTITY config.scale.min "min">
-<!ENTITY config.scale.max "max">
+<!ENTITY config.title        "New Tab from Location Bar Konfiguration">
 
 
 <!ENTITY config.tabs.urlbar   "Adresszeile">
