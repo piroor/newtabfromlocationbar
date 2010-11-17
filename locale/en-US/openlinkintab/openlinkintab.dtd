@@ -4,54 +4,7 @@
 <!ENTITY config.scale.max "max">
 
 
-<!ENTITY config.tabs.appearance "Appearance">
-
-<!ENTITY config.tabbar.position.caption "Tab bar position">
-<!ENTITY config.tabbar.position.left    "Leftside">
-<!ENTITY config.tabbar.position.right   "Rightside">
-<!ENTITY config.tabbar.position.top     "Top (Firefox default)">
-<!ENTITY config.tabbar.position.bottom  "Bottom">
-<!ENTITY config.tabbar.invertClosebox.left  "Show closebox at leftside in each tab">
-<!ENTITY config.tabbar.invertClosebox.right "Show closebox at rightside in each tab">
-<!ENTITY config.tabbar.invertTab            "Invert tab appearance">
-<!ENTITY config.tabbar.invertTabContents    "Invert tab contents">
-<!ENTITY config.enableSubtreeIndent         "Indent tabs">
-<!ENTITY config.allowSubtreeCollapseExpand  "Allow to collapse/expand tree of tabs">
-<!ENTITY config.tabbar.hideAlltabsButton    "Show &quot;List all tabs&quot; button">
-
-
-<!ENTITY config.tabs.style "Style">
-
-<!ENTITY config.tabbar.style.caption "Skin of the tab bar">
-<!ENTITY config.tabbar.style.plain   "Plain">
-<!ENTITY config.tabbar.style.flat    "Flat">
-<!ENTITY config.tabbar.style.mixed   "Mixed">
-<!ENTITY config.tabbar.style.vertigo "Vertigo">
-<!ENTITY config.tabbar.style.metal   "Metal">
-<!ENTITY config.tabbar.style.sidebar "Sidebar">
-<!ENTITY config.tabbar.style.none    "Default (specified by the Theme)">
-
-<!ENTITY config.twisty.style.caption "Tree twisties">
-<!ENTITY config.twisty.style.auto    "Auto">
-<!ENTITY config.twisty.style.none    "None">
-<!ENTITY config.twisty.style.retro   "Retro">
-<!ENTITY config.twisty.style.modern.black "Black Modern">
-<!ENTITY config.twisty.style.modern.white "White Modern">
-<!ENTITY config.twisty.style.osx     "OS X">
-
-
-<!ENTITY config.tabs.menu "Menu">
-
-<!ENTITY config.show.tabContextMenu.caption "Add following items to the context menu on tabs">
-
-
-<!ENTITY config.tabs.tab "New Tabs">
-
-<!ENTITY config.tabs.link.tab     "Links">
-<!ENTITY config.tabs.urlbar.tab   "Location Bar">
-<!ENTITY config.tabs.bookmark.tab "Bookmarks">
-<!ENTITY config.tabs.dragdrop.tab "Drag &amp; Drop to tabs">
-<!ENTITY config.tabs.misc.tab     "Other Cases">
+<!ENTITY config.tabs.link    "Links">
 
 <!ENTITY config.link.caption "Automatic New Tab Level for Links">
 <!ENTITY config.link.none    "Lv.0 Nothing (Firefox default)">
@@ -63,16 +16,8 @@
 <!ENTITY config.open_newwindow.tab     "Open as Tab (Firefox default, recommended)">
 <!ENTITY config.open_newwindow.current "Load into the Current Tab anyway">
 
-<!ENTITY config.openGroupBookmark.caption     "Behavior of &quot;Open All in Tabs&quot; for bookmark folders">
-<!ENTITY config.openGroupBookmark.ask         "Ask me always">
-<!ENTITY config.openGroupBookmark.subtree     "Open as a tree (Recommended)">
-<!ENTITY config.openGroupBookmark.subtree.type.before  "">
-<!ENTITY config.openGroupBookmark.subtree.type.restore "Restore">
-<!ENTITY config.openGroupBookmark.subtree.type.flat    "Ignore">
-<!ENTITY config.openGroupBookmark.subtree.type.after   "tree structure of tabs saved to bookmarks">
-<!ENTITY config.openGroupBookmark.flat        "Open as separate tabs (Firefox default)">
-<!ENTITY config.openGroupBookmark.replace     "Replace the current one tab with the pages in the folder">
-<!ENTITY config.openGroupBookmark.underParent "Put tabs under a dummy tab for grouping">
+
+<!ENTITY config.tabs.urlbar.tab      "Location Bar">
 
 <!ENTITY config.urlbar.caption       "Automatic New Tab Level for the Location Bar">
 <!ENTITY config.urlbar.none          "Lv.0 Nothing (Firefox default)">
@@ -83,10 +28,8 @@
 <!ENTITY config.urlbar.asChild.inner "Lv.1 Open as child tab if it is the same website">
 <!ENTITY config.urlbar.asChild.any   "Lv.2 Open as child tab always">
 
-<!ENTITY config.dropLinksOnTab.caption "Action for drag drop of links, URLs, bookmarks or files to existing tab">
-<!ENTITY config.dropLinksOnTab.ask     "Ask me always">
-<!ENTITY config.dropLinksOnTab.load    "Load link into the tab (Firefox default)">
-<!ENTITY config.dropLinksOnTab.newTab  "Open link in a new child tab of the tab">
+
+<!ENTITY config.tabs.jsopen    "Scripts">
 
 <!ENTITY config.jsopen.caption "New window opened from a web page script">
 <!ENTITY config.jsopen.default "Open new window when it has a special width, height, etc. (Firefox default)">
@@ -94,98 +37,9 @@
 <!ENTITY config.jsopen.current  "Load into the Current Tab anyway">
 
 
-<!ENTITY config.tabs.autohide "Auto hide">
-
-<!ENTITY config.autoHide.mode.0 "Show tab bar always">
-<!ENTITY config.autoHide.mode.1 "Auto Hide tab bar">
-<!ENTITY config.autoHide.mode.2 "Auto Shrink tab bar">
-<!ENTITY config.autoShow.caption "Show tab bar automatically when">
-<!ENTITY config.autoShow.mousemove "Mouse cursor is close to the window edge">
-<!ENTITY config.autoHide.area.before "Sensitive area:">
-<!ENTITY config.autoHide.area.after "pixels from window edges">
-<!ENTITY config.autoShow.mousemove.mode2 "Mouse cursor is close to the tab bar's edge">
-<!ENTITY config.autoHide.area.before.mode2 "Sensitive area:">
-<!ENTITY config.autoHide.area.after.mode2 "pixels from tab bar's edge">
-<!ENTITY config.autoHide.delay.before "Delay:">
-<!ENTITY config.autoHide.delay.after "msec.">
-<!ENTITY config.autoShow.accelKeyDown "Control key is pressed a while">
-<!ENTITY config.autoShow.accelKeyDown.delay.before "Show after">
-<!ENTITY config.autoShow.accelKeyDown.delay.after  "msec.">
-<!ENTITY config.autoShow.tabSwitch   "Control-Tab to switch tabs">
-<!ENTITY config.autoShow.feedback    "New tabs are opened or some tabs are closed">
-<!ENTITY config.autoShow.feedback.delay.before "Hide after">
-<!ENTITY config.autoShow.feedback.delay.after  "msec.">
-
-<!ENTITY config.transparent.style.caption "Background transparency of tab bar">
-<!ENTITY config.transparent.style.0 "Solid">
-<!ENTITY config.transparent.style.1 "Half-transparent">
-<!ENTITY config.transparent.style.2 "Transparent">
-
-
-<!ENTITY config.tabs.tree "Tree">
-
-<!ENTITY config.autoCollapseExpandSubtreeOnSelect "When a tab gets focus, expand its tree and collapse others automatically">
-<!ENTITY config.autoCollapseExpandSubtreeOnSelect.onCurrentTabRemove "Exclude focus moving caused by current tab closing">
-<!ENTITY config.collapseExpandSubtree.dblclick "Double-click on a tab to collapse/expand tree">
-<!ENTITY config.autoExpandSubtreeOnAppendChild "Expand tree automatically, when tabs are inserted into the tree">
-
-<!ENTITY config.closeParentBehavior.caption      "When a parent tab is closed">
-<!ENTITY config.closeParentBehavior.close        "Close child tabs too">
-<!ENTITY config.closeParentBehavior.promoteFirst "Promote the first child tab as the new parent">
-<!ENTITY config.closeParentBehavior.promoteAll   "Promote all child tabs as the level of the closed parent tab">
-<!ENTITY config.closeParentBehavior.detach       "Liberate child tabs from the tree">
-<!ENTITY config.closeRootBehavior.promoteFirst   "Promote the first child tab as the new parent, if the closed parent has no parent">
-
-<!ENTITY config.focusMode "Focus to the next/previous tab even if it is invisible, by Control-Tab">
-
-<!ENTITY config.insertNewChildAt.caption "Insertion position of new child tabs">
-<!ENTITY config.insertNewChildAt.first "Insert to the top of the tree, as the first child">
-<!ENTITY config.insertNewChildAt.last "Append to the last of the tree">
-
-<!ENTITY config.undoCloseTabSet.caption  "When a member of a tree is restored by &quot;Undo Close Tab&quot;">
-<!ENTITY config.undoCloseTabSet.ask      "Ask me always">
-<!ENTITY config.undoCloseTabSet.set      "Restore whole of the tree">
-<!ENTITY config.undoCloseTabSet.separate "Restore only one tab (Firefox default)">
-
-
 <!ENTITY config.tabs.advanced "Advanced">
-
-<!ENTITY config.animation.enabled "Enable Animation Effects">
-
-<!ENTITY config.tooltip.includeChildren        "Show tree contents in tooltips on tabs">
 
 <!ENTITY config.useEffectiveTLD.caption  "Detecting method for &quot;same website&quot;">
 <!ENTITY config.useEffectiveTLD.enabled  "by Domain (&quot;aaa.example.com&quot; and &quot;bbb.example.com&quot; are same websites)">
 <!ENTITY config.useEffectiveTLD.disabled "by Host (&quot;aaa.example.com&quot; and &quot;bbb.example.com&quot; are different websites)">
 
-
-
-
-
-<!ENTITY selection.createSubtree.label          "Gather to a New Tree">
-<!ENTITY selection.createSubtree.accesskey      "g">
-
-<!ENTITY selection.removeTabSubtree.label       "Close Selected Trees">
-<!ENTITY selection.removeTabSubtree.accesskey   "s">
-<!ENTITY context.reloadTabSubtree.label         "Reload this Tree">
-<!ENTITY context.reloadTabSubtree.accesskey     "r">
-<!ENTITY context.reloadDescendantTabs.label     "Reload Children">
-<!ENTITY context.reloadDescendantTabs.accesskey "r">
-<!ENTITY context.removeTabSubtree.label         "Close this Tree">
-<!ENTITY context.removeTabSubtree.accesskey     "s">
-<!ENTITY context.removeDescendantTabs.label     "Close Children">
-<!ENTITY context.removeDescendantTabs.accesskey "d">
-<!ENTITY context.collapseAllSubtree.label       "Collapse All Trees">
-<!ENTITY context.collapseAllSubtree.accesskey   "c">
-<!ENTITY context.expandAllSubtree.label         "Expand All Trees">
-<!ENTITY context.expandAllSubtree.accesskey     "e">
-<!ENTITY context.toggleAutoHide.label           "Auto hide tab bar">
-<!ENTITY context.toggleAutoHide.accesskey       "h">
-<!ENTITY context.toggleFixed.label              "Fix position and width/height of tab bar">
-<!ENTITY context.toggleFixed.label.horizontal   "Fix position and height of tab bar">
-<!ENTITY context.toggleFixed.label.vertical     "Fix position and width of tab bar">
-<!ENTITY context.toggleFixed.accesskey          "f">
-<!ENTITY context.bookmarkTabSubtree.label       "Bookmark this Tree...">
-<!ENTITY context.bookmarkTabSubtree.accesskey   "t">
-
-<!ENTITY group.default "New Group">

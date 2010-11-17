@@ -9,9 +9,9 @@
    });
 
  license: The MIT License, Copyright (c) 2009 SHIMODA "Piro" Hiroshi
-   http://www.cozmixng.org/repos/piro/fx3-compatibility-lib/trunk/license.txt
+   http://github.com/piroor/fxaddonlibs/blob/master/license.txt
  original:
-   http://www.cozmixng.org/repos/piro/fx3-compatibility-lib/trunk/UninstallationListener.js
+   http://github.com/piroor/fxaddonlibs/blob/master/UninstallationListener.js
 */
 (function() {
 	const currentRevision = 1;

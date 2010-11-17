@@ -1,56 +1,10 @@
-content	treestyletab	jar:chrome/treestyletab.jar!/content/treestyletab/
+content	openlinkintab	jar:chrome/openlinkintab.jar!/content/openlinkintab/
 
-overlay	chrome://browser/content/browser.xul	chrome://treestyletab/content/treestyletab.xul
+overlay	chrome://browser/content/browser.xul	chrome://openlinkintab/content/openlinkintab.xul
 
-overlay	chrome://browser/content/bookmarks/bookmarksPanel.xul	chrome://treestyletab/content/bookmarksOverlay.xul
-overlay	chrome://browser/content/history/history-panel.xul	chrome://treestyletab/content/bookmarksOverlay.xul
-overlay	chrome://browser/content/places/places.xul	chrome://treestyletab/content/bookmarksOverlay.xul
-overlay	chrome://browser/content/places/places.xul	chrome://treestyletab/content/bookmarksOverlayEditable.xul
-overlay	chrome://browser/content/places/bookmarkProperties.xul	chrome://treestyletab/content/bookmarksOverlay.xul
-overlay	chrome://browser/content/places/bookmarkProperties.xul	chrome://treestyletab/content/bookmarksOverlayEditable.xul
+locale	openlinkintab	en-US	jar:chrome/openlinkintab.jar!/locale/en-US/openlinkintab/
+locale	openlinkintab	ja	jar:chrome/openlinkintab.jar!/locale/ja/openlinkintab/
 
-overlay	chrome://multipletab/content/config.xul	chrome://treestyletab/content/multipletabConfigOverlay.xul
+override chrome://openlinkintab/skin/config.css	chrome://openlinkintab/skin/config-4.css	appversion>=4.0b5pre
 
-overlay	chrome://browser/content/browser.xul	chrome://treestyletab/content/res/bookmarkMultipleTabs.xul
-overlay	chrome://browser/content/places/bookmarkProperties2.xul	chrome://treestyletab/content/res/bookmarkMultipleTabs_bookmarkPropertiesOverlay.xul
-
-locale	treestyletab	en-US	jar:chrome/treestyletab.jar!/locale/en-US/treestyletab/
-locale	treestyletab	ja	jar:chrome/treestyletab.jar!/locale/ja/treestyletab/
-locale	treestyletab	it-IT	jar:chrome/treestyletab.jar!/locale/it-IT/treestyletab/
-locale	treestyletab	zh-CN	jar:chrome/treestyletab.jar!/locale/zh-CN/treestyletab/
-locale	treestyletab	es-ES	jar:chrome/treestyletab.jar!/locale/es-ES/treestyletab/
-locale	treestyletab	de-DE	jar:chrome/treestyletab.jar!/locale/de-DE/treestyletab/
-locale	treestyletab	zh-TW	jar:chrome/treestyletab.jar!/locale/zh-TW/treestyletab/
-locale	treestyletab	ru-RU	jar:chrome/treestyletab.jar!/locale/ru-RU/treestyletab/
-locale	treestyletab	pl	jar:chrome/treestyletab.jar!/locale/pl/treestyletab/
-locale	treestyletab	fr-FR	jar:chrome/treestyletab.jar!/locale/fr-FR/treestyletab/
-
-skin	treestyletab	classic/1.0	jar:chrome/treestyletab.jar!/skin/classic/treestyletab/
-
-skin	treestyletab-platform	classic/1.0	jar:platform/WINNT/chrome/treestyletab.jar!/skin/classic/treestyletab/	os=WINNT
-skin	treestyletab-platform	classic/1.0	jar:platform/Linux/chrome/treestyletab.jar!/skin/classic/treestyletab/	os=Linux
-skin	treestyletab-platform	classic/1.0	jar:platform/Darwin/chrome/treestyletab.jar!/skin/classic/treestyletab/	os=Darwin
-
-style chrome://browser/content/browser.xul chrome://treestyletab-platform/skin/treestyletab-3.5.css	os=Darwin appversion>=3.5
-override chrome://treestyletab-platform/skin/metal/treestyletab-inactive.css	chrome://treestyletab-platform/skin/metal/treestyletab-inactive-3.0.css	os=Darwin
-override chrome://treestyletab-platform/skin/metal/treestyletab-inactive.css	chrome://treestyletab-platform/skin/metal/treestyletab-inactive-4.css	os=Darwin appversion>=4.0b5pre
-
-
-override chrome://treestyletab/skin/group/group-icon	chrome://treestyletab/skin/group/group-fx3.png
-override chrome://treestyletab/skin/group/group-icon	chrome://treestyletab/skin/group/group-fx3-aero.png	os=WINNT osversion>=6
-
-override chrome://treestyletab/skin/metal/tab.css	chrome://treestyletab/skin/metal/tab-3.5.css	appversion>=3.5
-override chrome://treestyletab/skin/metal/tab-inactive.css	chrome://treestyletab/skin/metal/tab-inactive-3.5.css
-override chrome://treestyletab/skin/metal/tab-inactive.css	chrome://treestyletab/skin/metal/tab-inactive-4.css	appversion>=4.0b5pre
-override chrome://treestyletab/skin/metal/base-inactive.css	chrome://treestyletab/skin/metal/base-inactive-3.0.css
-override chrome://treestyletab/skin/metal/base-inactive.css	chrome://treestyletab/skin/metal/base-inactive-4.css	appversion>=4.0b5pre
-
-override chrome://treestyletab/skin/sidebar/inactive.css	chrome://treestyletab/skin/sidebar/inactive-3.6.css
-override chrome://treestyletab/skin/sidebar/inactive.css	chrome://treestyletab/skin/sidebar/inactive-4.css	appversion>=4.0b5pre
-
-override chrome://treestyletab/skin/config.css	chrome://treestyletab/skin/config-4.css	appversion>=4.0b5pre
-
-resource treestyletab-modules modules/
-
-component	{305122d0-5bdc-11de-8a39-0800200c9a66}	components/AboutGroup.js
-contract	@mozilla.org/network/protocol/about;1?what=treestyletab-group	{305122d0-5bdc-11de-8a39-0800200c9a66}
+resource openlinkintab-modules modules/

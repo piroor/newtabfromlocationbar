@@ -3,15 +3,16 @@
          xmlns:NC="http://home.netscape.com/NC-rdf#"
          xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
-                   em:id="treestyletab@piro.sakura.ne.jp"
-                   em:name="Tree Style Tab"
-                   em:version="0.10.2010111301"
+                   em:id="openlinkintab@piro.sakura.ne.jp"
+                   em:name="Open Link in New Tab"
+                   em:version="0.1.2010111301"
                    em:creator="SHIMODA Hiroshi"
-                   em:description="Show tabs like a tree."
-                   em:homepageURL="http://piro.sakura.ne.jp/xul/_treestyletab.html.en"
-                   em:iconURL="chrome://treestyletab/content/res/icon32.png"
-                   em:optionsURL="chrome://treestyletab/content/config.xul">
-
+                   em:description="Loads links in new tabs, by conditions."
+                   em:homepageURL="http://piro.sakura.ne.jp/xul/_openlinkintab.html.en"
+                   em:optionsURL="chrome://openlinkintab/content/config.xul">
+<!--
+                   em:iconURL="chrome://openlinkintab/content/res/icon32.png"
+-->
 
     <em:updateURL>http://piro.sakura.ne.jp/xul/update.rdf</em:updateURL>
     <em:updateKey>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDLI43lgUhWE0E7bfiuTrQMKIP53KM3w71VEPc9FxE7YS3Hpr85dC/GgEUDPd6xD7UP7ckzEusN49LCAKoipepxgyAWzQjZ3CzvkD7PWsZFTi7lpj9ytYDysoFwHs0L96i5oiVopNj1NQM2AC0Y5Lr0b6lz2L5ece0/z6monpZXPQIDAQAB</em:updateKey>
@@ -19,9 +20,9 @@
 
     <em:localized>
       <RDF:Description em:locale="en-US"
-                       em:name="Tree Style Tab"
-                       em:description="Show tabs like a tree."
-                       em:homepageURL="http://piro.sakura.ne.jp/xul/_treestyletab.html.en"
+                       em:name="Open Link in New Tab"
+                       em:description="Loads links in new tabs, by conditions."
+                       em:homepageURL="http://piro.sakura.ne.jp/xul/_openlinkintab.html.en"
                        em:creator="SHIMODA Hiroshi">
 		  <em:translator>Godai71.Extenzilla (it-IT locale)</em:translator>
 		  <em:translator>Fatiaomao (zh-CN locale)</em:translator>
@@ -33,16 +34,13 @@
 		  <em:translator>L'Autour (ru-RU locale)</em:translator>
 		  <em:translator>Leszek(teo)Życzkowski (pl locale)</em:translator>
 		  <em:translator>Laurent Haas (fr-FR locale)</em:translator>
-		  <em:contributor>Zusukar (auto-shrink mode)</em:contributor>
-		  <em:contributor>Alice0775 (compatibility problem)</em:contributor>
-		  <em:contributor>Philipp von Weitershausen (Sidebar style)</em:contributor>
       </RDF:Description>
     </em:localized>
     <em:localized>
       <RDF:Description em:locale="ja"
-                       em:name="ツリー型タブ"
-                       em:description="タブをツリー状に表示します。"
-                       em:homepageURL="http://piro.sakura.ne.jp/xul/_treestyletab.html"
+                       em:name="リンクをタブで開く"
+                       em:description="リンクを条件に応じてタブで開きます。"
+                       em:homepageURL="http://piro.sakura.ne.jp/xul/_openlinkintab.html"
                        em:creator="SHIMODA Hiroshi">
 		  <em:translator>Godai71.Extenzilla (it-IT locale)</em:translator>
 		  <em:translator>Fatiaomao (zh-CN locale)</em:translator>
@@ -54,184 +52,13 @@
 		  <em:translator>L'Autour (ru-RU locale)</em:translator>
 		  <em:translator>Leszek(teo)Życzkowski (pl locale)</em:translator>
 		  <em:translator>Laurent Haas (fr-FR locale)</em:translator>
-		  <em:contributor>Zusukar (auto-shrink mode)</em:contributor>
-		  <em:contributor>Alice0775 (compatibility problem)</em:contributor>
-		  <em:contributor>Philipp von Weitershausen (Sidebar style)</em:contributor>
-      </RDF:Description>
-    </em:localized>
-    <em:localized>
-      <RDF:Description em:locale="it-IT"
-                       em:name="Tree Style Tab"
-                       em:description="Permette di visualizzare la barra delle schede in forma di albero"
-                       em:homepageURL="http://piro.sakura.ne.jp/xul/_treestyletab.html.en"
-                       em:creator="SHIMODA Hiroshi">
-		  <em:translator>Godai71.Extenzilla (it-IT locale)</em:translator>
-		  <em:translator>Fatiaomao (zh-CN locale)</em:translator>
-		  <em:translator>hzhbest (zh-CN locale)</em:translator>
-		  <em:translator>tito (es-ES locale)</em:translator>
-		  <em:translator>Andy Pillip (de-DE locale)</em:translator>
-		  <em:translator>HkYtrewq (zh-TW locale)</em:translator>
-		  <em:translator>Tsprajna (zh-TW locale)</em:translator>
-		  <em:translator>L'Autour (ru-RU locale)</em:translator>
-		  <em:translator>Leszek(teo)Życzkowski (pl locale)</em:translator>
-		  <em:translator>Laurent Haas (fr-FR locale)</em:translator>
-		  <em:contributor>Zusukar (auto-shrink mode)</em:contributor>
-		  <em:contributor>Alice0775 (compatibility problem)</em:contributor>
-		  <em:contributor>Philipp von Weitershausen (Sidebar style)</em:contributor>
-      </RDF:Description>
-    </em:localized>
-    <em:localized>
-      <RDF:Description em:locale="zh-CN"
-                       em:name="Tree Style Tab"
-                       em:description="以树的形式显示标签。"
-                       em:homepageURL="http://piro.sakura.ne.jp/xul/_treestyletab.html.en"
-                       em:creator="SHIMODA Hiroshi">
-		  <em:translator>Godai71.Extenzilla (it-IT locale)</em:translator>
-		  <em:translator>Fatiaomao (zh-CN locale)</em:translator>
-		  <em:translator>hzhbest (zh-CN locale)</em:translator>
-		  <em:translator>tito (es-ES locale)</em:translator>
-		  <em:translator>Andy Pillip (de-DE locale)</em:translator>
-		  <em:translator>HkYtrewq (zh-TW locale)</em:translator>
-		  <em:translator>Tsprajna (zh-TW locale)</em:translator>
-		  <em:translator>L'Autour (ru-RU locale)</em:translator>
-		  <em:translator>Leszek(teo)Życzkowski (pl locale)</em:translator>
-		  <em:translator>Laurent Haas (fr-FR locale)</em:translator>
-		  <em:contributor>Zusukar (auto-shrink mode)</em:contributor>
-		  <em:contributor>Alice0775 (compatibility problem)</em:contributor>
-		  <em:contributor>Philipp von Weitershausen (Sidebar style)</em:contributor>
-      </RDF:Description>
-    </em:localized>
-    <em:localized>
-      <RDF:Description em:locale="es-ES"
-                       em:name="Tree Style Tab (Pestañas estilo árbol)"
-                       em:description="Muestra las pestañas en vista de árbol"
-                       em:homepageURL="http://piro.sakura.ne.jp/xul/_treestyletab.html.en"
-                       em:creator="SHIMODA Hiroshi">
-		  <em:translator>Godai71.Extenzilla (it-IT locale)</em:translator>
-		  <em:translator>Fatiaomao (zh-CN locale)</em:translator>
-		  <em:translator>hzhbest (zh-CN locale)</em:translator>
-		  <em:translator>tito (es-ES locale)</em:translator>
-		  <em:translator>Andy Pillip (de-DE locale)</em:translator>
-		  <em:translator>HkYtrewq (zh-TW locale)</em:translator>
-		  <em:translator>Tsprajna (zh-TW locale)</em:translator>
-		  <em:translator>L'Autour (ru-RU locale)</em:translator>
-		  <em:translator>Leszek(teo)Życzkowski (pl locale)</em:translator>
-		  <em:translator>Laurent Haas (fr-FR locale)</em:translator>
-		  <em:contributor>Zusukar (auto-shrink mode)</em:contributor>
-		  <em:contributor>Alice0775 (compatibility problem)</em:contributor>
-		  <em:contributor>Philipp von Weitershausen (Sidebar style)</em:contributor>
-      </RDF:Description>
-    </em:localized>
-    <em:localized>
-      <RDF:Description em:locale="de-DE"
-                       em:name="Tree Style Tab"
-                       em:description="Stellt Tabs in einer Baumstukur dar"
-                       em:homepageURL="http://piro.sakura.ne.jp/xul/_treestyletab.html.en"
-                       em:creator="SHIMODA Hiroshi">
-		  <em:translator>Godai71.Extenzilla (it-IT locale)</em:translator>
-		  <em:translator>Fatiaomao (zh-CN locale)</em:translator>
-		  <em:translator>hzhbest (zh-CN locale)</em:translator>
-		  <em:translator>tito (es-ES locale)</em:translator>
-		  <em:translator>Andy Pillip (de-DE locale)</em:translator>
-		  <em:translator>HkYtrewq (zh-TW locale)</em:translator>
-		  <em:translator>Tsprajna (zh-TW locale)</em:translator>
-		  <em:translator>L'Autour (ru-RU locale)</em:translator>
-		  <em:translator>Leszek(teo)Życzkowski (pl locale)</em:translator>
-		  <em:translator>Laurent Haas (fr-FR locale)</em:translator>
-		  <em:contributor>Zusukar (auto-shrink mode)</em:contributor>
-		  <em:contributor>Alice0775 (compatibility problem)</em:contributor>
-		  <em:contributor>Philipp von Weitershausen (Sidebar style)</em:contributor>
-      </RDF:Description>
-    </em:localized>
-    <em:localized>
-      <RDF:Description em:locale="zh-TW"
-                       em:name="Tree Style Tab"
-                       em:description="以樹狀目錄形式顯示分頁"
-                       em:homepageURL="http://piro.sakura.ne.jp/xul/_treestyletab.html.en"
-                       em:creator="SHIMODA Hiroshi">
-		  <em:translator>Godai71.Extenzilla (it-IT locale)</em:translator>
-		  <em:translator>Fatiaomao (zh-CN locale)</em:translator>
-		  <em:translator>hzhbest (zh-CN locale)</em:translator>
-		  <em:translator>tito (es-ES locale)</em:translator>
-		  <em:translator>Andy Pillip (de-DE locale)</em:translator>
-		  <em:translator>HkYtrewq (zh-TW locale)</em:translator>
-		  <em:translator>Tsprajna (zh-TW locale)</em:translator>
-		  <em:translator>L'Autour (ru-RU locale)</em:translator>
-		  <em:translator>Leszek(teo)Życzkowski (pl locale)</em:translator>
-		  <em:translator>Laurent Haas (fr-FR locale)</em:translator>
-		  <em:contributor>Zusukar (auto-shrink mode)</em:contributor>
-		  <em:contributor>Alice0775 (compatibility problem)</em:contributor>
-		  <em:contributor>Philipp von Weitershausen (Sidebar style)</em:contributor>
-      </RDF:Description>
-    </em:localized>
-    <em:localized>
-      <RDF:Description em:locale="ru-RU"
-                       em:name="Tree Style Tab (Древовидный стиль вкладок)"
-                       em:description="Отображение вкладок в виде дерева"
-                       em:homepageURL="http://piro.sakura.ne.jp/xul/_treestyletab.html.en"
-                       em:creator="SHIMODA Hiroshi">
-		  <em:translator>Godai71.Extenzilla (it-IT locale)</em:translator>
-		  <em:translator>Fatiaomao (zh-CN locale)</em:translator>
-		  <em:translator>hzhbest (zh-CN locale)</em:translator>
-		  <em:translator>tito (es-ES locale)</em:translator>
-		  <em:translator>Andy Pillip (de-DE locale)</em:translator>
-		  <em:translator>HkYtrewq (zh-TW locale)</em:translator>
-		  <em:translator>Tsprajna (zh-TW locale)</em:translator>
-		  <em:translator>L'Autour (ru-RU locale)</em:translator>
-		  <em:translator>Leszek(teo)Życzkowski (pl locale)</em:translator>
-		  <em:translator>Laurent Haas (fr-FR locale)</em:translator>
-		  <em:contributor>Zusukar (auto-shrink mode)</em:contributor>
-		  <em:contributor>Alice0775 (compatibility problem)</em:contributor>
-		  <em:contributor>Philipp von Weitershausen (Sidebar style)</em:contributor>
-      </RDF:Description>
-    </em:localized>
-    <em:localized>
-      <RDF:Description em:locale="pl"
-                       em:name="Tree Style Tab"
-                       em:description="Wyświetla karty w układzie drzewa."
-                       em:homepageURL="http://piro.sakura.ne.jp/xul/_treestyletab.html.en"
-                       em:creator="SHIMODA Hiroshi">
-		  <em:translator>Godai71.Extenzilla (it-IT locale)</em:translator>
-		  <em:translator>Fatiaomao (zh-CN locale)</em:translator>
-		  <em:translator>hzhbest (zh-CN locale)</em:translator>
-		  <em:translator>tito (es-ES locale)</em:translator>
-		  <em:translator>Andy Pillip (de-DE locale)</em:translator>
-		  <em:translator>HkYtrewq (zh-TW locale)</em:translator>
-		  <em:translator>Tsprajna (zh-TW locale)</em:translator>
-		  <em:translator>L'Autour (ru-RU locale)</em:translator>
-		  <em:translator>Leszek(teo)Życzkowski (pl locale)</em:translator>
-		  <em:translator>Laurent Haas (fr-FR locale)</em:translator>
-		  <em:contributor>Zusukar (auto-shrink mode)</em:contributor>
-		  <em:contributor>Alice0775 (compatibility problem)</em:contributor>
-		  <em:contributor>Philipp von Weitershausen (Sidebar style)</em:contributor>
-      </RDF:Description>
-    </em:localized>
-    <em:localized>
-      <RDF:Description em:locale="fr-FR"
-                       em:name="Tree Style Tab"
-                       em:description="Show tabs like a tree."
-                       em:homepageURL="http://piro.sakura.ne.jp/xul/_treestyletab.html.en"
-                       em:creator="SHIMODA Hiroshi">
-		  <em:translator>Godai71.Extenzilla (it-IT locale)</em:translator>
-		  <em:translator>Fatiaomao (zh-CN locale)</em:translator>
-		  <em:translator>hzhbest (zh-CN locale)</em:translator>
-		  <em:translator>tito (es-ES locale)</em:translator>
-		  <em:translator>Andy Pillip (de-DE locale)</em:translator>
-		  <em:translator>HkYtrewq (zh-TW locale)</em:translator>
-		  <em:translator>Tsprajna (zh-TW locale)</em:translator>
-		  <em:translator>L'Autour (ru-RU locale)</em:translator>
-		  <em:translator>Leszek(teo)Życzkowski (pl locale)</em:translator>
-		  <em:translator>Laurent Haas (fr-FR locale)</em:translator>
-		  <em:contributor>Zusukar (auto-shrink mode)</em:contributor>
-		  <em:contributor>Alice0775 (compatibility problem)</em:contributor>
-		  <em:contributor>Philipp von Weitershausen (Sidebar style)</em:contributor>
       </RDF:Description>
     </em:localized>
 
 
     <em:targetApplication>
       <RDF:Description em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                       em:minVersion="3.0"
+                       em:minVersion="3.6"
                        em:maxVersion="4.0b8pre" />
     </em:targetApplication>
   </RDF:Description>

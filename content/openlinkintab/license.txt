@@ -11,14 +11,13 @@ WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
 for the specific language governing rights and limitations under the
 License.
 
-The Original Code is the Tree Style Tab.
+The Original Code is the Open Link in New Tab.
 
 The Initial Developer of the Original Code is SHIMODA Hiroshi.
-Portions created by the Initial Developer are Copyright (C) 2007-2010
+Portions created by the Initial Developer are Copyright (C) 2010
 the Initial Developer. All Rights Reserved.
 
 Contributor(s): SHIMODA Hiroshi <piro@p.club.ne.jp>
-                Alice0775 (fixes some compatibility problems)
 
 Alternatively, the contents of these files may be used under the terms of
 either the GNU General Public License Version 2 or later (the "GPL"), or

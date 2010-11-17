@@ -4,55 +4,9 @@
 <!ENTITY config.scale.max "max">
 
 
-<!ENTITY config.tabs.appearance "Darstellung">
-
-<!ENTITY config.tabbar.position.caption "Position der Tableiste">
-<!ENTITY config.tabbar.position.left    "Links">
-<!ENTITY config.tabbar.position.right   "Rechts">
-<!ENTITY config.tabbar.position.top     "Oben (Firefox Standard)">
-<!ENTITY config.tabbar.position.bottom  "Unten">
-<!ENTITY config.tabbar.invertClosebox.left  "Schließen-Button in jedem Tab links anzeigen">
-<!ENTITY config.tabbar.invertClosebox.right "Schließen-Button in jedem Tab rechts anzeigen">
-<!ENTITY config.tabbar.invertTab            "Tabs von rechts einrücken">
-<!ENTITY config.tabbar.invertTabContents    "Symbol und Text in den Tabs vertauschen">
-<!ENTITY config.enableSubtreeIndent         "Tabs einrücken">
-<!ENTITY config.allowSubtreeCollapseExpand  "Auf- und Einklappen von Zweigen erlauben">
-<!ENTITY config.tabbar.hideAlltabsButton    "Button zum Auflisten aller Tabs anzeigen">
-
-
-<!ENTITY config.tabs.style "Style">
-
-<!ENTITY config.tabbar.style.caption "Aussehen der Tableiste">
-<!ENTITY config.tabbar.style.plain   "Plain">
-<!ENTITY config.tabbar.style.flat    "Flat">
-<!ENTITY config.tabbar.style.mixed   "Gemischt">
-<!ENTITY config.tabbar.style.vertigo "Vertigo">
-<!ENTITY config.tabbar.style.metal   "Metal">
-<!ENTITY config.tabbar.style.sidebar "Sidebar">
-<!ENTITY config.tabbar.style.none    "Standard (durch Theme festgelegt)">
-
-<!ENTITY config.twisty.style.caption "Aufklappsymbole">
-<!ENTITY config.twisty.style.auto    "Auto">
-<!ENTITY config.twisty.style.none    "Keine">
-<!ENTITY config.twisty.style.retro   "Retro">
-<!ENTITY config.twisty.style.modern.black "Schwarz Modern">
-<!ENTITY config.twisty.style.modern.white "Weiß Modern">
-<!ENTITY config.twisty.style.osx     "OS X">
-
-
-<!ENTITY config.tabs.menu "Menü">
-
-<!ENTITY config.show.tabContextMenu.caption "Folgende Zeilen im Kontextmenü der Tabs anzeigen">
-<!ENTITY config.show.openSelectionLinks "&quot;Links im markierten Webseitentext in Tabs öffnen&quot; im Kontextmenü der Markierung anbieten">
-
-
-<!ENTITY config.tabs.tab "Tabs Öffnen">
-
-<!ENTITY config.tabs.link.tab     "Links">
-<!ENTITY config.tabs.urlbar.tab   "Adresszeile">
-<!ENTITY config.tabs.bookmark.tab "Lesezeichen">
-<!ENTITY config.tabs.dragdrop.tab "Ziehen von Links auf Tabs">
-<!ENTITY config.tabs.misc.tab     "Sonstiges">
+<!ENTITY config.tabs.link     "Links">
+<!ENTITY config.tabs.urlbar   "Adresszeile">
+<!ENTITY config.tabs.jsopen     "Scripts">
 
 <!ENTITY config.link.caption "Verfolgte Links">
 <!ENTITY config.link.none    "Lv.0 Immer im aktiven Tab laden (Firefox Standard)">
@@ -64,17 +18,6 @@
 <!ENTITY config.open_newwindow.tab     "Als neues Tab öffnen (Firefox Standard)">
 <!ENTITY config.open_newwindow.current "Immer im aktiven Tab laden">
 
-<!ENTITY config.openGroupBookmark.caption     "Verhalten von &quot;Alle in Tabs öffnen&quot; für Seiten in einem Lesezeichenordner">
-<!ENTITY config.openGroupBookmark.ask         "Jedes Mal nachfragen">
-<!ENTITY config.openGroupBookmark.subtree     "Als Zweig öffnen (Empfohlen)">
-<!ENTITY config.openGroupBookmark.subtree.type.before  "">
-<!ENTITY config.openGroupBookmark.subtree.type.restore "Speichere">
-<!ENTITY config.openGroupBookmark.subtree.type.flat    "Ignoriere">
-<!ENTITY config.openGroupBookmark.subtree.type.after   "Anordnung der Tabs im Zweig beim Speichern als Lesezeichen">
-<!ENTITY config.openGroupBookmark.flat        "Als eigenständige Tabs öffnen (Firefox Standard)">
-<!ENTITY config.openGroupBookmark.replace     "Aktuelles Tab durch die neuen Tabs ersetzen">
-<!ENTITY config.openGroupBookmark.underParent "Seiten zur Gruppierung einem Dummytab unterordnen">
-
 <!ENTITY config.urlbar.caption       "Eingegebene Adressen">
 <!ENTITY config.urlbar.none          "Lv.0 Immer im aktiven Tab laden (Firefox Standard)">
 <!ENTITY config.urlbar.outer         "Lv.1 In neuem Tab laden, falls es eine andere Webseite ist">
@@ -84,109 +27,13 @@
 <!ENTITY config.urlbar.asChild.inner "Lv.1 Neues untergeordnetes Tab, falls es die gleiche Webseite ist">
 <!ENTITY config.urlbar.asChild.any   "Lv.2 Immer als untergeordnetes Tab">
 
-<!ENTITY config.dropLinksOnTab.caption "Verhalten für das Drag &amp; Drop von URLs auf Tabs">
-<!ENTITY config.dropLinksOnTab.ask     "Jedes Mal nachfragen">
-<!ENTITY config.dropLinksOnTab.load    "Seite im Tab laden (Firefox Standard)">
-<!ENTITY config.dropLinksOnTab.newTab  "Seite in einem neuen untergeordneten Tab laden">
-
 <!ENTITY config.jsopen.caption "Fenster, die sich durch Skripte öffnen">
 <!ENTITY config.jsopen.default "Als Fenster öffnen, wenn das Skript eine bestimmte Fenstergröße vorgibt (Firefox Standard)">
 <!ENTITY config.jsopen.forcetab "Auf jeden Fall als Tab öffnen (Empfohlen)">
 <!ENTITY config.jsopen.current  "Immer im aktiven Tab laden">
 
-
-<!ENTITY config.tabs.autohide "Platz sparen">
-
-<!ENTITY config.autoHide.mode.0 "Tableiste immer voll anzeigen">
-<!ENTITY config.autoHide.mode.1 "Inaktive Tableiste verstecken">
-<!ENTITY config.autoHide.mode.2 "Inaktive Tableiste verkleinert anzeigen">
-<!ENTITY config.autoShow.caption      "Tableiste aktivieren">
-<!ENTITY config.autoShow.mousemove    "Wenn der Mauszeiger die Fensterecken berührt">
-<!ENTITY config.autoHide.area.before "Empfindlicher Bereich:">
-<!ENTITY config.autoHide.area.after "Pixel rund um die Fensterecken">
-<!ENTITY config.autoShow.mousemove.mode2 "Wenn der Mauszeiger die Fensterecken berührt">
-<!ENTITY config.autoHide.area.before.mode2 "Empfindlicher Bereich:">
-<!ENTITY config.autoHide.area.after.mode2 "Pixel rund um die Kante der Tableiste">
-<!ENTITY config.autoHide.delay.before "Verzögerung:">
-<!ENTITY config.autoHide.delay.after "msec.">
-<!ENTITY config.autoShow.accelKeyDown "Wenn die Strg-Taste eine Zeit lang gedrückt wird">
-<!ENTITY config.autoShow.accelKeyDown.delay.before "Nach">
-<!ENTITY config.autoShow.accelKeyDown.delay.after  "msec. aktivieren">
-<!ENTITY config.autoShow.tabSwitch    "Wenn Strg+Tab (wechselt zwischen Tabs) gedrückt wird">
-<!ENTITY config.autoShow.feedback     "Wenn neue Tabs geöffnet oder alte geschlossen werden">
-<!ENTITY config.autoShow.feedback.delay.before "Nach">
-<!ENTITY config.autoShow.feedback.delay.after  "msec. wieder deaktivieren">
-
-<!ENTITY config.transparent.style.caption "Hintergrund der aktiven Tableiste">
-<!ENTITY config.transparent.style.0 "Gefüllt">
-<!ENTITY config.transparent.style.1 "Halb-transparent">
-<!ENTITY config.transparent.style.2 "Transparent">
-
-
-<!ENTITY config.tabs.tree "Verhalten">
-
-<!ENTITY config.autoCollapseExpandSubtreeOnSelect "Nicht aktive Zweige zuklappen">
-<!ENTITY config.autoCollapseExpandSubtreeOnSelect.onCurrentTabRemove "Keine Fokusänderung beim Schließen des aktiven Tabs">
-<!ENTITY config.collapseExpandSubtree.dblclick "Bei Doppelklick auf Tab untergeordneten Zweig auf- oder zuklappen">
-<!ENTITY config.autoExpandSubtreeOnAppendChild "Zweig automatisch aufklappen, wenn ein Tab in den Zweig eingefügt wird">
-
-<!ENTITY config.closeParentBehavior.caption "Wenn ein Tab geschlossen wird">
-<!ENTITY config.closeParentBehavior.close   "Untergeordnete Tabs auch schließen">
-<!ENTITY config.closeParentBehavior.promoteFirst "Das geschlossene Tab durch das erste untergeordnete ersetzen">
-<!ENTITY config.closeParentBehavior.promoteAll   "Untergeordnete Tabs auf die Ebene des geschlossenen Tabs verschieben">
-<!ENTITY config.closeParentBehavior.detach        "Untergeordnete Tabs ganz aus dem Zweig ausgliedern">
-<!ENTITY config.closeRootBehavior.promoteFirst   "Das geschlossene Tab durch das erste untergeordnete ersetzen, wenn das geschlossene Tab kein übergordnetes hatte">
-
-<!ENTITY config.focusMode "Strg+Tab selektiert auch nicht sichtbare Tabs">
-
-<!ENTITY config.insertNewChildAt.caption "Einfügeposition neuer untergeordneter Tabs">
-<!ENTITY config.insertNewChildAt.first "Oben im Zweig einfügen">
-<!ENTITY config.insertNewChildAt.last "Unten im Zweig einfügen">
-
-<!ENTITY config.undoCloseTabSet.caption  "Wenn ein Element eines Zweiges durch &quot;Tab wieder öffnen&quot; wiederhergestellt wird.">
-<!ENTITY config.undoCloseTabSet.ask      "Immer nachfragen">
-<!ENTITY config.undoCloseTabSet.set      "Den ganzen Zweig wieder herstellen">
-<!ENTITY config.undoCloseTabSet.separate "Nur das eine Tab wieder herstellen (Firefox Standard)">
-
-
 <!ENTITY config.tabs.advanced "Erweitert">
-
-<!ENTITY config.animation.enabled "Animationseffekte aktivieren">
-
-<!ENTITY config.tooltip.includeChildren        "Titel der untergeordneten Tabs im Tooltip geschlossener Tabs anzeigen">
 
 <!ENTITY config.useEffectiveTLD.caption  "Erkennung der &quot;gleichen Webseite&quot;">
 <!ENTITY config.useEffectiveTLD.enabled  "Nur Domain berücksichtigen (&quot;a.example.com&quot; and &quot;b.example.com&quot; gehören zur gleichen Webseite)">
 <!ENTITY config.useEffectiveTLD.disabled "Host/Subdomain auch berücksichtigen (&quot;a.example.com&quot; and &quot;b.example.com&quot; zählen als unterschiedliche Webeiten)">
-
-
-
-
-
-<!ENTITY selection.removeTabSubtree.label     "Ausgewählte Zweige schließen">
-<!ENTITY selection.removeTabSubtree.accesskey "s">
-<!ENTITY selection.createSubtree.label          "Zweig auf oberste Ebene verschieben">
-<!ENTITY selection.createSubtree.accesskey      "g">
-
-<!ENTITY context.reloadTabSubtree.label     "Diesen Zweig neu laden">
-<!ENTITY context.reloadTabSubtree.accesskey "r">
-<!ENTITY context.reloadDescendantTabs.label     "Untergeordnete Tabs neu laden">
-<!ENTITY context.reloadDescendantTabs.accesskey "r">
-<!ENTITY context.removeTabSubtree.label     "Diesen Zweig schließen">
-<!ENTITY context.removeTabSubtree.accesskey "s">
-<!ENTITY context.removeDescendantTabs.label     "Untergeordnete Tabs schließen">
-<!ENTITY context.removeDescendantTabs.accesskey "d">
-<!ENTITY context.collapseAllSubtree.label     "Alle Zweige zuklappen">
-<!ENTITY context.collapseAllSubtree.accesskey "c">
-<!ENTITY context.expandAllSubtree.label     "Alle Zweige aufklappen">
-<!ENTITY context.expandAllSubtree.accesskey "e">
-<!ENTITY context.toggleAutoHide.label     "Tableiste verstecken">
-<!ENTITY context.toggleAutoHide.accesskey "h">
-<!ENTITY context.toggleFixed.label            "Feste Position und Größe der Tableiste">
-<!ENTITY context.toggleFixed.label.horizontal "Feste Position und Höhe der Tableiste">
-<!ENTITY context.toggleFixed.label.vertical   "Feste Position und Breite der Tableiste">
-<!ENTITY context.toggleFixed.accesskey "f">
-<!ENTITY context.bookmarkTabSubtree.label     "Zweig als Lesezeichen speichern">
-<!ENTITY context.bookmarkTabSubtree.accesskey "t">
-
-<!ENTITY group.default "Neue Gruppe">

@@ -1,780 +1,147 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/"?>
-<?xml-stylesheet href="config.css" type="text/css"?>
-<?xml-stylesheet href="chrome://treestyletab/skin/config.css" type="text/css"?>
-<?xml-stylesheet href="chrome://treestyletab-platform/skin/config.css" type="text/css"?>
 <!DOCTYPE prefwindow [
-<!ENTITY % mainDTD SYSTEM "chrome://treestyletab/locale/treestyletab.dtd">
+<!ENTITY % mainDTD SYSTEM "chrome://openlinkintab/locale/openlinkintab.dtd">
 %mainDTD;
 ]>
-<prefwindow id="treestyletab-config"
+<prefwindow id="openlinkintab-config"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	title="&config.title;"
-	onload="init()">
+	title="&config.title;">
 
-<prefpane id="prefpane-appearance" label="&config.tabs.appearance;"
-	onpaneload="initAppearancePane();">
+<prefpane id="prefpane-link" label="&config.tabs.link;"
+	onpaneload="initLinkPane();">
 	<preferences>
-		<preference id="extensions.treestyletab.tabbar.position"
-			name="extensions.treestyletab.tabbar.position"
-			type="string"/>
-		<preference id="extensions.treestyletab.tabbar.fixed.horizontal"
-			name="extensions.treestyletab.tabbar.fixed.horizontal"
+		<preference id="extensions.openlinkintab@piro.sakura.ne.jp.openOuterLinkInNewTab"
+			name="extensions.openlinkintab@piro.sakura.ne.jp.openOuterLinkInNewTab"
 			type="bool"/>
-		<preference id="extensions.treestyletab.tabbar.syncRelatedPrefsForDynamicPosition"
-			name="extensions.treestyletab.tabbar.syncRelatedPrefsForDynamicPosition"
-			type="bool"/>
-		<preference id="extensions.treestyletab.enableSubtreeIndent.horizontal"
-			name="extensions.treestyletab.enableSubtreeIndent.horizontal"
-			type="bool"/>
-		<preference id="extensions.treestyletab.enableSubtreeIndent.vertical"
-			name="extensions.treestyletab.enableSubtreeIndent.vertical"
-			type="bool"/>
-		<preference id="extensions.treestyletab.allowSubtreeCollapseExpand.horizontal"
-			name="extensions.treestyletab.allowSubtreeCollapseExpand.horizontal"
-			type="bool"/>
-		<preference id="extensions.treestyletab.allowSubtreeCollapseExpand.vertical"
-			name="extensions.treestyletab.allowSubtreeCollapseExpand.vertical"
-			type="bool"/>
-		<preference id="extensions.treestyletab.tabbar.hideAlltabsButton.horizontal"
-			name="extensions.treestyletab.tabbar.hideAlltabsButton.horizontal"
-			type="bool"
-			inverted="true"/>
-		<preference id="extensions.treestyletab.tabbar.hideAlltabsButton.vertical"
-			name="extensions.treestyletab.tabbar.hideAlltabsButton.vertical"
-			type="bool"
-			inverted="true"/>
-		<preference id="extensions.treestyletab.tabbar.invertClosebox"
-			name="extensions.treestyletab.tabbar.invertClosebox"
-			type="bool"/>
-		<preference id="extensions.treestyletab.tabbar.invertTab"
-			name="extensions.treestyletab.tabbar.invertTab"
-			type="bool"/>
-		<preference id="extensions.treestyletab.tabbar.invertTabContents"
-			name="extensions.treestyletab.tabbar.invertTabContents"
-			type="bool"/>
-		<preference id="extensions.treestyletab.tabbar.style"
-			name="extensions.treestyletab.tabbar.style"
-			type="string"/>
-		<preference id="extensions.treestyletab.twisty.style"
-			name="extensions.treestyletab.twisty.style"
-			type="string"/>
-	</preferences>
-
-	<vbox>
-
-	<groupbox>
-		<caption label="&config.tabbar.position.caption;"/>
-		<vbox>
-		<hbox>
-		<spacer flex="1"/>
-		<radiogroup id="extensions.treestyletab.tabbar.position-radiogroup"
-			preference="extensions.treestyletab.tabbar.position"
-			orient="horizontal"
-			oncommand="onChangeTabbarPosition(true);">
-			<grid>
-				<columns>
-					<column flex="1"/>
-					<column flex="1"/>
-					<column flex="1"/>
-				</columns>
-				<rows>
-					<row align="end">
-						<spacer/>
-						<radio value="top" label="&config.tabbar.position.top;"
-							style="margin-bottom: 0;"/>
-						<spacer/>
-					</row>
-					<row>
-						<radio value="left" label="&config.tabbar.position.left;"/>
-						<box style="border: ThreeDShadow 1px solid; background: white; margin: 0;"/>
-						<radio value="right" label="&config.tabbar.position.right;"/>
-					</row>
-					<row align="start">
-						<spacer/>
-						<radio value="bottom" label="&config.tabbar.position.bottom;"
-							style="margin-top: 0;"/>
-						<checkbox id="extensions.treestyletab.tabbar.invertTab-check"
-							preference="extensions.treestyletab.tabbar.invertTab"
-							label="&config.tabbar.invertTab;"
-							disabled="true"/>
-					</row>
-				</rows>
-			</grid>
-		</radiogroup>
-		<spacer flex="1"/>
-		</hbox>
-		<hbox align="center">
-			<checkbox id="extensions.treestyletab.tabbar.invertTabContents-check"
-				preference="extensions.treestyletab.tabbar.invertTabContents"
-				label="&config.tabbar.invertTabContents;"/>
-			<checkbox id="extensions.treestyletab.tabbar.invertClosebox-check"
-				preference="extensions.treestyletab.tabbar.invertClosebox"
-				label="&config.tabbar.invertClosebox.left;"
-				label-left="&config.tabbar.invertClosebox.left;"
-				label-right="&config.tabbar.invertClosebox.right;"/>
-		</hbox>
-		<hbox align="center">
-			<checkbox id="extensions.treestyletab.allowSubtreeCollapseExpand.horizontal-check"
-				preference="extensions.treestyletab.allowSubtreeCollapseExpand.horizontal"
-				label="&config.allowSubtreeCollapseExpand;"/>
-			<checkbox id="extensions.treestyletab.allowSubtreeCollapseExpand.vertical-check"
-				preference="extensions.treestyletab.allowSubtreeCollapseExpand.vertical"
-				label="&config.allowSubtreeCollapseExpand;"/>
-			<checkbox id="extensions.treestyletab.enableSubtreeIndent.horizontal-check"
-				preference="extensions.treestyletab.enableSubtreeIndent.horizontal"
-				label="&config.enableSubtreeIndent;"
-				oncommand="
-					if (document.getElementById('extensions.treestyletab.tabbar.syncRelatedPrefsForDynamicPosition').value)
-						document.getElementById('extensions.treestyletab.tabbar.fixed.horizontal').value = !this.checked;
-				"/>
-			<checkbox id="extensions.treestyletab.enableSubtreeIndent.vertical-check"
-				preference="extensions.treestyletab.enableSubtreeIndent.vertical"
-				label="&config.enableSubtreeIndent;"/>
-		</hbox>
-		<hbox align="center" id="hideAlltabsButton-box">
-			<checkbox id="extensions.treestyletab.tabbar.hideAlltabsButton.horizontal-check"
-				preference="extensions.treestyletab.tabbar.hideAlltabsButton.horizontal"
-				label="&config.tabbar.hideAlltabsButton;"
-				collapsed="true"/>
-			<checkbox id="extensions.treestyletab.tabbar.hideAlltabsButton.vertical-check"
-				preference="extensions.treestyletab.tabbar.hideAlltabsButton.vertical"
-				label="&config.tabbar.hideAlltabsButton;"/>
-		</hbox>
-		</vbox>
-	</groupbox>
-
-	<groupbox>
-		<caption label="&config.tabbar.style.caption;"/>
-		<radiogroup id="extensions.treestyletab.tabbar.style-radiogroup"
-			preference="extensions.treestyletab.tabbar.style"
-			orient="vertical">
-			<arrowscrollbox orient="horizontal" flex="1"
-				id="extensions.treestyletab.tabbar.style-arrowscrollbox">
-			<radio value="metal" label="&config.tabbar.style.metal;"
-				class="image" align="center"
-				src="chrome://treestyletab/content/res/style-metal.png"/>
-			<radio value="sidebar" label="&config.tabbar.style.sidebar;"
-				class="image" align="center"
-				src="chrome://treestyletab/content/res/style-sidebar.png"
-				id="extensions.treestyletab.tabbar.style-sidebar"/>
-			<radio value="mixed" label="&config.tabbar.style.mixed;"
-				class="image" align="center"
-				src="chrome://treestyletab/content/res/style-mixed.png"
-				id="extensions.treestyletab.tabbar.style-mixed"/>
-			<radio value="flat" label="&config.tabbar.style.flat;"
-				class="image" align="center"
-				src="chrome://treestyletab/content/res/style-flat.png"/>
-			<radio value="plain" label="&config.tabbar.style.plain;"
-				class="image" align="center"
-				src="chrome://treestyletab/content/res/style-plain.png"/>
-			<radio value="vertigo" label="&config.tabbar.style.vertigo;"
-				class="image" align="center"
-				src="chrome://treestyletab/content/res/style-vertigo.png"/>
-			</arrowscrollbox>
-			<hbox align="center">
-			<radio value="" label="&config.tabbar.style.none;"/>
-			</hbox>
-		</radiogroup>
-	</groupbox>
-	<groupbox>
-		<caption label="&config.twisty.style.caption;"/>
-		<radiogroup id="extensions.treestyletab.twisty.style-radiogroup"
-			preference="extensions.treestyletab.twisty.style"
-			orient="vertical">
-			<arrowscrollbox orient="horizontal" flex="1"
-				id="extensions.treestyletab.twisty.style-arrowscrollbox">
-			<radio value="auto" label="&config.twisty.style.auto;"/>
-			<radio value="retro" label="&config.twisty.style.retro;"
-				class="image" align="center"
-				src="chrome://treestyletab/content/res/twisty-retro.png"/>
-			<radio value="modern-black" label="&config.twisty.style.modern.black;"
-				class="image" align="center"
-				src="chrome://treestyletab/content/res/twisty-modern-b.png"/>
-			<radio value="modern-white" label="&config.twisty.style.modern.white;"
-				class="image" align="center"
-				src="chrome://treestyletab/content/res/twisty-modern-w.png"/>
-			<radio value="osx" label="&config.twisty.style.osx;"
-				class="image" align="center"
-				src="chrome://treestyletab/content/res/twisty-osx.png"/>
-			</arrowscrollbox>
-			<hbox align="center">
-			<radio value="none" label="&config.twisty.style.none;"/>
-			</hbox>
-		</radiogroup>
-	</groupbox>
-
-	</vbox>
-</prefpane>
-
-<prefpane id="prefpane-menu" label="&config.tabs.menu;">
-	<preferences>
-		<preference id="extensions.treestyletab.show.context-item-reloadTabSubtree"
-			name="extensions.treestyletab.show.context-item-reloadTabSubtree"
-			type="bool"/>
-		<preference id="extensions.treestyletab.show.context-item-reloadDescendantTabs"
-			name="extensions.treestyletab.show.context-item-reloadDescendantTabs"
-			type="bool"/>
-		<preference id="extensions.treestyletab.show.context-item-removeTabSubtree"
-			name="extensions.treestyletab.show.context-item-removeTabSubtree"
-			type="bool"/>
-		<preference id="extensions.treestyletab.show.context-item-removeDescendantTabs"
-			name="extensions.treestyletab.show.context-item-removeDescendantTabs"
-			type="bool"/>
-		<preference id="extensions.treestyletab.show.context-item-collapseAllSubtree"
-			name="extensions.treestyletab.show.context-item-collapseAllSubtree"
-			type="bool"/>
-		<preference id="extensions.treestyletab.show.context-item-expandAllSubtree"
-			name="extensions.treestyletab.show.context-item-expandAllSubtree"
-			type="bool"/>
-		<preference id="extensions.treestyletab.show.context-item-toggleAutoHide"
-			name="extensions.treestyletab.show.context-item-toggleAutoHide"
-			type="bool"/>
-		<preference id="extensions.treestyletab.show.context-item-toggleFixed"
-			name="extensions.treestyletab.show.context-item-toggleFixed"
-			type="bool"/>
-		<preference id="extensions.treestyletab.show.context-item-bookmarkTabSubtree"
-			name="extensions.treestyletab.show.context-item-bookmarkTabSubtree"
-			type="bool"/>
-	</preferences>
-
-	<vbox>
-
-	<groupbox orient="vertical">
-		<caption label="&config.show.tabContextMenu.caption;"/>
-		<hbox align="center">
-			<checkbox id="extensions.treestyletab.show.context-item-reloadTabSubtree-check"
-				preference="extensions.treestyletab.show.context-item-reloadTabSubtree"
-				label="&context.reloadTabSubtree.label;"/>
-			<checkbox id="extensions.treestyletab.show.context-item-reloadDescendantTabs-check"
-				preference="extensions.treestyletab.show.context-item-reloadDescendantTabs"
-				label="&context.reloadDescendantTabs.label;"/>
-		</hbox>
-		<hbox align="center">
-			<checkbox id="extensions.treestyletab.show.context-item-removeTabSubtree-check"
-				preference="extensions.treestyletab.show.context-item-removeTabSubtree"
-				label="&context.removeTabSubtree.label;"/>
-			<checkbox id="extensions.treestyletab.show.context-item-removeDescendantTabs-check"
-				preference="extensions.treestyletab.show.context-item-removeDescendantTabs"
-				label="&context.removeDescendantTabs.label;"/>
-		</hbox>
-		<hbox align="center">
-			<checkbox id="extensions.treestyletab.show.context-item-collapseAllSubtree-check"
-				preference="extensions.treestyletab.show.context-item-collapseAllSubtree"
-				label="&context.collapseAllSubtree.label;"/>
-			<checkbox id="extensions.treestyletab.show.context-item-expandAllSubtree-check"
-				preference="extensions.treestyletab.show.context-item-expandAllSubtree"
-				label="&context.expandAllSubtree.label;"/>
-		</hbox>
-		<hbox align="center">
-			<checkbox id="extensions.treestyletab.show.context-item-toggleAutoHide-check"
-				preference="extensions.treestyletab.show.context-item-toggleAutoHide"
-				label="&context.toggleAutoHide.label;"/>
-			<checkbox id="extensions.treestyletab.show.context-item-toggleFixed-check"
-				preference="extensions.treestyletab.show.context-item-toggleFixed"
-				label="&context.toggleFixed.label;"/>
-		</hbox>
-		<hbox align="center">
-			<checkbox id="extensions.treestyletab.show.context-item-bookmarkTabSubtree-check"
-				preference="extensions.treestyletab.show.context-item-bookmarkTabSubtree"
-				label="&context.bookmarkTabSubtree.label;"/>
-		</hbox>
-	</groupbox>
-
-	</vbox>
-
-</prefpane>
-
-<prefpane id="prefpane-tab" label="&config.tabs.tab;"
-	onpaneload="initTabPane();">
-	<preferences>
-		<preference id="extensions.treestyletab.openOuterLinkInNewTab"
-			name="extensions.treestyletab.openOuterLinkInNewTab"
-			type="bool"/>
-		<preference id="extensions.treestyletab.openAnyLinkInNewTab"
-			name="extensions.treestyletab.openAnyLinkInNewTab"
-			type="bool"/>
-		<preference id="extensions.treestyletab.urlbar.loadDifferentDomainToNewTab"
-			name="extensions.treestyletab.urlbar.loadDifferentDomainToNewTab"
-			type="bool"/>
-		<preference id="extensions.treestyletab.urlbar.loadDifferentDomainToNewTab.asChild"
-			name="extensions.treestyletab.urlbar.loadDifferentDomainToNewTab.asChild"
-			type="bool"/>
-		<preference id="extensions.treestyletab.urlbar.loadSameDomainToNewTab"
-			name="extensions.treestyletab.urlbar.loadSameDomainToNewTab"
-			type="bool"/>
-		<preference id="extensions.treestyletab.urlbar.loadSameDomainToNewTab.asChild"
-			name="extensions.treestyletab.urlbar.loadSameDomainToNewTab.asChild"
-			type="bool"/>
-		<preference id="extensions.treestyletab.dropLinksOnTab.behavior"
-			name="extensions.treestyletab.dropLinksOnTab.behavior"
-			type="int"/>
-		<preference id="extensions.treestyletab.openGroupBookmark.behavior"
-			name="extensions.treestyletab.openGroupBookmark.behavior"
-			type="int"/>
-		<preference id="browser.tabs.loadFolderAndReplace"
-			name="browser.tabs.loadFolderAndReplace.override"
+		<preference id="extensions.openlinkintab@piro.sakura.ne.jp.openAnyLinkInNewTab"
+			name="extensions.openlinkintab@piro.sakura.ne.jp.openAnyLinkInNewTab"
 			type="bool"/>
 		<preference id="browser.link.open_newwindow"
 			name="browser.link.open_newwindow"
 			type="int"/>
+	</preferences>
+
+	<vbox>
+		<groupbox>
+			<caption label="&config.link.caption;"/>
+			<hbox align="stretch">
+				<scale id="openLinkInNewTab-scale"
+					orient="vertical"
+					min="0"
+					max="2"
+					style="height:4em;"
+					onchange="if (gOpenLinkInTabScale) gOpenLinkInTabScale.onChange();"/>
+				<vbox id="openLinkInNewTab-labels">
+					<label value="&config.link.none;" control="openLinkInNewTab-scale"/>
+					<spacer flex="1"/>
+					<label value="&config.link.outer;" control="openLinkInNewTab-scale"/>
+					<spacer flex="1"/>
+					<label value="&config.link.any;" control="openLinkInNewTab-scale"/>
+				</vbox>
+			</hbox>
+		</groupbox>
+		<groupbox>
+			<caption label="&config.open_newwindow.caption;"/>
+			<radiogroup id="browser.link.open_newwindow-radiogroup"
+				preference="browser.link.open_newwindow"
+				orient="vertical">
+				<radio value="2" label="&config.open_newwindow.window;"/>
+				<radio value="3" label="&config.open_newwindow.tab;"/>
+			</radiogroup>
+		</groupbox>
+	</vbox>
+
+</prefpane>
+
+<prefpane id="prefpane-urlbar" label="&config.tabs.urlbar;"
+	onpaneload="initUrlbarPane();">
+	<preferences>
+		<preference id="extensions.openlinkintab@piro.sakura.ne.jp.urlbar.loadDifferentDomainToNewTab"
+			name="extensions.openlinkintab@piro.sakura.ne.jp.urlbar.loadDifferentDomainToNewTab"
+			type="bool"/>
+		<preference id="extensions.openlinkintab@piro.sakura.ne.jp.urlbar.loadDifferentDomainToNewTab.asChild"
+			name="extensions.openlinkintab@piro.sakura.ne.jp.urlbar.loadDifferentDomainToNewTab.asChild"
+			type="bool"/>
+		<preference id="extensions.openlinkintab@piro.sakura.ne.jp.urlbar.loadSameDomainToNewTab"
+			name="extensions.openlinkintab@piro.sakura.ne.jp.urlbar.loadSameDomainToNewTab"
+			type="bool"/>
+		<preference id="extensions.openlinkintab@piro.sakura.ne.jp.urlbar.loadSameDomainToNewTab.asChild"
+			name="extensions.openlinkintab@piro.sakura.ne.jp.urlbar.loadSameDomainToNewTab.asChild"
+			type="bool"/>
+	</preferences>
+	<groupbox>
+		<caption label="&config.urlbar.caption;"/>
+		<hbox align="stretch">
+			<scale id="loadLocationBarToNewTab-scale"
+				orient="vertical"
+				min="0"
+				max="2"
+				style="height:4em;"
+				onchange="
+					if (gLoadLocationBarToNewTabScale) {
+						gLoadLocationBarToNewTabScale.onChange();
+						gLoadLocationBarToChildTabScale.disabled = gLoadLocationBarToNewTabScale.value == 0;
+					}
+				"/>
+			<vbox id="loadLocationBarToNewTab-labels">
+				<label value="&config.urlbar.none;" control="loadLocationBarToNewTab-scale"/>
+				<spacer flex="1"/>
+				<label value="&config.urlbar.outer;" control="loadLocationBarToNewTab-scale"/>
+				<spacer flex="1"/>
+				<label value="&config.urlbar.any;" control="loadLocationBarToNewTab-scale"/>
+			</vbox>
+		</hbox>
+		<groupbox>
+			<caption label="&config.urlbar.asChild.caption;" />
+			<hbox align="stretch">
+				<scale id="loadLocationBarToChildTab-scale"
+					orient="vertical"
+					min="0"
+					max="2"
+					style="height:4em;"
+					onchange="if (gLoadLocationBarToChildTabScale) gLoadLocationBarToChildTabScale.onChange();"/>
+				<vbox id="loadLocationBarToChildTab-labels">
+					<label value="&config.urlbar.asChild.none;" control="loadLocationBarToChildTab-scale"/>
+					<spacer flex="1"/>
+					<label value="&config.urlbar.asChild.inner;" control="loadLocationBarToChildTab-scale"/>
+					<spacer flex="1"/>
+					<label value="&config.urlbar.asChild.any;" control="loadLocationBarToChildTab-scale"/>
+				</vbox>
+			</hbox>
+		</groupbox>
+	</groupbox>
+</prefpane>
+
+<prefpane id="prefpane-jsopen" label="&config.tabs.jsopen;"
+	onpaneload="initJSOpenPane();">
+	<preferences>
 		<preference id="browser.link.open_newwindow.restriction"
 			name="browser.link.open_newwindow.restriction.override"
 			type="int"/>
-		<preference id="extensions.treestyletab.preferences.newTab-tabbox.selectedIndex"
-			name="extensions.treestyletab.preferences.newTab-tabbox.selectedIndex"
-			type="int"/>
 	</preferences>
-
-	<vbox>
-
-	<tabbox id="newTab-tabbox"
-		orient="vertical">
-		<tabs>
-			<tab label="&config.tabs.link.tab;"/>
-			<tab label="&config.tabs.bookmark.tab;"/>
-			<tab label="&config.tabs.urlbar.tab;"/>
-			<tab label="&config.tabs.dragdrop.tab;"/>
-			<tab label="&config.tabs.misc.tab;"/>
-		</tabs>
-		<tabpanels>
-			<tabpanel orient="vertical">
-				<groupbox>
-					<caption label="&config.link.caption;"/>
-					<hbox align="stretch">
-						<scale id="openLinkInNewTab-scale"
-							orient="vertical"
-							min="0"
-							max="2"
-							style="height:4em;"
-							onchange="if (gOpenLinkInTabScale) gOpenLinkInTabScale.onChange();"/>
-						<vbox id="openLinkInNewTab-labels">
-							<label value="&config.link.none;" control="openLinkInNewTab-scale"/>
-							<spacer flex="1"/>
-							<label value="&config.link.outer;" control="openLinkInNewTab-scale"/>
-							<spacer flex="1"/>
-							<label value="&config.link.any;" control="openLinkInNewTab-scale"/>
-						</vbox>
-					</hbox>
-				</groupbox>
-				<groupbox>
-					<caption label="&config.open_newwindow.caption;"/>
-					<radiogroup id="browser.link.open_newwindow-radiogroup"
-						preference="browser.link.open_newwindow"
-						orient="vertical">
-						<radio value="2" label="&config.open_newwindow.window;"/>
-						<radio value="3" label="&config.open_newwindow.tab;"/>
-					</radiogroup>
-				</groupbox>
-			</tabpanel>
-			<tabpanel orient="vertical">
-				<groupbox>
-					<caption label="&config.openGroupBookmark.caption;"/>
-					<hbox>
-						<checkbox id="openGroupBookmark-check"
-							label="&config.openGroupBookmark.ask;"
-							oncommand="
-								gGroupBookmarkRadioSet.onChange(true);
-								gGroupBookmarkRadioSet.pref.value = onSyncGroupBookmarkUIToPref();
-							"/>
-					</hbox>
-					<deck id="openGroupBookmark-deck">
-						<spacer flex="1"/>
-						<vbox>
-						<separator class="hr"/>
-						<radiogroup id="openGroupBookmark-radiogroup"
-							orient="vertical"
-							onsynctopreference="return onSyncGroupBookmarkUIToPref();"
-							onsyncfrompreference="return onSyncGroupBookmarkPrefToUI();"
-							preference="extensions.treestyletab.openGroupBookmark.behavior">
-							<radio value="0" collapsed="true"/>
-							<radio value="1" label="&config.openGroupBookmark.subtree;"/>
-							<hbox>
-								<spacer style="width:1em;"/>
-								<vbox>
-									<checkbox id="openGroupBookmark.underParent-check"
-										label="&config.openGroupBookmark.underParent;"
-										oncommand="gGroupBookmarkRadioSet.pref.value = onSyncGroupBookmarkUIToPref();"/>
-									<hbox align="center">
-										<label id="openGroupBookmark.subtreeType-before"
-											control="openGroupBookmark.subtreeType-menulist"
-											value="&config.openGroupBookmark.subtree.type.before;"/>
-										<menulist id="openGroupBookmark.subtreeType-menulist"
-											oncommand="gGroupBookmarkRadioSet.pref.value = onSyncGroupBookmarkUIToPref();">
-											<menupopup>
-												<menuitem label="&config.openGroupBookmark.subtree.type.restore;" value="false"/>
-												<menuitem label="&config.openGroupBookmark.subtree.type.flat;" value="true"/>
-											</menupopup>
-										</menulist>
-										<label id="openGroupBookmark.subtreeType-after"
-											control="openGroupBookmark.subtreeType-menulist"
-											value="&config.openGroupBookmark.subtree.type.after;"/>
-									</hbox>
-								</vbox>
-							</hbox>
-							<radio value="2" label="&config.openGroupBookmark.flat;"/>
-							<radio value="4" label="&config.openGroupBookmark.replace;"/>
-						</radiogroup>
-						</vbox>
-					</deck>
-				</groupbox>
-			</tabpanel>
-			<tabpanel orient="vertical">
-				<groupbox>
-					<caption label="&config.urlbar.caption;"/>
-					<hbox align="stretch">
-						<scale id="loadLocationBarToNewTab-scale"
-							orient="vertical"
-							min="0"
-							max="2"
-							style="height:4em;"
-							onchange="
-								if (gLoadLocationBarToNewTabScale) {
-									gLoadLocationBarToNewTabScale.onChange();
-									gLoadLocationBarToChildTabScale.disabled = gLoadLocationBarToNewTabScale.value == 0;
-								}
-							"/>
-						<vbox id="loadLocationBarToNewTab-labels">
-							<label value="&config.urlbar.none;" control="loadLocationBarToNewTab-scale"/>
-							<spacer flex="1"/>
-							<label value="&config.urlbar.outer;" control="loadLocationBarToNewTab-scale"/>
-							<spacer flex="1"/>
-							<label value="&config.urlbar.any;" control="loadLocationBarToNewTab-scale"/>
-						</vbox>
-					</hbox>
-					<groupbox>
-						<caption label="&config.urlbar.asChild.caption;" />
-						<hbox align="stretch">
-							<scale id="loadLocationBarToChildTab-scale"
-								orient="vertical"
-								min="0"
-								max="2"
-								style="height:4em;"
-								onchange="if (gLoadLocationBarToChildTabScale) gLoadLocationBarToChildTabScale.onChange();"/>
-							<vbox id="loadLocationBarToChildTab-labels">
-								<label value="&config.urlbar.asChild.none;" control="loadLocationBarToChildTab-scale"/>
-								<spacer flex="1"/>
-								<label value="&config.urlbar.asChild.inner;" control="loadLocationBarToChildTab-scale"/>
-								<spacer flex="1"/>
-								<label value="&config.urlbar.asChild.any;" control="loadLocationBarToChildTab-scale"/>
-							</vbox>
-						</hbox>
-					</groupbox>
-				</groupbox>
-			</tabpanel>
-			<tabpanel orient="vertical">
-				<groupbox>
-					<caption label="&config.dropLinksOnTab.caption;"/>
-					<hbox>
-						<checkbox id="dropLinksOnTab-check"
-							label="&config.dropLinksOnTab.ask;"
-							oncommand="gDropLinksOnTabRadioSet.onChange();"/>
-					</hbox>
-					<deck id="dropLinksOnTab-deck">
-						<spacer flex="1"/>
-						<vbox>
-						<separator class="hr"/>
-						<radiogroup id="dropLinksOnTab-radiogroup"
-							preference="extensions.treestyletab.dropLinksOnTab.behavior"
-							orient="vertical">
-							<radio value="0" collapsed="true"/>
-							<radio value="1" label="&config.dropLinksOnTab.load;"/>
-							<radio value="2" label="&config.dropLinksOnTab.newTab;"/>
-						</radiogroup>
-						</vbox>
-					</deck>
-				</groupbox>
-			</tabpanel>
-			<tabpanel orient="vertical">
-				<groupbox>
-					<caption label="&config.jsopen.caption;"/>
-					<radiogroup id="browser.link.open_newwindow.restriction-radiogroup"
-						preference="browser.link.open_newwindow.restriction"
-						orient="vertical">
-						<radio value="2" label="&config.jsopen.default;"/>
-						<radio value="0" label="&config.jsopen.forcetab;"/>
-					</radiogroup>
-				</groupbox>
-			</tabpanel>
-		</tabpanels>
-	</tabbox>
-
-	</vbox>
-
-</prefpane>
-
-<prefpane id="prefpane-autohide" label="&config.tabs.autohide;"
-	onpaneload="initAutoHidePane();">
-	<preferences>
-		<preference id="extensions.treestyletab.tabbar.autoHide.mode"
-			name="extensions.treestyletab.tabbar.autoHide.mode"
-			type="int"/>
-		<preference id="extensions.treestyletab.tabbar.autoHide.mode.toggle"
-			name="extensions.treestyletab.tabbar.autoHide.mode.toggle"
-			type="int"/>
-		<preference id="extensions.treestyletab.tabbar.autoShow.mousemove"
-			name="extensions.treestyletab.tabbar.autoShow.mousemove"
-			type="bool"/>
-		<preference id="extensions.treestyletab.tabbar.autoHide.area"
-			name="extensions.treestyletab.tabbar.autoHide.area"
-			type="int"/>
-		<preference id="extensions.treestyletab.tabbar.autoHide.delay"
-			name="extensions.treestyletab.tabbar.autoHide.delay"
-			type="int"/>
-		<preference id="extensions.treestyletab.tabbar.autoShow.accelKeyDown"
-			name="extensions.treestyletab.tabbar.autoShow.accelKeyDown"
-			type="bool"/>
-		<preference id="extensions.treestyletab.tabbar.autoShow.accelKeyDown.delay"
-			name="extensions.treestyletab.tabbar.autoShow.accelKeyDown.delay"
-			type="int"/>
-		<preference id="extensions.treestyletab.tabbar.autoShow.tabSwitch"
-			name="extensions.treestyletab.tabbar.autoShow.tabSwitch"
-			type="bool"/>
-		<preference id="extensions.treestyletab.tabbar.autoShow.feedback"
-			name="extensions.treestyletab.tabbar.autoShow.feedback"
-			type="bool"/>
-		<preference id="extensions.treestyletab.tabbar.autoShow.feedback.delay"
-			name="extensions.treestyletab.tabbar.autoShow.feedback.delay"
-			type="int"/>
-		<preference id="extensions.treestyletab.tabbar.transparent.style"
-			name="extensions.treestyletab.tabbar.transparent.style"
-			type="int"/>
-	</preferences>
-
-	<vbox>
-
-		<groupbox orient="vertical">
-			<radiogroup orient="horizontal"
-				id="extensions.treestyletab.tabbar.autoHide.mode-radio"
-				preference="extensions.treestyletab.tabbar.autoHide.mode"
-				onselect="onChangeAutoHideMode()">
-				<radio label="&config.autoHide.mode.0;" value="0"/>
-				<radio label="&config.autoHide.mode.2;" value="2"/>
-				<radio label="&config.autoHide.mode.1;" value="1"/>
-			</radiogroup>
-		</groupbox>
-
-		<groupbox orient="vertical">
-			<caption label="&config.autoShow.caption;"/>
-			<checkbox id="extensions.treestyletab.tabbar.autoShow.mousemove-check"
-				preference="extensions.treestyletab.tabbar.autoShow.mousemove"
-				label="&config.autoShow.mousemove.mode2;"/>
-			<hbox align="center">
-				<spacer style="width:1em;"/>
-				<label id="extensions.treestyletab.tabbar.autoHide.area-befre"
-					value="&config.autoHide.area.before.mode2;"
-					control="extensions.treestyletab.tabbar.autoHide.area-textbox"/>
-				<textbox id="extensions.treestyletab.tabbar.autoHide.area-textbox"
-					preference="extensions.treestyletab.tabbar.autoHide.area"
-					type="number"
-					min="0" increment="1" style="width:4em;"/>
-				<label id="extensions.treestyletab.tabbar.autoHide.area-after"
-					value="&config.autoHide.area.after.mode2;"
-					control="extensions.treestyletab.tabbar.autoHide.area-textbox"/>
-			</hbox>
-			<data target="extensions.treestyletab.tabbar.autoShow.mousemove-check"
-				label-mode1="&config.autoShow.mousemove;"
-				label-mode2="&config.autoShow.mousemove.mode2;"/>
-			<data target="extensions.treestyletab.tabbar.autoHide.area-befre"
-				label-mode1="&config.autoHide.area.before;"
-				label-mode2="&config.autoHide.area.before.mode2;"/>
-			<data target="extensions.treestyletab.tabbar.autoHide.area-after"
-				label-mode1="&config.autoHide.area.after;"
-				label-mode2="&config.autoHide.area.after.mode2;"/>
-			<hbox align="center">
-				<spacer style="width:1em;"/>
-				<label value="&config.autoHide.delay.before;"
-					control="extensions.treestyletab.tabbar.autoHide.delay-textbox"/>
-				<textbox id="extensions.treestyletab.tabbar.autoHide.delay-textbox"
-					preference="extensions.treestyletab.tabbar.autoHide.delay"
-					type="number"
-					min="0" increment="1" style="width:4em;"/>
-				<label value="&config.autoHide.delay.after;"
-					control="extensions.treestyletab.tabbar.autoHide.delay-textbox"/>
-			</hbox>
-			<checkbox id="extensions.treestyletab.tabbar.autoShow.accelKeyDown-check"
-				preference="extensions.treestyletab.tabbar.autoShow.accelKeyDown"
-				label="&config.autoShow.accelKeyDown;"/>
-			<hbox align="center">
-				<spacer style="width:1em;"/>
-				<label value="&config.autoShow.accelKeyDown.delay.before;"
-					control="extensions.treestyletab.tabbar.autoShow.accelKeyDown.delay-textbox"/>
-				<textbox id="extensions.treestyletab.tabbar.autoShow.accelKeyDown.delay-textbox"
-					preference="extensions.treestyletab.tabbar.autoShow.accelKeyDown.delay"
-					type="number"
-					min="0" increment="1" style="width:4em;"/>
-				<label value="&config.autoShow.accelKeyDown.delay.after;"
-					control="extensions.treestyletab.tabbar.autoShow.accelKeyDown.delay-textbox"/>
-			</hbox>
-			<checkbox id="extensions.treestyletab.tabbar.autoShow.tabSwitch-check"
-				preference="extensions.treestyletab.tabbar.autoShow.tabSwitch"
-				label="&config.autoShow.tabSwitch;"/>
-			<checkbox id="extensions.treestyletab.tabbar.autoShow.feedback-check"
-				preference="extensions.treestyletab.tabbar.autoShow.feedback"
-				label="&config.autoShow.feedback;"/>
-			<hbox align="center">
-				<spacer style="width:1em;"/>
-				<label value="&config.autoShow.feedback.delay.before;"
-					control="extensions.treestyletab.tabbar.autoShow.feedback.delay-textbox"/>
-				<textbox id="extensions.treestyletab.tabbar.autoShow.feedback.delay-textbox"
-					preference="extensions.treestyletab.tabbar.autoShow.feedback.delay"
-					type="number"
-					min="0" increment="1" style="width:4em;"/>
-				<label value="&config.autoShow.feedback.delay.after;"
-					control="extensions.treestyletab.tabbar.autoShow.feedback.delay-textbox"/>
-			</hbox>
-		</groupbox>
-		<groupbox orient="vertical">
-			<caption label="&config.transparent.style.caption;"/>
-			<hbox align="center">
-				<label class="scale-label" value="&config.scale.min;" control="tabbarTransparency-scale"/>
-				<scale id="tabbarTransparency-scale"
-					preference="extensions.treestyletab.tabbar.transparent.style"
-					orient="horizontal"
-					min="0"
-					max="2"
-					onchange="onTabbarTransparencyScaleChange()"/>
-				<label class="scale-label" value="&config.scale.max;" control="tabbarTransparency-scale"/>
-				<deck id="tabbarTransparency-labels">
-					<label value="&config.transparent.style.0;" control="tabbarTransparency-scale"/>
-					<label value="&config.transparent.style.1;" control="tabbarTransparency-scale"/>
-					<label value="&config.transparent.style.2;" control="tabbarTransparency-scale"/>
-				</deck>
-			</hbox>
-		</groupbox>
-
-	</vbox>
-
-</prefpane>
-
-<prefpane id="prefpane-tree" label="&config.tabs.tree;"
-	onpaneload="initTreePane();">
-	<preferences>
-		<preference id="extensions.treestyletab.autoCollapseExpandSubtreeOnSelect"
-			name="extensions.treestyletab.autoCollapseExpandSubtreeOnSelect"
-			type="bool"/>
-		<preference id="extensions.treestyletab.autoCollapseExpandSubtreeOnSelect.onCurrentTabRemove"
-			name="extensions.treestyletab.autoCollapseExpandSubtreeOnSelect.onCurrentTabRemove"
-			type="bool"
-			inverted="true"/>
-		<preference id="extensions.treestyletab.collapseExpandSubtree.dblclick"
-			name="extensions.treestyletab.collapseExpandSubtree.dblclick"
-			type="bool"/>
-		<!--preference id="extensions.treestyletab.autoExpandSubtreeOnAppendChild"
-			name="extensions.treestyletab.autoExpandSubtreeOnAppendChild"
-			type="bool"/-->
-		<preference id="extensions.treestyletab.focusMode"
-			name="extensions.treestyletab.focusMode"
-			type="int"/>
-		<preference id="extensions.treestyletab.closeParentBehavior"
-			name="extensions.treestyletab.closeParentBehavior"
-			type="int"/>
-		<preference id="extensions.treestyletab.closeRootBehavior"
-			name="extensions.treestyletab.closeRootBehavior"
-			type="int"/>
-		<preference id="extensions.treestyletab.insertNewChildAt"
-			name="extensions.treestyletab.insertNewChildAt"
-			type="int"/>
-		<preference id="extensions.treestyletab.undoCloseTabSet.behavior"
-			name="extensions.treestyletab.undoCloseTabSet.behavior"
-			type="int"/>
-	</preferences>
-
-	<checkbox id="extensions.treestyletab.autoCollapseExpandSubtreeOnSelect-check"
-		preference="extensions.treestyletab.autoCollapseExpandSubtreeOnSelect"
-		label="&config.autoCollapseExpandSubtreeOnSelect;"/>
-	<hbox align="center">
-		<spacer style="width:1em;"/>
-		<checkbox id="extensions.treestyletab.autoCollapseExpandSubtreeOnSelect.onCurrentTabRemove-check"
-			label="&config.autoCollapseExpandSubtreeOnSelect.onCurrentTabRemove;"
-			preference="extensions.treestyletab.autoCollapseExpandSubtreeOnSelect.onCurrentTabRemove"/>
-	</hbox>
-	<checkbox id="extensions.treestyletab.focusMode-check"
-		preference="extensions.treestyletab.focusMode"
-		label="&config.focusMode;"
-		onsyncfrompreference="return document.getElementById('extensions.treestyletab.focusMode').value == 0;"
-		onsynctopreference="return document.getElementById('extensions.treestyletab.focusMode-check').checked ? 0 : 1 ;"/>
-	<checkbox id="extensions.treestyletab.collapseExpandSubtree.dblclick-check"
-		preference="extensions.treestyletab.collapseExpandSubtree.dblclick"
-		label="&config.collapseExpandSubtree.dblclick;"/>
-	<!--checkbox id="extensions.treestyletab.autoExpandSubtreeOnAppendChild-check"
-		preference="extensions.treestyletab.autoExpandSubtreeOnAppendChild"
-		label="&config.autoExpandSubtreeOnAppendChild;"/-->
 	<groupbox>
-		<caption label="&config.closeParentBehavior.caption;"/>
-		<radiogroup id="extensions.treestyletab.closeParentBehavior-radiogroup"
-			preference="extensions.treestyletab.closeParentBehavior"
-			orient="vertical"
-			oncommand="updateCloseRootBehaviorCheck();">
-			<radio value="2" label="&config.closeParentBehavior.close;"/>
-			<radio value="3" label="&config.closeParentBehavior.promoteFirst;"/>
-			<radio value="0" label="&config.closeParentBehavior.promoteAll;"/>
-			<hbox align="center">
-				<spacer style="width:1em;"/>
-				<checkbox id="extensions.treestyletab.closeRootBehavior-check"
-					label="&config.closeRootBehavior.promoteFirst;"
-					preference="extensions.treestyletab.closeRootBehavior"
-					onsyncfrompreference="return document.getElementById('extensions.treestyletab.closeRootBehavior').value == 3;"
-					onsynctopreference="return document.getElementById('extensions.treestyletab.closeRootBehavior-check').checked ? 3 : 1 ;"/>
-			</hbox>
-			<radio value="1" label="&config.closeParentBehavior.detach;"/>
+		<caption label="&config.jsopen.caption;"/>
+		<radiogroup id="browser.link.open_newwindow.restriction-radiogroup"
+			preference="browser.link.open_newwindow.restriction"
+			orient="vertical">
+			<radio value="2" label="&config.jsopen.default;"/>
+			<radio value="0" label="&config.jsopen.forcetab;"/>
 		</radiogroup>
 	</groupbox>
-	<groupbox>
-		<caption label="&config.insertNewChildAt.caption;"/>
-		<radiogroup id="extensions.treestyletab.insertNewChildAt-radiogroup"
-			preference="extensions.treestyletab.insertNewChildAt"
-			orient="horizontal">
-			<radio value="0" label="&config.insertNewChildAt.first;"/>
-			<radio value="1" label="&config.insertNewChildAt.last;"/>
-		</radiogroup>
-	</groupbox>
-	<groupbox>
-		<caption label="&config.undoCloseTabSet.caption;"/>
-		<hbox>
-			<checkbox id="undoCloseTabSet-check"
-				label="&config.undoCloseTabSet.ask;"
-				oncommand="gUndoCloseTabSetRadioSet.onChange();"/>
-		</hbox>
-		<deck id="undoCloseTabSet-deck">
-			<spacer flex="1"/>
-			<vbox>
-			<separator class="hr"/>
-			<radiogroup id="undoCloseTabSet-radiogroup"
-				preference="extensions.treestyletab.undoCloseTabSet.behavior"
-				orient="horizontal">
-				<radio value="2" label="&config.undoCloseTabSet.set;"/>
-				<radio value="0" label="&config.undoCloseTabSet.separate;"/>
-			</radiogroup>
-			</vbox>
-		</deck>
-	</groupbox>
-
 </prefpane>
 
 <prefpane id="prefpane-advanced" label="&config.tabs.advanced;">
 	<preferences>
-		<preference id="extensions.treestyletab.animation.enabled"
-			name="extensions.treestyletab.animation.enabled"
-			type="bool"/>
-		<preference id="extensions.treestyletab.tooltip.includeChildren"
-			name="extensions.treestyletab.tooltip.includeChildren"
-			type="bool"/>
-		<preference id="extensions.treestyletab.useEffectiveTLD"
-			name="extensions.treestyletab.useEffectiveTLD"
+		<preference id="extensions.openlinkintab@piro.sakura.ne.jp.useEffectiveTLD"
+			name="extensions.openlinkintab@piro.sakura.ne.jp.useEffectiveTLD"
 			type="bool"/>
 	</preferences>
 
-	<checkbox id="extensions.treestyletab.animation.enabled-check"
-		preference="extensions.treestyletab.animation.enabled"
-		label="&config.animation.enabled;"/>
-	<checkbox id="extensions.treestyletab.tooltip.includeChildren-check"
-		preference="extensions.treestyletab.tooltip.includeChildren"
-		label="&config.tooltip.includeChildren;"/>
 	<groupbox id="useEffectiveTLD">
 		<caption label="&config.useEffectiveTLD.caption;"/>
-		<radiogroup id="extensions.treestyletab.useEffectiveTLD-radiogroup"
-			preference="extensions.treestyletab.useEffectiveTLD"
+		<radiogroup id="extensions.openlinkintab@piro.sakura.ne.jp.useEffectiveTLD-radiogroup"
+			preference="extensions.openlinkintab@piro.sakura.ne.jp.useEffectiveTLD"
 			orient="vertical">
 			<radio value="true" label="&config.useEffectiveTLD.enabled;"/>
 			<radio value="false" label="&config.useEffectiveTLD.disabled;"/>

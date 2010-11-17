@@ -3,56 +3,9 @@
 <!ENTITY config.scale.min "min">
 <!ENTITY config.scale.max "max">
 
-
-<!ENTITY config.tabs.appearance "Aspetto">
-
-<!ENTITY config.tabbar.position.caption "Posiziona barra delle schede">
-<!ENTITY config.tabbar.position.left    "sul lato sinistro">
-<!ENTITY config.tabbar.position.right   "sul lato destro">
-<!ENTITY config.tabbar.position.top     "in alto (comportamento predefinito di Firefox)">
-<!ENTITY config.tabbar.position.bottom  "in basso">
-<!ENTITY config.tabbar.invertClosebox.left  "Visualizza il pulsante di chiusura alla sinistra di ogni scheda">
-<!ENTITY config.tabbar.invertClosebox.right "Visualizza il pulsante di chiusura alla destra di ogni scheda"> <!-- NUOVA -->
-<!ENTITY config.tabbar.invertTab            "Inverti la visualizzazione delle schede">
-<!ENTITY config.tabbar.invertTabContents    "Inverti la visualizzazione dei controlli di contrazione/espansione dei sottoalberi"> <!-- NUOVA -->
-<!ENTITY config.enableSubtreeIndent         "Indenta sottoschede">
-<!ENTITY config.allowSubtreeCollapseExpand  "Permetti di contrarre/espandere sottoalberi delle schede">
-<!ENTITY config.tabbar.hideAlltabsButton    "Visualizza la maniglia per elencare tutte le schede">
-
-
-<!ENTITY config.tabs.style "Style">
-
-<!ENTITY config.tabbar.style.caption "Aspetto delle barra delle schede">
-<!ENTITY config.tabbar.style.plain   "Semplice">
-<!ENTITY config.tabbar.style.flat    "Flat">
-<!ENTITY config.tabbar.style.mixed   "Misto">
-<!ENTITY config.tabbar.style.vertigo "Vertigo">
-<!ENTITY config.tabbar.style.metal   "Metal">
-<!ENTITY config.tabbar.style.sidebar "Sidebar">
-<!ENTITY config.tabbar.style.none    "Predefinito (varia in base al tema)">
-
-<!ENTITY config.twisty.style.caption "Aspetto dei controlli di contrazione/espansione dei sottoalberi">
-<!ENTITY config.twisty.style.auto    "Automatico">
-<!ENTITY config.twisty.style.none    "Nessuno">
-<!ENTITY config.twisty.style.retro   "Retro">
-<!ENTITY config.twisty.style.modern.black "Black Modern">
-<!ENTITY config.twisty.style.modern.white "White Modern">
-<!ENTITY config.twisty.style.osx     "OS X">
-
-
-<!ENTITY config.tabs.menu "Menu contestuale">
-
-<!ENTITY config.show.tabContextMenu.caption "Voci da aggiungere al menu contestuale delle schede">
-
-
-<!ENTITY config.tabs.tab "New Tabs">
-<!--ENTITY config.tabs.tab "Navigazione"-->
-
-<!ENTITY config.tabs.link.tab     "Links">
-<!ENTITY config.tabs.urlbar.tab   "Location Bar">
-<!ENTITY config.tabs.bookmark.tab "Bookmarks">
-<!ENTITY config.tabs.dragdrop.tab "Drag &amp; Drop to tabs">
-<!ENTITY config.tabs.misc.tab     "Other Cases">
+<!ENTITY config.tabs.link     "Links">
+<!ENTITY config.tabs.urlbar   "Location Bar">
+<!ENTITY config.tabs.jsopen     "Scripts">
 
 <!ENTITY config.link.caption "Automatic New Tab Level for Links">
 <!ENTITY config.link.none    "Lv.0 Nothing (Firefox default)">
@@ -64,18 +17,6 @@
 <!ENTITY config.open_newwindow.tab     "ad aprirsi in una nuova scheda (comportamento predefinito di Firefox)">
 <!ENTITY config.open_newwindow.current "Load into the Current Tab anyway">
 
-<!ENTITY config.openGroupBookmark.caption     "Behavior of &quot;Open All in Tabs&quot; for bookmark folders">
-<!--ENTITY config.openGroupBookmark.caption     "La voce &quot;Apri tutti in schede&quot; nel menu Segnalibri"-->
-<!ENTITY config.openGroupBookmark.ask         "Ask me always">
-<!ENTITY config.openGroupBookmark.subtree     "apre i segnalibri come sottoalbero (Raccomandato)">
-<!ENTITY config.openGroupBookmark.subtree.type.before  "">
-<!ENTITY config.openGroupBookmark.subtree.type.restore "Restore">
-<!ENTITY config.openGroupBookmark.subtree.type.flat    "Ignore">
-<!ENTITY config.openGroupBookmark.subtree.type.after   "tree structure of tabs saved to bookmarks">
-<!ENTITY config.openGroupBookmark.flat        "apre i segnalibri in schede separate (comportamento predefinito di Firefox)">
-<!ENTITY config.openGroupBookmark.replace     "sostituisce la scheda in uso con i segnalibri contenuti nella cartella selezionata">
-<!ENTITY config.openGroupBookmark.underParent "Put tabs under a dummy tab for grouping">
-
 <!ENTITY config.urlbar.caption       "Automatic New Tab Level for the Location Bar">
 <!ENTITY config.urlbar.none          "Lv.0 Nothing (Firefox default)">
 <!ENTITY config.urlbar.outer         "Lv.1 apre una nuova scheda se appartiene a un sito web differente">
@@ -85,111 +26,13 @@
 <!ENTITY config.urlbar.asChild.inner "Lv.1 Open as child tab if it is the same website">
 <!ENTITY config.urlbar.asChild.any   "Lv.2 Open as child tab always">
 
-<!ENTITY config.dropLinksOnTab.caption "Il trascinamento di collegamenti o indirizzi su una scheda esistente">
-<!ENTITY config.dropLinksOnTab.ask     "Ask me always">
-<!ENTITY config.dropLinksOnTab.load    "carica il collegamento nella scheda (comportamento predefinito di Firefox)">
-<!ENTITY config.dropLinksOnTab.newTab  "apre il collegamento in una nuova sottoscheda">
-
 <!ENTITY config.jsopen.caption "Forza gli script che aprono nuove finestre">
 <!ENTITY config.jsopen.default "ad aprire una nuova finestra se questa è ridimensionata (comportamento predefinito di Firefox)">
 <!ENTITY config.jsopen.forcetab "ad aprirsi tutti in nuove schede (Raccomandato)">
 <!ENTITY config.jsopen.current  "Load into the Current Tab anyway">
 
-
-<!ENTITY config.tabs.autohide "Visualizzazione">
-
-<!ENTITY config.autoHide.mode.0 "Mostra sempre la barra delle schede">
-<!ENTITY config.autoHide.mode.1 "Nascondi automaticamente la barra delle schede">
-<!ENTITY config.autoHide.mode.2 "Riduci automaticamente la barra delle schede">
-<!ENTITY config.autoShow.caption "Visualizza la barra della schede quando">
-<!ENTITY config.autoShow.mousemove "Viene spostato il mouse in prossimità del bordo della finestra">
-<!ENTITY config.autoHide.area.before "Area di attivazione:">
-<!ENTITY config.autoHide.area.after "distanza dai bordi della finestra (in pixel)">
-<!ENTITY config.autoShow.mousemove.mode2 "Viene spostato il mouse in prossimità del bordo della barra delle schede">
-<!ENTITY config.autoHide.area.before.mode2 "Area di attivazione:">
-<!ENTITY config.autoHide.area.after.mode2 "distanza dai bordi della barra delle schede (in pixel)">
-<!ENTITY config.autoHide.delay.before "Ritardo:">
-<!ENTITY config.autoHide.delay.after "msec.">
-<!ENTITY config.autoShow.accelKeyDown "Viene tenuto premuto il tasto Control">
-<!ENTITY config.autoShow.accelKeyDown.delay.before "Visualizza dopo">
-<!ENTITY config.autoShow.accelKeyDown.delay.after  "msec.">
-<!ENTITY config.autoShow.tabSwitch   "Viene utilizzata la scorciatoia Control+Tab per passare da una scheda all&apos;altra">
-<!ENTITY config.autoShow.feedback    "Viene aperta o chiusa una scheda">
-<!ENTITY config.autoShow.feedback.delay.before "Nascondi dopo">
-<!ENTITY config.autoShow.feedback.delay.after  "msec.">
-
-<!ENTITY config.transparent.style.caption "Sfondo della barra delle schede">
-<!ENTITY config.transparent.style.0 "Solido">
-<!ENTITY config.transparent.style.1 "Semitrasparente">
-<!ENTITY config.transparent.style.2 "Trasparente">
-
-
-<!ENTITY config.tabs.tree "Tree">
-
-<!--ENTITY config.autoCollapseExpandSubtreeOnSelect "Contrai automaticamente gli altri sottoalberi quando viene aperta o selezionata una scheda"-->
-<!ENTITY config.autoCollapseExpandSubtreeOnSelect "When a tab gets focus, expand his tree and collapse others automatically">
-<!ENTITY config.autoCollapseExpandSubtreeOnSelect.onCurrentTabRemove "Exclude focus moving caused by current tab closing">
-<!ENTITY config.collapseExpandSubtree.dblclick "Contrai/espandi sottoalberi della scheda con un doppio-clic">
-<!ENTITY config.autoExpandSubtreeOnAppendChild "Espandi automaticamente i sottoalberi all'inserimento di nuove schede">
-
-<!ENTITY config.closeParentBehavior.caption       "Alla chiusura della scheda principale">
-<!ENTITY config.closeParentBehavior.close         "chiudi anche le sottoschede">
-<!ENTITY config.closeParentBehavior.promoteFirst "Promote the first child tab as the new parent">
-<!ENTITY config.closeParentBehavior.promoteAll   "porta le sottoschede al livello della scheda principale">
-<!ENTITY config.closeParentBehavior.detach        "elimina le sottoschede dall'albero">
-<!ENTITY config.closeRootBehavior.promoteFirst   "Promote the first child tab as the new parent, if the closed parent has no parent">
-<!--ENTITY config.attachChildrenToGrandParentOnRemoveTab "Elimina le sottoschede dall'albero alla chiusura della scheda principale"-->
-
-<!ENTITY config.focusMode "Attiva la scheda successiva/precedente, anche se è nascosta, con Control-Tab">
-
-<!ENTITY config.insertNewChildAt.caption "Posizione di inserimento di nuove sottoschede">
-<!ENTITY config.insertNewChildAt.first "Inserisci all&apos;inizio del sottoalbero, come prima sottoscheda">
-<!ENTITY config.insertNewChildAt.last "Accoda all&apos;ultimo sottoalbero">
-
-<!ENTITY config.undoCloseTabSet.caption  "When a member of a tree is restored by &quot;Undo Close Tab&quot;">
-<!ENTITY config.undoCloseTabSet.ask      "Ask me always">
-<!ENTITY config.undoCloseTabSet.set      "Restore whole of the tree">
-<!ENTITY config.undoCloseTabSet.separate "Restore only one tab (Firefox default)">
-
-
 <!ENTITY config.tabs.advanced "Avanzate">
-
-<!ENTITY config.animation.enabled "Attiva effetti di animazione">
-
-<!ENTITY config.tooltip.includeChildren        "Show tree contents in tooltips on tabs">
 
 <!ENTITY config.useEffectiveTLD.caption  "Metodo di individuazione per lo stesso sito web">
 <!ENTITY config.useEffectiveTLD.enabled  "Per dominio(&quot;aaa.example.com&quot; e &quot;bbb.example.com&quot; sono lo stesso sito web)">
 <!ENTITY config.useEffectiveTLD.disabled "Per indirizzo (&quot;aaa.example.com&quot; e &quot;bbb.example.com&quot; sono siti web diversi)">
-
-
-
-
-
-<!ENTITY selection.removeTabSubtree.label     "Chiudi i sottoalberi selezionati">
-<!ENTITY selection.removeTabSubtree.accesskey "s">
-<!ENTITY selection.createSubtree.label          "Gather to a New Tree">
-<!ENTITY selection.createSubtree.accesskey      "g">
-
-<!ENTITY context.reloadTabSubtree.label     "Reload this Tree">
-<!ENTITY context.reloadTabSubtree.accesskey "r">
-<!ENTITY context.reloadDescendantTabs.label     "Reload Children">
-<!ENTITY context.reloadDescendantTabs.accesskey "r">
-<!ENTITY context.removeTabSubtree.label     "Chiudi questo sottoalbero">
-<!ENTITY context.removeTabSubtree.accesskey "u">
-<!ENTITY context.removeDescendantTabs.label     "Chiudi sottoschede">
-<!ENTITY context.removeDescendantTabs.accesskey "i">
-<!ENTITY context.collapseAllSubtree.label     "Contrai tutti i sottoalberi">
-<!ENTITY context.collapseAllSubtree.accesskey "o">
-<!ENTITY context.expandAllSubtree.label     "Espandi tutti i sottoalberi">
-<!ENTITY context.expandAllSubtree.accesskey "E">
-<!ENTITY context.toggleAutoHide.label     "Nascondi automaticamente la barra delle schede">
-<!ENTITY context.toggleAutoHide.accesskey "b">
-<!ENTITY context.toggleFixed.label            "Fix position and width/height of tab bar">
-<!ENTITY context.toggleFixed.label.horizontal "Fix position and height of tab bar">
-<!ENTITY context.toggleFixed.label.vertical   "Blocca larghezza della barra delle schede">
-<!ENTITY context.toggleFixed.accesskey "h">
-<!ENTITY context.bookmarkTabSubtree.label     "Questo sottoalbero nei segnalibri...">
-<!ENTITY context.bookmarkTabSubtree.accesskey "l">
-
-<!ENTITY group.default "New Group">
