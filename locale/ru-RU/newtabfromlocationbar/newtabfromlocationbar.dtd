@@ -12,6 +12,11 @@
 <!ENTITY config.urlbar.asChild.any   "Уровень 2. Открывать как дочерние вкладки всегда">
 
 
+<!ENTITY config.treeStyleTab.description "You can control relationship of tabs by Tree Style Tab.">
+<!ENTITY config.treeStyleTab.link        "Download Tree Style Tab">
+<!ENTITY config.treeStyleTab.config      "Go to Tree Style Tab Configuration">
+
+
 <!ENTITY config.tabs.advanced "Дополнительно">
 
 <!ENTITY config.useEffectiveTLD.caption  "Определать метод для &quot;одного и того же сайта&quot;">

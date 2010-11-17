@@ -13,6 +13,11 @@
 <!ENTITY config.urlbar.asChild.any   "Lv.2 Immer als untergeordnetes Tab">
 
 
+<!ENTITY config.treeStyleTab.description "You can control relationship of tabs by Tree Style Tab.">
+<!ENTITY config.treeStyleTab.link        "Download Tree Style Tab">
+<!ENTITY config.treeStyleTab.config      "Go to Tree Style Tab Configuration">
+
+
 <!ENTITY config.tabs.advanced "Erweitert">
 
 <!ENTITY config.useEffectiveTLD.caption  "Erkennung der &quot;gleichen Webseite&quot;">

@@ -12,6 +12,11 @@
 <!ENTITY config.urlbar.asChild.any   "Lv.2 Open as child tab always">
 
 
+<!ENTITY config.treeStyleTab.description "You can control relationship of tabs by Tree Style Tab.">
+<!ENTITY config.treeStyleTab.link        "Download Tree Style Tab">
+<!ENTITY config.treeStyleTab.config      "Go to Tree Style Tab Configuration">
+
+
 <!ENTITY config.tabs.advanced "Avanzado">
 
 <!ENTITY config.useEffectiveTLD.caption  "Detecting method for &quot;same website&quot;">

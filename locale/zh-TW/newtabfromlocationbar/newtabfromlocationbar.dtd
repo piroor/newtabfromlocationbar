@@ -13,6 +13,11 @@
 <!ENTITY config.urlbar.asChild.any   "位階-2 一律開啟為子分頁">
 
 
+<!ENTITY config.treeStyleTab.description "You can control relationship of tabs by Tree Style Tab.">
+<!ENTITY config.treeStyleTab.link        "Download Tree Style Tab">
+<!ENTITY config.treeStyleTab.config      "Go to Tree Style Tab Configuration">
+
+
 <!ENTITY config.tabs.advanced "進階">
 
 <!ENTITY config.useEffectiveTLD.caption  "「同類其他分頁」定義依據">

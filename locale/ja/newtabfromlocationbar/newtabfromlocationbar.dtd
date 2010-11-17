@@ -13,6 +13,11 @@
 <!ENTITY config.urlbar.asChild.any   "Lv.2 すべて現在のタブの子として開く">
 
 
+<!ENTITY config.treeStyleTab.description "ツリー型タブと連携してタブの親子関係を制御できます。">
+<!ENTITY config.treeStyleTab.link        "ツリー型タブをダウンロードする">
+<!ENTITY config.treeStyleTab.config      "ツリー型タブの設定を開く">
+
+
 
 <!ENTITY config.tabs.advanced "詳細">
 
