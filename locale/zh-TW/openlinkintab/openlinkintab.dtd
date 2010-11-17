@@ -4,19 +4,7 @@
 <!ENTITY config.scale.max "大">
 
 
-<!ENTITY config.tabs.link     "Links">
 <!ENTITY config.tabs.urlbar   "Location Bar">
-<!ENTITY config.tabs.jsopen     "Scripts">
-
-<!ENTITY config.link.caption "鏈結新分頁位階自動化">
-<!ENTITY config.link.none    "位階-0 無 (Firefox 預設)">
-<!ENTITY config.link.outer   "位階-1 用新分頁開啟通往不同網站的鏈結">
-<!ENTITY config.link.any     "位階-2 用新分頁開啟所有鏈結">
-
-<!ENTITY config.open_newwindow.caption "從網頁鏈結開啟新視窗的控制">
-<!ENTITY config.open_newwindow.window  "用新視窗開啟">
-<!ENTITY config.open_newwindow.tab     "用新分頁開啟（Firefox 預設）">
-<!ENTITY config.open_newwindow.current "直接開在目前瀏覽的分頁">
 
 <!ENTITY config.urlbar.caption       "位址欄新分頁位階自動化">
 <!ENTITY config.urlbar.none          "位階-0 無 (Firefox 預設)">
@@ -26,11 +14,6 @@
 <!ENTITY config.urlbar.asChild.none  "位階-0 開啟為各別分頁">
 <!ENTITY config.urlbar.asChild.inner "位階-1 如果同網站就開啟為子分頁">
 <!ENTITY config.urlbar.asChild.any   "位階-2 一律開啟為子分頁">
-
-<!ENTITY config.jsopen.caption "從網頁的指令碼開啟新視窗的控制">
-<!ENTITY config.jsopen.default "當指定了大小和位置，則用新視窗開啟（Firefox 預設）">
-<!ENTITY config.jsopen.forcetab "在任何情况下用新分頁而非新視窗開啟（推薦）">
-<!ENTITY config.jsopen.current  "直接開在目前瀏覽的分頁">
 
 
 <!ENTITY config.tabs.advanced "進階">

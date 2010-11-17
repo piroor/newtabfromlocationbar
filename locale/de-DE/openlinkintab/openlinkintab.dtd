@@ -4,19 +4,7 @@
 <!ENTITY config.scale.max "max">
 
 
-<!ENTITY config.tabs.link     "Links">
 <!ENTITY config.tabs.urlbar   "Adresszeile">
-<!ENTITY config.tabs.jsopen     "Scripts">
-
-<!ENTITY config.link.caption "Verfolgte Links">
-<!ENTITY config.link.none    "Lv.0 Immer im aktiven Tab laden (Firefox Standard)">
-<!ENTITY config.link.outer   "Lv.1 In einem neuen Tab öffnen, falls es eine andere Webseite ist">
-<!ENTITY config.link.any     "Lv.2 Immer in einem neuen Tab öffnen">
-
-<!ENTITY config.open_newwindow.caption "Links, die sich unerwartet in einem neuen Fenster öffnen">
-<!ENTITY config.open_newwindow.window  "Als Fenster öffnen">
-<!ENTITY config.open_newwindow.tab     "Als neues Tab öffnen (Firefox Standard)">
-<!ENTITY config.open_newwindow.current "Immer im aktiven Tab laden">
 
 <!ENTITY config.urlbar.caption       "Eingegebene Adressen">
 <!ENTITY config.urlbar.none          "Lv.0 Immer im aktiven Tab laden (Firefox Standard)">
@@ -27,10 +15,6 @@
 <!ENTITY config.urlbar.asChild.inner "Lv.1 Neues untergeordnetes Tab, falls es die gleiche Webseite ist">
 <!ENTITY config.urlbar.asChild.any   "Lv.2 Immer als untergeordnetes Tab">
 
-<!ENTITY config.jsopen.caption "Fenster, die sich durch Skripte öffnen">
-<!ENTITY config.jsopen.default "Als Fenster öffnen, wenn das Skript eine bestimmte Fenstergröße vorgibt (Firefox Standard)">
-<!ENTITY config.jsopen.forcetab "Auf jeden Fall als Tab öffnen (Empfohlen)">
-<!ENTITY config.jsopen.current  "Immer im aktiven Tab laden">
 
 <!ENTITY config.tabs.advanced "Erweitert">
 

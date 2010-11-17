@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/"?>
+<?xml-stylesheet href="config.css"?>
 <!DOCTYPE prefwindow [
 <!ENTITY % mainDTD SYSTEM "chrome://openlinkintab/locale/openlinkintab.dtd">
 %mainDTD;
@@ -7,52 +8,6 @@
 <prefwindow id="openlinkintab-config"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	title="&config.title;">
-
-<prefpane id="prefpane-link" label="&config.tabs.link;"
-	onpaneload="initLinkPane();">
-	<preferences>
-		<preference id="extensions.openlinkintab@piro.sakura.ne.jp.openOuterLinkInNewTab"
-			name="extensions.openlinkintab@piro.sakura.ne.jp.openOuterLinkInNewTab"
-			type="bool"/>
-		<preference id="extensions.openlinkintab@piro.sakura.ne.jp.openAnyLinkInNewTab"
-			name="extensions.openlinkintab@piro.sakura.ne.jp.openAnyLinkInNewTab"
-			type="bool"/>
-		<preference id="browser.link.open_newwindow"
-			name="browser.link.open_newwindow"
-			type="int"/>
-	</preferences>
-
-	<vbox>
-		<groupbox>
-			<caption label="&config.link.caption;"/>
-			<hbox align="stretch">
-				<scale id="openLinkInNewTab-scale"
-					orient="vertical"
-					min="0"
-					max="2"
-					style="height:4em;"
-					onchange="if (gOpenLinkInTabScale) gOpenLinkInTabScale.onChange();"/>
-				<vbox id="openLinkInNewTab-labels">
-					<label value="&config.link.none;" control="openLinkInNewTab-scale"/>
-					<spacer flex="1"/>
-					<label value="&config.link.outer;" control="openLinkInNewTab-scale"/>
-					<spacer flex="1"/>
-					<label value="&config.link.any;" control="openLinkInNewTab-scale"/>
-				</vbox>
-			</hbox>
-		</groupbox>
-		<groupbox>
-			<caption label="&config.open_newwindow.caption;"/>
-			<radiogroup id="browser.link.open_newwindow-radiogroup"
-				preference="browser.link.open_newwindow"
-				orient="vertical">
-				<radio value="2" label="&config.open_newwindow.window;"/>
-				<radio value="3" label="&config.open_newwindow.tab;"/>
-			</radiogroup>
-		</groupbox>
-	</vbox>
-
-</prefpane>
 
 <prefpane id="prefpane-urlbar" label="&config.tabs.urlbar;"
 	onpaneload="initUrlbarPane();">
@@ -110,24 +65,6 @@
 				</vbox>
 			</hbox>
 		</groupbox>
-	</groupbox>
-</prefpane>
-
-<prefpane id="prefpane-jsopen" label="&config.tabs.jsopen;"
-	onpaneload="initJSOpenPane();">
-	<preferences>
-		<preference id="browser.link.open_newwindow.restriction"
-			name="browser.link.open_newwindow.restriction.override"
-			type="int"/>
-	</preferences>
-	<groupbox>
-		<caption label="&config.jsopen.caption;"/>
-		<radiogroup id="browser.link.open_newwindow.restriction-radiogroup"
-			preference="browser.link.open_newwindow.restriction"
-			orient="vertical">
-			<radio value="2" label="&config.jsopen.default;"/>
-			<radio value="0" label="&config.jsopen.forcetab;"/>
-		</radiogroup>
 	</groupbox>
 </prefpane>
 

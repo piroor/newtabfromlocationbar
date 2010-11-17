@@ -2,5 +2,4 @@
 <overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 <script src="openlinkintab.js" type="application/javascript"/>
 <script src="hacks.js" type="application/javascript"/>
-<script src="UninstallationListener.js" type="application/javascript"/>
 </overlay>

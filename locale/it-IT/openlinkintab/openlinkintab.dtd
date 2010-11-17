@@ -3,19 +3,7 @@
 <!ENTITY config.scale.min "min">
 <!ENTITY config.scale.max "max">
 
-<!ENTITY config.tabs.link     "Links">
 <!ENTITY config.tabs.urlbar   "Location Bar">
-<!ENTITY config.tabs.jsopen     "Scripts">
-
-<!ENTITY config.link.caption "Automatic New Tab Level for Links">
-<!ENTITY config.link.none    "Lv.0 Nothing (Firefox default)">
-<!ENTITY config.link.outer   "Lv.1 Apri i collegamenti a siti esterni in una nuova scheda">
-<!ENTITY config.link.any     "Lv.2 Apri tutti i collegamenti in una nuova scheda">
-
-<!ENTITY config.open_newwindow.caption "Forza i collegamenti che aprono nuove finestre">
-<!ENTITY config.open_newwindow.window  "ad aprirsi in una nuova finestra">
-<!ENTITY config.open_newwindow.tab     "ad aprirsi in una nuova scheda (comportamento predefinito di Firefox)">
-<!ENTITY config.open_newwindow.current "Load into the Current Tab anyway">
 
 <!ENTITY config.urlbar.caption       "Automatic New Tab Level for the Location Bar">
 <!ENTITY config.urlbar.none          "Lv.0 Nothing (Firefox default)">
@@ -26,10 +14,6 @@
 <!ENTITY config.urlbar.asChild.inner "Lv.1 Open as child tab if it is the same website">
 <!ENTITY config.urlbar.asChild.any   "Lv.2 Open as child tab always">
 
-<!ENTITY config.jsopen.caption "Forza gli script che aprono nuove finestre">
-<!ENTITY config.jsopen.default "ad aprire una nuova finestra se questa è ridimensionata (comportamento predefinito di Firefox)">
-<!ENTITY config.jsopen.forcetab "ad aprirsi tutti in nuove schede (Raccomandato)">
-<!ENTITY config.jsopen.current  "Load into the Current Tab anyway">
 
 <!ENTITY config.tabs.advanced "Avanzate">
 

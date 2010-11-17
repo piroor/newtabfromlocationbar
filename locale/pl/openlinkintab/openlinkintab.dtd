@@ -3,19 +3,7 @@
 <!ENTITY config.scale.min "min.">
 <!ENTITY config.scale.max "maks.">
 
-<!ENTITY config.tabs.link     "Odnośniki">
 <!ENTITY config.tabs.urlbar   "Pasek adresu">
-<!ENTITY config.tabs.jsopen     "Scripts">
-
-<!ENTITY config.link.caption "Otwieraj w nowej karcie witryny otwierane przez odnośnik">
-<!ENTITY config.link.none    "Nigdy (domyślne działanie Firefoksa)">
-<!ENTITY config.link.outer   "Jeśli jest to odnośnik do innej witryny">
-<!ENTITY config.link.any     "Zawsze">
-
-<!ENTITY config.open_newwindow.caption "Niespodziewanie otwierane okno z odnośników na stronie otwieraj jako:">
-<!ENTITY config.open_newwindow.window  "okno">
-<!ENTITY config.open_newwindow.tab     "kartę (domyślnie działanie Firefoksa)">
-<!ENTITY config.open_newwindow.current "otwieraj zawsze w aktywnej karcie">
 
 <!ENTITY config.urlbar.caption       "Otwieraj w nowej karcie witryny otwierane z paska adresu">
 <!ENTITY config.urlbar.none          "Nigdy (domyślnie działanie Firefoksa)">
@@ -26,10 +14,6 @@
 <!ENTITY config.urlbar.asChild.inner "Otwieraj jako kartę potomną jeśli jest to ta sama witryna">
 <!ENTITY config.urlbar.asChild.any   "Zawsze otwieraj jako kartę potomną">
 
-<!ENTITY config.jsopen.caption "Okno otwierane przez skrypt na stronie otwieraj jako:">
-<!ENTITY config.jsopen.default "okno jeśli ma określone parametry (domyślnie działanie Firefoksa)">
-<!ENTITY config.jsopen.forcetab "kartę zamiast okna (zalecane)">
-<!ENTITY config.jsopen.current  "Otwieraj zawsze w aktywnej karcie">
 
 
 <!ENTITY config.tabs.advanced "Zaawansowane">

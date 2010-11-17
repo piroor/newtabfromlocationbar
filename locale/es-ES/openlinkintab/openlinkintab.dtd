@@ -3,19 +3,7 @@
 <!ENTITY config.scale.min "min">
 <!ENTITY config.scale.max "max">
 
-<!ENTITY config.tabs.link     "Links">
 <!ENTITY config.tabs.urlbar   "Location Bar">
-<!ENTITY config.tabs.jsopen     "Scripts">
-
-<!ENTITY config.link.caption "Automatic New Tab Level for Links">
-<!ENTITY config.link.none    "Lv.0 Nothing (Firefox default)">
-<!ENTITY config.link.outer   "Lv.1 Abrir enlaces a un diferente sitio en una nueva pestaña">
-<!ENTITY config.link.any     "Lv.2 Abrir cualquier enlace en una nueva pestaña">
-
-<!ENTITY config.open_newwindow.caption "Nuevas ventanas abiertas desde enlaces inesperadamente">
-<!ENTITY config.open_newwindow.window  "Abrir como una ventana">
-<!ENTITY config.open_newwindow.tab     "Abrir como pestaña (Predeterminado en Firefox)">
-<!ENTITY config.open_newwindow.current "Load into the Current Tab anyway">
 
 <!ENTITY config.urlbar.caption       "Automatic New Tab Level for the Location Bar">
 <!ENTITY config.urlbar.none          "Lv.0 Nothing (Firefox default)">
@@ -25,11 +13,6 @@
 <!ENTITY config.urlbar.asChild.none  "Lv.0 Open as separate tab">
 <!ENTITY config.urlbar.asChild.inner "Lv.1 Open as child tab if it is the same website">
 <!ENTITY config.urlbar.asChild.any   "Lv.2 Open as child tab always">
-
-<!ENTITY config.jsopen.caption "Nuevas ventanas abiertas desde Scripts">
-<!ENTITY config.jsopen.default "Abrir como ventana cuando contienen un ancho o altura especial. (Predeterminado en Firefox)">
-<!ENTITY config.jsopen.forcetab "Abrir como pestañas en ves de ventanas (Recomendado)">
-<!ENTITY config.jsopen.current  "Load into the Current Tab anyway">
 
 
 <!ENTITY config.tabs.advanced "Avanzado">

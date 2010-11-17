@@ -3,19 +3,7 @@
 <!ENTITY config.scale.min "min">
 <!ENTITY config.scale.max "max">
 
-<!ENTITY config.tabs.link     "Ссылки">
 <!ENTITY config.tabs.urlbar   "Адресная строка ">
-<!ENTITY config.tabs.jsopen     "Scripts">
-
-<!ENTITY config.link.caption "Автодействия для новых вкладок, открываемых из ссылок">
-<!ENTITY config.link.none    "Уровень 0. Отсутствует (в Firefox по умолчанию)">
-<!ENTITY config.link.outer   "Уровень 1. Открывать ссылки на другой сайт в новой вкладке">
-<!ENTITY config.link.any     "Уровень 2. Открывать все ссылки в новой вкладке">
-
-<!ENTITY config.open_newwindow.caption "Открытие высплывающих окон">
-<!ENTITY config.open_newwindow.window  "Открывать как окно">
-<!ENTITY config.open_newwindow.tab     "Открывать как вкладку (в Firefox по умочанию)">
-<!ENTITY config.open_newwindow.current "Всегда загружать в текущую вкладку">
 
 <!ENTITY config.urlbar.caption       "Автодействия для новых вкладок, открываемых из адресной строки">
 <!ENTITY config.urlbar.none          "Уровень 0. Отсутствует (в Firefox по умолчанию)">
@@ -25,11 +13,6 @@
 <!ENTITY config.urlbar.asChild.none  "Уровень 0. Открывать как отдельные вкладки">
 <!ENTITY config.urlbar.asChild.inner "Уровень 1. Открывать как дочерние вкладки, если с того же сайта">
 <!ENTITY config.urlbar.asChild.any   "Уровень 2. Открывать как дочерние вкладки всегда">
-
-<!ENTITY config.jsopen.caption "Открытие новых окон скриптами на страницах">
-<!ENTITY config.jsopen.default "Открывать как окно, когда используется специальная ширина, высота, и т.д. (в Firefox по умолчанию)">
-<!ENTITY config.jsopen.forcetab "Всегда открывать как вкладку вместо окна (рекомендуется)">
-<!ENTITY config.jsopen.current  "Загружать в текущую вкладку всегда">
 
 
 <!ENTITY config.tabs.advanced "Дополнительно">

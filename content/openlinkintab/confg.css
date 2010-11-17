@@ -1,0 +1,9 @@
+label.scale-label {
+	min-width: 0;
+	margin: 0;
+	font-size: smaller;
+}
+
+label[scale-selected="true"] {
+	font-weight: bold;
+}

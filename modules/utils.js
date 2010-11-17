@@ -48,57 +48,21 @@ var OpenLinkInTabUtils = {
 	__proto__ : window['piro.sakura.ne.jp'].prefs,
 
 	kPREFROOT : 'extensions.openlinkintab@piro.sakura.ne.jp',
-	kID : 'openlinkintab-id',
 	
-	get XULAppInfo() {
-		if (!this._XULAppInfo) {
-			this._XULAppInfo = Cc['@mozilla.org/xre/app-info;1'].getService(Ci.nsIXULAppInfo).QueryInterface(Ci.nsIXULRuntime);
-		}
-		return this._XULAppInfo;
-	},
-	_XULAppInfo : null,
-	get Comparator() {
-		if (!this._Comparator) {
-			this._Comparator = Cc['@mozilla.org/xpcom/version-comparator;1'].getService(Ci.nsIVersionComparator);
-		}
-		return this._Comparator;
-	},
-	_Comparator : null,
- 
-/* utilities */ 
-	
-	isNewTabAction : function OLITUtils_isNewTabAction(aEvent) 
-	{
-		return aEvent.button == 1 || (aEvent.button == 0 && this.isAccelKeyPressed(aEvent));
-	},
- 
-	isAccelKeyPressed : function OLITUtils_isAccelKeyPressed(aEvent) 
-	{
-		if ( // this is releasing of the accel key!
-			(aEvent.type == 'keyup') &&
-			(aEvent.keyCode == (this.isMac ? Ci.nsIDOMKeyEvent.DOM_VK_META : Ci.nsIDOMKeyEvent.DOM_VK_CONTROL ))
-			) {
-			return false;
-		}
-		return this.isMac ?
-			(aEvent.metaKey || (aEvent.keyCode == Ci.nsIDOMKeyEvent.DOM_VK_META)) :
-			(aEvent.ctrlKey || (aEvent.keyCode == Ci.nsIDOMKeyEvent.DOM_VK_CONTROL)) ;
-	},
-  
 	checkReadyToOpenNewTabOnLocationBar : function OLITUtils_checkReadyToOpenNewTabOnLocationBar(aURI, aModifier) 
 	{
 		var result = window['piro.sakura.ne.jp'].autoNewTabHelper.checkReadyToOpenNewTab({
 			uri      : aURI,
 			external : {
-				newTab     : this.getMyPref('urlbar.loadDifferentDomainToNewTab'),
-				forceChild : this.getMyPref('urlbar.loadDifferentDomainToNewTab.asChild')
+				newTab     : this.getMyPref('loadDifferentDomainToNewTab'),
+				forceChild : this.getMyPref('loadDifferentDomainToNewTab.asChild')
 			},
 			internal : {
-				newTab     : this.getMyPref('urlbar.loadSameDomainToNewTab'),
-				forceChild : this.getMyPref('urlbar.loadSameDomainToNewTab.asChild')
+				newTab     : this.getMyPref('loadSameDomainToNewTab'),
+				forceChild : this.getMyPref('loadSameDomainToNewTab.asChild')
 			},
 			modifier : aModifier,
-			invert   : this.getMyPref('urlbar.invertDefaultBehavior'),
+			invert   : this.getMyPref('invertDefaultBehavior'),
 			useEffectiveTLD : this.getMyPref('useEffectiveTLD')
 		});
 
@@ -116,118 +80,6 @@ var OpenLinkInTabUtils = {
 		return result.open;
 	},
  
-	checkReadyToOpenNewTabFromLink : function OLITUtils_checkReadyToOpenNewTabFromLink(aLink) 
-	{
-		var options = aLink;
-		if (typeof aLink == 'string') {
-			options = {
-				link : { href : aLink }
-			};
-		}
-		else if (aLink instanceof Ci.nsIDOMElement) {
-			options = { link : aLink };
-		}
-		options.__proto__ = {
-			external : {
-				newTab : this.getMyPref('openOuterLinkInNewTab') || this.getMyPref('openAnyLinkInNewTab'),
-				forceChild : this.getMyPref('openOuterLinkInNewTab.asChild')
-			},
-			internal : {
-				newTab : this.getMyPref('openAnyLinkInNewTab'),
-				forceChild : this.getMyPref('openAnyLinkInNewTab.asChild')
-			},
-			useEffectiveTLD : this.getMyPref('useEffectiveTLD')
-		};
-		options.uri = options.link.href;
-		var result = window['piro.sakura.ne.jp'].autoNewTabHelper.checkReadyToOpenNewTab(options);
-
-		if (
-			result.open && result.owner &&
-			'treeStyleTab' in result.tabbrowser &&
-			'readyToOpenChildTab' in result.tabbrowser.treeStyleTab
-			)
-			result.tabbrowser.treeStyleTab.readyToOpenChildTab(
-				result.owner,
-				false,
-				result.lastRelatedTab && result.lastRelatedTab.nextSibling
-			);
-
-		return result.open;
-	},
- 
-	filterWhereToOpenLink : function OLITUtils_filterwhereToOpenLink(aWhere, aParams) 
-	{
-		var inverted = false;
-		var divertedToTab = false;
-		var link = aParams.linkNode || aParams.event.originalTarget;
-		var isNewTab = this.isNewTabAction(aParams.event);
-		if (this.checkReadyToOpenNewTabFromLink({
-				link     : link,
-				modifier : isNewTab,
-				invert   : this.getMyPref('link.invertDefaultBehavior')
-			})) {
-			if (aWhere == 'current' && !isNewTab) {
-				divertedToTab = true;
-				aWhere = this.getPref('browser.tabs.loadInBackground') ? 'tabshifted' : 'tab' ;
-			}
-		}
-		else if (aWhere.indexOf('tab') > -1) {
-			aWhere = 'current';
-			inverted = true;
-		}
-		return {
-			where         : aWhere,
-			inverted      : inverted,
-			divertedToTab : divertedToTab
-		};
-	},
- 
-	readyToOpenDivertedTab : function OLITUtils_readyToOpenDivertedTab(aFrameOrTabBrowser) 
-	{
-		var frame = window['piro.sakura.ne.jp'].autoNewTabHelper.getFrameFromTabBrowserElements(aFrameOrTabBrowser);
-		if (!frame) return;
-		var ownerBrowser = window['piro.sakura.ne.jp'].autoNewTabHelper.getTabBrowserFromFrame(frame);
-		ownerBrowser.__openlinkintab__readiedToOpenDivertedTab = true;
-	},
- 
-/* Pref Listener */ 
-	
-	domains : [ 
-		'browser.link.open_newwindow.restriction'
-	],
- 
-	onPrefChange : function OLITUtils_onPrefChange(aPrefName) 
-	{
-		var value = this.getPref(aPrefName);
-		switch (aPrefName)
-		{
-			case 'browser.link.open_newwindow.restriction':
-				if (this.prefOverriding) return;
-				aPrefName += '.override';
-				this.setPref(aPrefName, value);
-			case 'browser.link.open_newwindow.restriction.override':
-				if (this.getPref(aPrefName+'.force')) {
-					let defaultValue = this.getDefaultPref(aPrefName);
-					if (value != defaultValue) {
-						this.setPref(aPrefName, defaultValue);
-						return;
-					}
-				}
-				this.prefOverriding = true;
-				let (target = aPrefName.replace('.override', '')) {
-					let originalValue = this.getPref(target);
-					if (originalValue !== null && originalValue != value)
-						this.setPref(target+'.backup', originalValue);
-					this.setPref(target, this.getPref(aPrefName));
-				}
-				this.prefOverriding = false;
-				break;
-
-			default:
-				break;
-		}
-	},
-  
 /* Save/Load Prefs */ 
 	
 	getMyPref : function OLITUtils_getMyPref(aPrefstring) 
@@ -243,16 +95,7 @@ var OpenLinkInTabUtils = {
 	clearMyPref : function OLITUtils_clearMyPref(aPrefstring) 
 	{
 		return this.clearPref(this.kPREFROOT+'.'+aPrefstring);
-	},
-  
-	init : function OLITUtils_init() 
-	{
-		this.isMac = this.XULAppInfo.OS == 'Darwin';
-		this.addPrefListener(this);
-		this.onPrefChange('browser.link.open_newwindow.restriction.override');
 	}
- 
+  
 }; 
- 
-OpenLinkInTabUtils.init(); 
   

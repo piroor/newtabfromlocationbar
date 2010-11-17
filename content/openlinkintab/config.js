@@ -2,19 +2,8 @@ Components.utils.import('resource://treestyletab-modules/prefs.js', {});
 Components.utils.import('resource://treestyletab-modules/namespace.jsm');
 var prefs = getNamespaceFor('piro.sakura.ne.jp')['piro.sakura.ne.jp'].prefs;
 
-var gOpenLinkInTabScale,
-	gLoadLocationBarToNewTabScale,
+var gLoadLocationBarToNewTabScale,
 	gLoadLocationBarToChildTabScale;
-
-function initLinkPane()
-{
-	gOpenLinkInTabScale = new ScaleSet(
-		['extensions.treestyletab.openOuterLinkInNewTab',
-		 'extensions.treestyletab.openAnyLinkInNewTab'],
-		'openLinkInNewTab-scale',
-		'openLinkInNewTab-labels'
-	);
-}
 
 function initUrlbarPane()
 {
@@ -39,19 +28,6 @@ function initUrlbarPane()
 
 	gLoadLocationBarToChildTabScale.disabled = gLoadLocationBarToNewTabScale.value == 0;
 }
-
-function initJSOpenPane()
-{
-	var restrictionKey = 'browser.link.open_newwindow.restriction';
-	var restriction = document.getElementById(restrictionKey);
-	try {
-		restriction.value = prefs.getPref(restrictionKey);
-	}
-	catch(e) {
-		prefs.setPref(restrictionKey, parseInt(restriction.value));
-	}
-}
-
 
 function ScaleSet(aPrefs, aScale, aLabelsContainer)
 {

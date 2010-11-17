@@ -4,19 +4,6 @@
 <!ENTITY config.scale.max "max">
 
 
-<!ENTITY config.tabs.link    "Links">
-
-<!ENTITY config.link.caption "Automatic New Tab Level for Links">
-<!ENTITY config.link.none    "Lv.0 Nothing (Firefox default)">
-<!ENTITY config.link.outer   "Lv.1 Open links to different website in new tab">
-<!ENTITY config.link.any     "Lv.2 Open any link in new tab">
-
-<!ENTITY config.open_newwindow.caption "New window opened from links in webpages unexpectedly">
-<!ENTITY config.open_newwindow.window  "Open as Window">
-<!ENTITY config.open_newwindow.tab     "Open as Tab (Firefox default, recommended)">
-<!ENTITY config.open_newwindow.current "Load into the Current Tab anyway">
-
-
 <!ENTITY config.tabs.urlbar.tab      "Location Bar">
 
 <!ENTITY config.urlbar.caption       "Automatic New Tab Level for the Location Bar">
@@ -27,14 +14,6 @@
 <!ENTITY config.urlbar.asChild.none  "Lv.0 Open as separate tab">
 <!ENTITY config.urlbar.asChild.inner "Lv.1 Open as child tab if it is the same website">
 <!ENTITY config.urlbar.asChild.any   "Lv.2 Open as child tab always">
-
-
-<!ENTITY config.tabs.jsopen    "Scripts">
-
-<!ENTITY config.jsopen.caption "New window opened from a web page script">
-<!ENTITY config.jsopen.default "Open new window when it has a special width, height, etc. (Firefox default)">
-<!ENTITY config.jsopen.forcetab "Open new tab instead of window (Recommended)">
-<!ENTITY config.jsopen.current  "Load into the Current Tab anyway">
 
 
 <!ENTITY config.tabs.advanced "Advanced">

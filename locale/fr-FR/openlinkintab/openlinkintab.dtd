@@ -4,19 +4,7 @@
 <!ENTITY config.scale.max "max">
 
 
-<!ENTITY config.tabs.link     "Liens">
 <!ENTITY config.tabs.urlbar   "Barre d'adresse">
-<!ENTITY config.tabs.jsopen     "Scripts">
-
-<!ENTITY config.link.caption "Niveau automatique d'un nouvel onglet pour des liens">
-<!ENTITY config.link.none    "Lv.0 Aucun (défaut Firefox)">
-<!ENTITY config.link.outer   "Lv.1 Ouvrir les liens d'un site web différent dans un nouvel onglet">
-<!ENTITY config.link.any     "Lv.2 Ouvrir tous les liens dans un nouvel onglet">
-
-<!ENTITY config.open_newwindow.caption "Nouvelle fenêtre ouverte spontanément à partir d'un lien d'une page web">
-<!ENTITY config.open_newwindow.window  "Ouvrir en fenêtre">
-<!ENTITY config.open_newwindow.tab     "Ouvrir en onglet (défaut Firefox, recommandé)">
-<!ENTITY config.open_newwindow.current "Ouvrir systématiquement dans l'onglet actuel">
 
 <!ENTITY config.urlbar.caption       "Niveau automatique d'un nouvel onglet pour la barre d'adresse">
 <!ENTITY config.urlbar.none          "Lv.0 Aucun (défaut Firefox)">
@@ -26,11 +14,6 @@
 <!ENTITY config.urlbar.asChild.none  "Lv.0 Ouvrir dans un onglet séparé">
 <!ENTITY config.urlbar.asChild.inner "Lv.1 Ouvrir en onglet enfant si c'est le même site web">
 <!ENTITY config.urlbar.asChild.any   "Lv.2 Toujours ouvrir en onglet enfant">
-
-<!ENTITY config.jsopen.caption "Nouvelle fenêtre ouverte par le script d'une page">
-<!ENTITY config.jsopen.default "Ouvrir une nouvelle fenêtre si ses dimensions sont précisées (défaut Firefox)">
-<!ENTITY config.jsopen.forcetab "Ouvrir un nouvel onglet au lieu d'une fenêtre (Recommandé)">
-<!ENTITY config.jsopen.current  "Charger systématiquement dans l'onglet actuel">
 
 
 <!ENTITY config.tabs.advanced "Avancé">
