@@ -231,17 +231,19 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		var b       = this.getTabBrowserFromFrame(frame);
 		var TST     = 'treeStyleTab' in b ? b.treeStyleTab : null ;
 
-		var targetHost  = this._getDomainFromURI(info.uri, info.useEffectiveTLD);
+		var useEffectiveTLD = 'useEffectiveTLD' in info ? info.useEffectiveTLD : true ;
+
+		var targetHost  = this._getDomainFromURI(info.uri, useEffectiveTLD);
 		var currentTab  = this.getTabFromFrame(frame);
 		var currentURI  = frame.location.href;
-		var currentHost = this._getDomainFromURI(currentURI);
+		var currentHost = this._getDomainFromURI(currentURI, useEffectiveTLD);
 		var ownerTab    = TST ?
 							TST.getParentTab(currentTab) :
 						currentTab ?
 							currentTab.owner :
 							null ;
 		var ownerURI    = ownerTab ? ownerTab.linkedBrowser.currentURI : null ;
-		var ownerHost   = this._getDomainFromURI(ownerURI);
+		var ownerHost   = this._getDomainFromURI(ownerURI, useEffectiveTLD);
 
 		var openTab      = false;
 		var owner        = null;
@@ -258,7 +260,7 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 			openTab = info.modifier && info.invert ? !openTab : true ;
 			owner = ('forceChild' in internal && !internal.forceChild) ? null :
 					(ownerHost == targetHost && !internal.forceChild) ? ownerTab :
-					frame ;
+					this.getTabFromFrame(frame) ;
 			let nextTab = TST ?
 							TST.getNextSiblingTab(currentTab) :
 							this._getNextVisibleTab(currentTab) ;
@@ -287,7 +289,7 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 			) {
 			openTab = info.modifier && info.invert ? !openTab : true ;
 			if (external.forceChild)
-				owner = frame;
+				owner = this.getTabFromFrame(frame);
 		}
 
 		return {
