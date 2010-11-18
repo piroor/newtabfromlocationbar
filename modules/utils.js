@@ -66,16 +66,20 @@ var NewTabFromLocationBarUtils = {
 			useEffectiveTLD : this.getMyPref('useEffectiveTLD')
 		});
 
-		if (
-			result.open && result.owner &&
-			'treeStyleTab' in result.tabbrowser &&
-			'readyToOpenChildTab' in result.tabbrowser.treeStyleTab
-			)
-			result.tabbrowser.treeStyleTab.readyToOpenChildTab(
-				result.owner,
-				false,
-				result.lastRelatedTab && result.lastRelatedTab.nextSibling
-			);
+		if (result.open && result.owner) {
+			if ('treeStyleTab' in result.tabbrowser &&
+				'readyToOpenChildTab' in result.tabbrowser.treeStyleTab) {
+				result.tabbrowser.treeStyleTab.readyToOpenChildTab(
+					result.owner,
+					false,
+					result.lastRelatedTab && result.lastRelatedTab.nextSibling
+				);
+			}
+			else {
+				result.tabbrowser.__newtabfromlocationbar__owner = result.owner;
+				result.tabbrowser.__newtabfromlocationbar__lastRelatedTab = result.lastRelatedTab;
+			}
+		}
 
 		return result.open;
 	},

@@ -1,11 +1,6 @@
 Components.utils.import('resource://newtabfromlocationbar-modules/prefs.js', {});
 Components.utils.import('resource://newtabfromlocationbar-modules/namespace.jsm');
-Components.utils.import('resource://newtabfromlocationbar-modules/extensions.js');
 var prefs = getNamespaceFor('piro.sakura.ne.jp')['piro.sakura.ne.jp'].prefs;
-var extensions = getNamespaceFor('piro.sakura.ne.jp')['piro.sakura.ne.jp'].extensions;
-
-const TREESTYLETAB_ID = 'treestyletab@piro.sakura.ne.jp';
-var treeStyleTabAvailable = false;
 
 var gLoadLocationBarToNewTabScale,
 	gLoadLocationBarToChildTabScale;
@@ -25,43 +20,12 @@ function initUrlbarPane()
 		'loadLocationBarToChildTab-labels'
 	);
 
-	[
-		'treeStyleTabLink'
-	].forEach(function(aItem) {
-		aItem = document.getElementById(aItem);
-		aItem.setAttribute('collapsed', true);
-		extensions.isInstalled(TREESTYLETAB_ID, { ng : function() {
-			aItem.removeAttribute('collapsed');
-		}});
-	});
-
-	[
-		'treeStyleTabConfig'
-	].forEach(function(aItem) {
-		aItem = document.getElementById(aItem);
-		aItem.setAttribute('collapsed', true);
-		aItem.setAttribute('disabled', true);
-		extensions.isInstalled(TREESTYLETAB_ID, { ok : function() {
-			aItem.removeAttribute('collapsed');
-		}});
-		extensions.isEnabled(TREESTYLETAB_ID, { ok : function() {
-			aItem.removeAttribute('disabled');
-			treeStyleTabAvailable = true;
-			updateTreePrefAvailability();
-		}});
-	});
-
-	updateTreePrefAvailability();
+	updateRelationPrefAvailability();
 }
 
-function updateTreePrefAvailability()
+function updateRelationPrefAvailability()
 {
-	gLoadLocationBarToChildTabScale.disabled = !treeStyleTabAvailable || gLoadLocationBarToNewTabScale.value == 0;
-}
-
-function openTreeStyleTabConfig()
-{
-	extensions.goToOptions(TREESTYLETAB_ID, window);
+	gLoadLocationBarToChildTabScale.disabled = gLoadLocationBarToNewTabScale.value == 0;
 }
 
 

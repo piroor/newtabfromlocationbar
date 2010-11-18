@@ -30,12 +30,20 @@ var NewTabFromLocationBarService = {
 		this.initialized = true;
 
 		window.removeEventListener('load', this, false);
+		window.addEventListener('unload', this, false);
+		window.addEventListener('TabOpen', this, true);
 
 		this.overrideExtensionsOnInitBefore(); // hacks.js
 		this.overrideGlobalFunctions();
 		this.overrideExtensionsOnInitAfter(); // hacks.js
 	},
 	initialized : false,
+ 
+	destroy : function NTFLBService_destroy() 
+	{
+		window.removeEventListener('unload', this, false);
+		window.removeEventListener('TabOpen', this, true);
+	},
  
 	overrideGlobalFunctions : function NTFLBService_overrideGlobalFunctions() 
 	{
@@ -127,6 +135,24 @@ var NewTabFromLocationBarService = {
 
 			case 'load':
 				return this.init();
+
+			case 'unload':
+				return this.destroy();
+
+			case 'TabOpen':
+				return this.onTabOpened(aEvent);
+		}
+	},
+ 
+	onTabOpened : function NTFLBService_onTabOpened(aEvent) 
+	{
+		var tab = aEvent.originalTarget;
+		var b   = this.helper.getTabBrowserFromChild(tab);
+		if (b.__newtabfromlocationbar__owner) {
+			b.moveTabTo(tab, (b.__newtabfromlocationbar__lastRelatedTab || b.selectedTab)._tPos + 1);
+			tab.owner = b.__newtabfromlocationbar__owner;
+			b.__newtabfromlocationbar__owner = null;
+			b.__newtabfromlocationbar__lastRelatedTab = null;
 		}
 	}
  
@@ -135,7 +161,9 @@ var NewTabFromLocationBarService = {
 (function() { 
 	var namespace = {};
 	Components.utils.import('resource://newtabfromlocationbar-modules/utils.js', namespace);
+	Components.utils.import('resource://newtabfromlocationbar-modules/autoNewTabHelper.js', namespace);
 	NewTabFromLocationBarService.__proto__ = namespace.NewTabFromLocationBarUtils;
+	NewTabFromLocationBarService.helper = namespace.autoNewTabHelper;
 
 	window.addEventListener('DOMContentLoaded', NewTabFromLocationBarService, false);
 	window.addEventListener('load', NewTabFromLocationBarService, false);

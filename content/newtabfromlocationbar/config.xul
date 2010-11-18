@@ -36,7 +36,7 @@
 				onchange="
 					if (gLoadLocationBarToNewTabScale) {
 						gLoadLocationBarToNewTabScale.onChange();
-						updateTreePrefAvailability();
+						updateRelationPrefAvailability();
 					}
 				"/>
 			<vbox id="loadLocationBarToNewTab-labels">
@@ -64,19 +64,6 @@
 					<label value="&config.urlbar.asChild.any;" control="loadLocationBarToChildTab-scale"/>
 				</vbox>
 			</hbox>
-			<vbox>
-				<description flex="1">&config.treeStyleTab.description;</description>
-				<hbox>
-					<label id="treeStyleTabLink"
-						class="text-link"
-						value="&config.treeStyleTab.link;"
-						uri="http://piro.sakura.ne.jp/xul/treestyletab/"
-						onclick="openURL(this.getAttribute('uri'))"/>
-					<button id="treeStyleTabConfig"
-						label="&config.treeStyleTab.config;"
-						oncommand="openTreeStyleTabConfig()"/>
-				</hbox>
-			</vbox>
 		</groupbox>
 	</groupbox>
 </prefpane>
