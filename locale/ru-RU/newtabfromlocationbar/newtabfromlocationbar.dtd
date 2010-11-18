@@ -6,8 +6,8 @@
 <!ENTITY config.urlbar.none          "Уровень 0. Отсутствует (в Firefox по умолчанию)">
 <!ENTITY config.urlbar.outer         "Уровень 1. Загружать в новой вкладке, если ведут на другой сайт">
 <!ENTITY config.urlbar.any           "Уровень 2. Загружать в новой вкладке всегда">
-<!ENTITY config.urlbar.asChild.caption "Группировка открываемых вкладок">
-<!ENTITY config.urlbar.asChild.none  "Уровень 0. Открывать как отдельные вкладки">
+<!ENTITY config.urlbar.asChild.caption "Relationship of opened tabs">
+<!ENTITY config.urlbar.asChild.none  "Lv.0 Open as independent tab always">
 <!ENTITY config.urlbar.asChild.inner "Уровень 1. Открывать как дочерние вкладки, если с того же сайта">
 <!ENTITY config.urlbar.asChild.any   "Уровень 2. Открывать как дочерние вкладки всегда">
 

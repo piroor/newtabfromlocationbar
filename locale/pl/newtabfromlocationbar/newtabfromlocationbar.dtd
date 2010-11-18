@@ -6,8 +6,8 @@
 <!ENTITY config.urlbar.none          "Nigdy (domyślnie działanie Firefoksa)">
 <!ENTITY config.urlbar.outer         "Jeśli jest to inna witryna niż aktywna">
 <!ENTITY config.urlbar.any           "Zawsze">
-<!ENTITY config.urlbar.asChild.caption "Struktura otwieranych kart">
-<!ENTITY config.urlbar.asChild.none  "Otwieraj jako osobną kartę">
+<!ENTITY config.urlbar.asChild.caption "Relationship of opened tabs">
+<!ENTITY config.urlbar.asChild.none  "Lv.0 Open as independent tab always">
 <!ENTITY config.urlbar.asChild.inner "Otwieraj jako kartę potomną jeśli jest to ta sama witryna">
 <!ENTITY config.urlbar.asChild.any   "Zawsze otwieraj jako kartę potomną">
 
