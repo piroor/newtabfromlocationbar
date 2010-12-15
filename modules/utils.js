@@ -63,7 +63,8 @@ var NewTabFromLocationBarUtils = {
 			},
 			modifier : aModifier,
 			invert   : this.getMyPref('invertDefaultBehavior'),
-			useEffectiveTLD : this.getMyPref('useEffectiveTLD')
+			useEffectiveTLD : this.getMyPref('useEffectiveTLD'),
+			checkUserHome   : this.getMyPref('checkUserHome')
 		});
 
 		if (result.open && result.owner) {

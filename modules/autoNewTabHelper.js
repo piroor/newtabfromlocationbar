@@ -25,7 +25,7 @@ if (typeof window == 'undefined' ||
 }
  
 (function() { 
-	const currentRevision = 1;
+	const currentRevision = 2;
 
 	if (!('piro.sakura.ne.jp' in window)) window['piro.sakura.ne.jp'] = {};
 
@@ -232,18 +232,19 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		var TST     = 'treeStyleTab' in b ? b.treeStyleTab : null ;
 
 		var useEffectiveTLD = 'useEffectiveTLD' in info ? info.useEffectiveTLD : true ;
+		var checkUserHome = 'checkUserHome' in info ? info.checkUserHome : true ;
 
-		var targetHost  = this._getDomainFromURI(info.uri, useEffectiveTLD);
+		var targetHost  = this._getDomainFromURI(info.uri, useEffectiveTLD, checkUserHome);
 		var currentTab  = this.getTabFromFrame(frame);
 		var currentURI  = frame.location.href;
-		var currentHost = this._getDomainFromURI(currentURI, useEffectiveTLD);
+		var currentHost = this._getDomainFromURI(currentURI, useEffectiveTLD, checkUserHome);
 		var ownerTab    = TST ?
 							TST.getParentTab(currentTab) :
 						currentTab ?
 							currentTab.owner :
 							null ;
 		var ownerURI    = ownerTab ? ownerTab.linkedBrowser.currentURI : null ;
-		var ownerHost   = this._getDomainFromURI(ownerURI, useEffectiveTLD);
+		var ownerHost   = this._getDomainFromURI(ownerURI, useEffectiveTLD, checkUserHome);
 
 		var openTab      = false;
 		var owner        = null;
@@ -300,25 +301,31 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		};
 	},
 	
-	_getDomainFromURI : function OLITUtils__getDomainFromURI(aURI, aUseEffectiveTLD) 
+	_getDomainFromURI : function OLITUtils__getDomainFromURI(aURI, aUseEffectiveTLD, aCheckUserHome) 
 	{
 		if (!aURI) return null;
+
+		var str = aURI;
+		if (str instanceof Ci.nsIURI) str = aURI.spec;
+		str = this.browserWindow.getShortcutOrURI(str);
+
+		var userHomePart = aCheckUserHome ? str.match(/^\w+:\/\/[^\/]+(\/~[^\/]+)\//) : '' ;
+		if (userHomePart) userHomePart = userHomePart[1];
 
 		if (aUseEffectiveTLD && this._EffectiveTLD) {
 			try {
 				var uri = aURI;
 				if (!(uri instanceof Ci.nsIURI)) uri = this._makeURIFromSpec(uri);
 				var domain = this._EffectiveTLD.getBaseDomain(uri, 0);
-				if (domain) return domain;
+				if (domain) return domain + userHomePart;
 			}
 			catch(e) {
 			}
 		}
 
-		var str = aURI;
-		if (str instanceof Ci.nsIURI) str = aURI.spec;
-		return /^\w+:(?:\/\/)?([^:\/]+)/.test(this.browserWindow.getShortcutOrURI(str)) ?
-				RegExp.$1 :
+		var domainMatchResult = str.match(/^\w+:(?:\/\/)?([^:\/]+)/);
+		return domainMatchResult ?
+				domainMatchResult[1] + userHomePart :
 				null ;
 	},
 	

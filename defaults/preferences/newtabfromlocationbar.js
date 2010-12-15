@@ -4,3 +4,5 @@ pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.loadSameDomainToNewTab"
 pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.loadSameDomainToNewTab.asChild", true);
 pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.invertDefaultBehavior", false);
 pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.useEffectiveTLD", true);
+pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.checkUserHome", true);
+
