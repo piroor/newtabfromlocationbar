@@ -67,9 +67,9 @@ var NewTabFromLocationBarUtils = {
 			checkUserHome   : this.getMyPref('checkUserHome')
 		});
 
-		if (result.open && aBrowser && this.getMyPref('ignoreStatus.enabled')) {
+		if (result.open && aBrowser && this.getMyPref('checkResponseStatus')) {
 			let currentStatus = this.getCurrentStatus(aBrowser);
-			if (this.getMyPref('ignoreStatus.list').indexOf(currentStatus) > -1)
+			if (this.getMyPref('checkResponseStatus.list').indexOf(currentStatus) > -1)
 				result.open = false;
 		}
 

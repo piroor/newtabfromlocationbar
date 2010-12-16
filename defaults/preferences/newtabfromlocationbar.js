@@ -5,6 +5,6 @@ pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.loadSameDomainToNewTab.
 pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.invertDefaultBehavior", false);
 pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.useEffectiveTLD", true);
 pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.checkUserHome", true);
-pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.ignoreStatus.enabled", true);
-pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.ignoreStatus.list", "403 404");
+pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.checkResponseStatus", true);
+pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.checkResponseStatus.list", "403 404");
 
