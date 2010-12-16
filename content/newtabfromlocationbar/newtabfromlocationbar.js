@@ -154,15 +154,19 @@ var NewTabFromLocationBarService = {
 			b.__newtabfromlocationbar__owner = null;
 			b.__newtabfromlocationbar__lastRelatedTab = null;
 		}
-	}
+	},
  
+	checkReadyToOpenNewTabOnLocationBar : function NTFLBService_checkReadyToOpenNewTabOnLocationBar(aURI, aModifier) 
+	{
+		return this.utils.checkReadyToOpenNewTabOnLocationBar(aURI, aModifier, this.browser);
+	} 
 }; 
   
 (function() { 
 	var namespace = {};
 	Components.utils.import('resource://newtabfromlocationbar-modules/utils.js', namespace);
 	Components.utils.import('resource://newtabfromlocationbar-modules/autoNewTabHelper.js', namespace);
-	NewTabFromLocationBarService.__proto__ = namespace.NewTabFromLocationBarUtils;
+	NewTabFromLocationBarService.utils = namespace.NewTabFromLocationBarUtils;
 	NewTabFromLocationBarService.helper = namespace.autoNewTabHelper;
 
 	window.addEventListener('DOMContentLoaded', NewTabFromLocationBarService, false);

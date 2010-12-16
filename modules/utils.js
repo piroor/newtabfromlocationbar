@@ -49,7 +49,7 @@ var NewTabFromLocationBarUtils = {
 
 	kPREFROOT : 'extensions.newtabfromlocationbar@piro.sakura.ne.jp',
 	
-	checkReadyToOpenNewTabOnLocationBar : function NTFLBUtils_checkReadyToOpenNewTabOnLocationBar(aURI, aModifier) 
+	checkReadyToOpenNewTabOnLocationBar : function NTFLBUtils_checkReadyToOpenNewTabOnLocationBar(aURI, aModifier, aBrowser) 
 	{
 		var result = window['piro.sakura.ne.jp'].autoNewTabHelper.checkReadyToOpenNewTab({
 			uri      : aURI,
@@ -67,6 +67,12 @@ var NewTabFromLocationBarUtils = {
 			checkUserHome   : this.getMyPref('checkUserHome')
 		});
 
+		if (result.open && aBrowser && this.getMyPref('ignoreStatus.enabled')) {
+			let currentStatus = this.getCurrentStatus(aBrowser);
+			if (this.getMyPref('ignoreStatus.list').indexOf(currentStatus) > -1)
+				result.open = false;
+		}
+
 		if (result.open && result.owner) {
 			if ('treeStyleTab' in result.tabbrowser &&
 				'readyToOpenChildTab' in result.tabbrowser.treeStyleTab) {
@@ -83,6 +89,15 @@ var NewTabFromLocationBarUtils = {
 		}
 
 		return result.open;
+	},
+ 
+	getCurrentStatus : function NTFLBUtils_getCurrentStatus(aBrowser)
+	{
+		let channel = aBrowser.webNavigation.currentDocumentChannel;
+		if (channel && channel instanceof Ci.nsIHttpChannel)
+			return channel.QueryInterface(Ci.nsIHttpChannel).responseStatus;
+
+		return -1;
 	},
  
 /* Save/Load Prefs */ 
