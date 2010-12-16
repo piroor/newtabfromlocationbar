@@ -34,6 +34,9 @@ function ScaleSet(aPrefs, aScale, aLabelsContainer)
 	this.prefs = aPrefs.map(document.getElementById, document);
 	this.scale = document.getElementById(aScale);
 	this.labels = Array.slice(document.getElementById(aLabelsContainer).getElementsByTagName('label'));
+	this.labels.forEach(function(aLabel) {
+		aLabel.linkedScale = this.scale;
+	}, this);
 
 	this.scale.value = this.prefs[1].value ? 2 :
 						this.prefs[0].value ? 1 :

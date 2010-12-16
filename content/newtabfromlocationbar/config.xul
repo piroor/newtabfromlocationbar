@@ -40,11 +40,14 @@
 					}
 				"/>
 			<vbox id="loadLocationBarToNewTab-labels">
-				<label value="&config.urlbar.none;" control="loadLocationBarToNewTab-scale"/>
+				<label value="&config.urlbar.none;" control="loadLocationBarToNewTab-scale"
+					onclick="this.linkedScale.value = 0;"/>
 				<spacer flex="1"/>
-				<label value="&config.urlbar.outer;" control="loadLocationBarToNewTab-scale"/>
+				<label value="&config.urlbar.outer;" control="loadLocationBarToNewTab-scale"
+					onclick="this.linkedScale.value = 1"/>
 				<spacer flex="1"/>
-				<label value="&config.urlbar.any;" control="loadLocationBarToNewTab-scale"/>
+				<label value="&config.urlbar.any;" control="loadLocationBarToNewTab-scale"
+					onclick="this.linkedScale.value = 2;"/>
 			</vbox>
 		</hbox>
 		<groupbox>
@@ -57,11 +60,14 @@
 					style="height:4em;"
 					onchange="if (gLoadLocationBarToChildTabScale) gLoadLocationBarToChildTabScale.onChange();"/>
 				<vbox id="loadLocationBarToChildTab-labels">
-					<label value="&config.urlbar.asChild.none;" control="loadLocationBarToChildTab-scale"/>
+					<label value="&config.urlbar.asChild.none;" control="loadLocationBarToChildTab-scale"
+						onclick="this.linkedScale.value = 0;"/>
 					<spacer flex="1"/>
-					<label value="&config.urlbar.asChild.inner;" control="loadLocationBarToChildTab-scale"/>
+					<label value="&config.urlbar.asChild.inner;" control="loadLocationBarToChildTab-scale"
+						onclick="this.linkedScale.value = 1;"/>
 					<spacer flex="1"/>
-					<label value="&config.urlbar.asChild.any;" control="loadLocationBarToChildTab-scale"/>
+					<label value="&config.urlbar.asChild.any;" control="loadLocationBarToChildTab-scale"
+						onclick="this.linkedScale.value = 2;"/>
 				</vbox>
 			</hbox>
 		</groupbox>
