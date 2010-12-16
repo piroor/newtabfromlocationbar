@@ -17,4 +17,6 @@
 <!ENTITY config.useEffectiveTLD.caption  "“相同网站”的标准">
 <!ENTITY config.useEffectiveTLD.enabled  "相同域名（“aaa.example.com” 和 “bbb.example.com” 视为相同网站）">
 <!ENTITY config.useEffectiveTLD.disabled "相同主机（“aaa.example.com” 和 “bbb.example.com” 视为不同网站）">
+<!ENTITY config.checkUserHome "Handle URLs under different user's home (&quot;/~username/&quot;) as a &quot;different website&quot;">
+<!ENTITY config.preventNewTab.responseStatus.404 "Don't open new tab if the current page is &quot;404 File Not Found&quot; error">
 

@@ -18,4 +18,6 @@
 <!ENTITY config.useEffectiveTLD.caption  "「同類其他分頁」定義依據">
 <!ENTITY config.useEffectiveTLD.enabled  "依據網域(&quot;aaa.example.com&quot; 與 &quot;bbb.example.com&quot; 視為同類)">
 <!ENTITY config.useEffectiveTLD.disabled "依據主機(&quot;aaa.example.com&quot; 與 &quot;bbb.example.com&quot; 不算同類)">
+<!ENTITY config.checkUserHome "Handle URLs under different user's home (&quot;/~username/&quot;) as a &quot;different website&quot;">
+<!ENTITY config.preventNewTab.responseStatus.404 "Don't open new tab if the current page is &quot;404 File Not Found&quot; error">
 

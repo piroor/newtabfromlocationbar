@@ -18,3 +18,6 @@
 <!ENTITY config.useEffectiveTLD.caption  "Metoda rozpoznawania „tej samej witryny”">
 <!ENTITY config.useEffectiveTLD.enabled  "Według domeny („aaa.example.com” i „bbb.example.com” będą rozpoznane jako te same witryny)">
 <!ENTITY config.useEffectiveTLD.disabled "Według hosta („aaa.example.com” i „bbb.example.com” będą rozpoznane jako różne witryny)">
+<!ENTITY config.checkUserHome "Handle URLs under different user's home (&quot;/~username/&quot;) as a &quot;different website&quot;">
+<!ENTITY config.preventNewTab.responseStatus.404 "Don't open new tab if the current page is &quot;404 File Not Found&quot; error">
+

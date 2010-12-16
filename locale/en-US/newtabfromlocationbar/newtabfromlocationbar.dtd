@@ -18,4 +18,6 @@
 <!ENTITY config.useEffectiveTLD.caption  "Detecting method for &quot;same website&quot;">
 <!ENTITY config.useEffectiveTLD.enabled  "by Domain (&quot;aaa.example.com&quot; and &quot;bbb.example.com&quot; are same websites)">
 <!ENTITY config.useEffectiveTLD.disabled "by Host (&quot;aaa.example.com&quot; and &quot;bbb.example.com&quot; are different websites)">
+<!ENTITY config.checkUserHome "Handle URLs under different user's home (&quot;/~username/&quot;) as a &quot;different website&quot;">
+<!ENTITY config.preventNewTab.responseStatus.404 "Don't open new tab if the current page is &quot;404 File Not Found&quot; error">
 

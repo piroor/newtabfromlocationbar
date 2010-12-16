@@ -79,9 +79,17 @@
 		<preference id="extensions.newtabfromlocationbar@piro.sakura.ne.jp.useEffectiveTLD"
 			name="extensions.newtabfromlocationbar@piro.sakura.ne.jp.useEffectiveTLD"
 			type="bool"/>
+		<!--
+		<preference id="extensions.newtabfromlocationbar@piro.sakura.ne.jp.checkUserHome"
+			name="extensions.newtabfromlocationbar@piro.sakura.ne.jp.checkUserHome"
+			type="bool"/>
+		-->
+		<preference id="extensions.newtabfromlocationbar@piro.sakura.ne.jp.preventNewTab.responseStatus.404"
+			name="extensions.newtabfromlocationbar@piro.sakura.ne.jp.preventNewTab.responseStatus.404"
+			type="bool"/>
 	</preferences>
 
-	<groupbox id="useEffectiveTLD">
+	<groupbox id="useEffectiveTLD" orient="vertical">
 		<caption label="&config.useEffectiveTLD.caption;"/>
 		<radiogroup id="extensions.newtabfromlocationbar@piro.sakura.ne.jp.useEffectiveTLD-radiogroup"
 			preference="extensions.newtabfromlocationbar@piro.sakura.ne.jp.useEffectiveTLD"
@@ -89,7 +97,16 @@
 			<radio value="true" label="&config.useEffectiveTLD.enabled;"/>
 			<radio value="false" label="&config.useEffectiveTLD.disabled;"/>
 		</radiogroup>
+		<!--
+		<checkbox id="extensions.newtabfromlocationbar@piro.sakura.ne.jp.checkUserHome-check"
+			preference="extensions.newtabfromlocationbar@piro.sakura.ne.jp.checkUserHome"
+			label="&config.checkUserHome;"/>
+		-->
 	</groupbox>
+
+	<checkbox id="extensions.newtabfromlocationbar@piro.sakura.ne.jp.preventNewTab.responseStatus.404-check"
+		preference="extensions.newtabfromlocationbar@piro.sakura.ne.jp.preventNewTab.responseStatus.404"
+		label="&config.preventNewTab.responseStatus.404;"/>
 
 </prefpane>
 

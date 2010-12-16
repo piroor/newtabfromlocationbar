@@ -17,3 +17,6 @@
 <!ENTITY config.useEffectiveTLD.caption  "Определать метод для &quot;одного и того же сайта&quot;">
 <!ENTITY config.useEffectiveTLD.enabled  "по домену (&quot;aaa.example.com&quot; и &quot;bbb.example.com&quot; как один и тот же сайт)">
 <!ENTITY config.useEffectiveTLD.disabled "по хосту (&quot;aaa.example.com&quot; и &quot;bbb.example.com&quot; как разные сайты)">
+<!ENTITY config.checkUserHome "Handle URLs under different user's home (&quot;/~username/&quot;) as a &quot;different website&quot;">
+<!ENTITY config.preventNewTab.responseStatus.404 "Don't open new tab if the current page is &quot;404 File Not Found&quot; error">
+
