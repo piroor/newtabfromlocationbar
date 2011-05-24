@@ -118,6 +118,14 @@ var NewTabFromLocationBarService = {
 			source.indexOf('NewTabFromLocationBarService') < 0
 			) {
 			eval('bar.handleCommand = '+source.replace(
+				// for Firefox 3.6
+				'openUILink(url,',
+				'NewTabFromLocationBarService.onGoButtonClick(url, aTriggeringEvent); $&'
+			).replace(
+				// for Firefox 4 or later
+				'openUILinkIn(url, where,',
+				'openUILinkIn(url, NewTabFromLocationBarService.overrideWhere(url, where),'
+			).replace(
 				/(aTriggeringEvent && aTriggeringEvent\.altKey)/g,
 				'NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(this.value, $1)'
 			));
@@ -156,10 +164,24 @@ var NewTabFromLocationBarService = {
 		}
 	},
  
+	onGoButtonClick : function NTFLBService_onGoButtonClick(aURI, aEvent) // for Firefox 3.6 
+	{
+		this.checkReadyToOpenNewTabOnLocationBar(aURI, aEvent.button == 1 || (aEvent.button == 0 && (aEvent.ctrlKey || aEvent.metaKey)));
+	},
+ 
+	overrideWhere : function NTFLBService_overrideWhere(aURI, aWhere) // for Firefox 4 or later 
+	{
+		var newTab = aWhere.indexOf('tab') == 0;
+		if (this.checkReadyToOpenNewTabOnLocationBar(aURI, newTab) &&
+			!newTab)
+			aWhere = 'tab';
+		return aWhere;
+	},
+ 
 	checkReadyToOpenNewTabOnLocationBar : function NTFLBService_checkReadyToOpenNewTabOnLocationBar(aURI, aModifier) 
 	{
 		return this.utils.checkReadyToOpenNewTabOnLocationBar(aURI, aModifier, this.browser);
-	} 
+	}
 }; 
   
 (function() { 
