@@ -123,8 +123,8 @@ var NewTabFromLocationBarService = {
 				'NewTabFromLocationBarService.onGoButtonClick(url, aTriggeringEvent); $&'
 			).replace(
 				// for Firefox 4 or later
-				'openUILinkIn(url, where,',
-				'openUILinkIn(url, NewTabFromLocationBarService.overrideWhere(url, where),'
+				/(whereToOpenLink\([^\)]*\))/g,
+				'NewTabFromLocationBarService.overrideWhere(url, $1)'
 			).replace(
 				/(aTriggeringEvent && aTriggeringEvent\.altKey)/g,
 				'NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(this.value, $1)'
