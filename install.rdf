@@ -5,9 +5,9 @@
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="newtabfromlocationbar@piro.sakura.ne.jp"
                    em:name="New Tab from Location Bar"
-                   em:version="0.1.2010121601"
+                   em:version="0.1.2011120101"
                    em:creator="SHIMODA Hiroshi"
-                   em:description="Loads links in new tabs, by conditions."
+                   em:description="Opens new tabs from the location bar, by conditions."
                    em:homepageURL="http://piro.sakura.ne.jp/xul/_newtabfromlocationbar.html.en"
                    em:optionsURL="chrome://newtabfromlocationbar/content/config.xul">
 <!--
