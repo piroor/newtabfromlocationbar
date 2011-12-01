@@ -1,3 +1,3 @@
 copy buildscript\makexpi.sh .\
-bash makexpi.sh -n newtabfromlocationbar -v 0
+bash makexpi.sh -n newtabfromlocationbar
 del makexpi.sh
