@@ -128,6 +128,11 @@ var NewTabFromLocationBarService = {
 			).replace(
 				/(aTriggeringEvent && aTriggeringEvent\.altKey)/g,
 				'NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(this.value, $1)'
+			).replace(
+				// by the modification above, preventDefault() and stopPropagation()
+				// can be called even if aTriggeringEvent is null!
+				/(aTriggeringEvent\.(?:preventDefault|stopPropagation)\(\))/g,
+				'aTriggeringEvent && $1'
 			));
 		}
 		bar    = null;
