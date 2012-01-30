@@ -1,7 +1,7 @@
 /* 
  Helper Library for Automatic New Tab Features
 
- license: The MIT License, Copyright (c) 2009-2010 SHIMODA "Piro" Hiroshi
+ license: The MIT License, Copyright (c) 2009-2012 SHIMODA "Piro" Hiroshi
    http://github.com/piroor/fxaddonlibs/blob/master/license.txt
  original:
    http://github.com/piroor/fxaddonlibs/blob/master/autoNewTabHelper.js
@@ -25,7 +25,7 @@ if (typeof window == 'undefined' ||
 }
  
 (function() { 
-	const currentRevision = 2;
+	const currentRevision = 3;
 
 	if (!('piro.sakura.ne.jp' in window)) window['piro.sakura.ne.jp'] = {};
 
@@ -229,6 +229,7 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		var internal = info.internal || {};
 
 		var b       = this.getTabBrowserFromFrame(frame);
+		var w       = b.ownerDocument.defaultView;
 		var TST     = 'treeStyleTab' in b ? b.treeStyleTab : null ;
 
 		var useEffectiveTLD = 'useEffectiveTLD' in info ? info.useEffectiveTLD : true ;
@@ -252,10 +253,11 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 
 		if (info.modifier) openTab = true;
 
+		var isBlank = w.isBlankPageURL ? w.isBlankPageURL(currentURI) : (currentURI == 'about:blank');
 		if (
 			internal.newTab &&
 			currentHost == targetHost &&
-			currentURI != 'about:blank' &&
+			!isBlank &&
 			currentURI.split('#')[0] != info.uri.split('#')[0]
 			) {
 			openTab = info.modifier && info.invert ? !openTab : true ;
@@ -286,7 +288,7 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		else if (
 			external.newTab &&
 			currentHost != targetHost &&
-			currentURI != 'about:blank'
+			!isBlank
 			) {
 			openTab = info.modifier && info.invert ? !openTab : true ;
 			if (external.forceChild)
