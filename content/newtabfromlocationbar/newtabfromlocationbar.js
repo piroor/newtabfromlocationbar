@@ -103,7 +103,7 @@ var NewTabFromLocationBarService = {
 		catch(e) {
 			return null;
 		}
-		return func ? func.toSource() : null ;
+		return func ? func.toString() : null ;
 	},
   
 	initToolbarItems : function NTFLBService_initToolbarItems() 
@@ -114,7 +114,7 @@ var NewTabFromLocationBarService = {
 		var source;
 		if (
 			'handleCommand' in bar &&
-			(source = bar.handleCommand.toSource()) &&
+			(source = bar.handleCommand.toString()) &&
 			source.indexOf('NewTabFromLocationBarService') < 0
 			) {
 			eval('bar.handleCommand = '+source.replace(
