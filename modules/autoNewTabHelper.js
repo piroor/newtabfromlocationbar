@@ -25,7 +25,7 @@ if (typeof window == 'undefined' ||
 }
  
 (function() { 
-	const currentRevision = 3;
+	const currentRevision = 4;
 
 	if (!('piro.sakura.ne.jp' in window)) window['piro.sakura.ne.jp'] = {};
 
@@ -219,7 +219,7 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 */
 
 		var info = aInfo || { uri : '' };
-		if (/^(javascript|moz-action):/.test(info.uri))
+		if (/^(javascript|moz-action|mailto):/.test(info.uri))
 			return false;
 
 		var frame = this.getFrameFromTabBrowserElements(info.target);
