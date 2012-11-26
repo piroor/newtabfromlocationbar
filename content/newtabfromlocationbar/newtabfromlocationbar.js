@@ -67,10 +67,10 @@ var NewTabFromLocationBarService = {
 			toolbox = null;
 		}
 
-		this._splitFunctionNames(<![CDATA[
-			window.permaTabs.utils.wrappedFunctions["window.BrowserLoadURL"]
-			window.BrowserLoadURL
-		]]>).forEach(function(aFunc) {
+		[
+			'window.permaTabs.utils.wrappedFunctions["window.BrowserLoadURL"]',
+			'window.BrowserLoadURL'
+		].forEach(function(aFunc) {
 			let source = this._getFunctionSource(aFunc);
 			if (!source || !/^\(?function BrowserLoadURL/.test(source))
 				return;
@@ -82,18 +82,6 @@ var NewTabFromLocationBarService = {
 		}, this);
 	},
 	
-	_splitFunctionNames : function NTFLBService_splitFunctionNames(aString) 
-	{
-		return String(aString)
-				.split(/\s+/)
-				.map(function(aString) {
-					return aString
-							.replace(/\/\*.*\*\//g, '')
-							.replace(/\/\/.+$/, '')
-							.replace(/^\s+|\s+$/g, '');
-				});
-	},
- 
 	_getFunctionSource : function NTFLBService_getFunctionSource(aFunc) 
 	{
 		var func;
