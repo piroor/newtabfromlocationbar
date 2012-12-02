@@ -25,7 +25,7 @@ if (typeof window == 'undefined' ||
 }
  
 (function() { 
-	const currentRevision = 4;
+	const currentRevision = 5;
 
 	if (!('piro.sakura.ne.jp' in window)) window['piro.sakura.ne.jp'] = {};
 
@@ -257,6 +257,7 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		if (
 			internal.newTab &&
 			currentHost == targetHost &&
+			!this._isRedirectorLink(info.uri, targetHost, currentHost) &&
 			!isBlank &&
 			currentURI.split('#')[0] != info.uri.split('#')[0]
 			) {
@@ -345,6 +346,14 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 			newURI = this._IOService.newURI(aURI, null, null);
 		}
 		return newURI;
+	},
+ 
+	_isRedirectorLink : function OLITUtils_isRedirectorLink(aURIToOpen, aTargetHost, aCurrentHost) 
+	{
+		if (aTargetHost != aCurrentHost) return false;
+
+		var isGoogleRedirectLink = /https?:\/\/[^\/]*\.google\.[^\/]+\/url\?/.test(aURIToOpen);
+		return isGoogleRedirectLink;
 	}
    
 }; 
