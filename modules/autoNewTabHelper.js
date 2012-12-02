@@ -288,7 +288,10 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		}
 		else if (
 			external.newTab &&
-			currentHost != targetHost &&
+			(
+				currentHost != targetHost || 
+				this._isRedirectorLink(info.uri, targetHost, currentHost)
+			) &&
 			!isBlank
 			) {
 			openTab = info.modifier && info.invert ? !openTab : true ;
