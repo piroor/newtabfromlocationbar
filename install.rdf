@@ -9,7 +9,8 @@
                    em:creator="YUKI &quot;Piro&quot; Hiroshi"
                    em:description="Opens new tabs from the location bar, by conditions."
                    em:homepageURL="http://piro.sakura.ne.jp/xul/_newtabfromlocationbar.html.en"
-                   em:optionsURL="chrome://newtabfromlocationbar/content/config.xul">
+                   em:optionsURL="chrome://newtabfromlocationbar/content/config.xul"
+                   em:type="2">
 <!--
                    em:iconURL="chrome://newtabfromlocationbar/content/res/icon32.png"
 -->
