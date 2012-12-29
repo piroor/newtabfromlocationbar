@@ -1,17 +1,17 @@
-content	newtabfromlocationbar	jar:chrome/newtabfromlocationbar.jar!/content/newtabfromlocationbar/
+content	newtabfromlocationbar	content/newtabfromlocationbar/
 
 overlay	chrome://browser/content/browser.xul	chrome://newtabfromlocationbar/content/newtabfromlocationbar.xul
 
-locale	newtabfromlocationbar	en-US	jar:chrome/newtabfromlocationbar.jar!/locale/en-US/newtabfromlocationbar/
-locale	newtabfromlocationbar	ja	jar:chrome/newtabfromlocationbar.jar!/locale/ja/newtabfromlocationbar/
-locale	newtabfromlocationbar	it-IT	jar:chrome/newtabfromlocationbar.jar!/locale/it-IT/newtabfromlocationbar/
-locale	newtabfromlocationbar	zh-CN	jar:chrome/newtabfromlocationbar.jar!/locale/zh-CN/newtabfromlocationbar/
-locale	newtabfromlocationbar	es-ES	jar:chrome/newtabfromlocationbar.jar!/locale/es-ES/newtabfromlocationbar/
-locale	newtabfromlocationbar	de-DE	jar:chrome/newtabfromlocationbar.jar!/locale/de-DE/newtabfromlocationbar/
-locale	newtabfromlocationbar	zh-TW	jar:chrome/newtabfromlocationbar.jar!/locale/zh-TW/newtabfromlocationbar/
-locale	newtabfromlocationbar	ru-RU	jar:chrome/newtabfromlocationbar.jar!/locale/ru-RU/newtabfromlocationbar/
-locale	newtabfromlocationbar	pl	jar:chrome/newtabfromlocationbar.jar!/locale/pl/newtabfromlocationbar/
-locale	newtabfromlocationbar	fr-FR	jar:chrome/newtabfromlocationbar.jar!/locale/fr-FR/newtabfromlocationbar/
+locale	newtabfromlocationbar	en-US	locale/en-US/newtabfromlocationbar/
+locale	newtabfromlocationbar	ja	locale/ja/newtabfromlocationbar/
+locale	newtabfromlocationbar	it-IT	locale/it-IT/newtabfromlocationbar/
+locale	newtabfromlocationbar	zh-CN	locale/zh-CN/newtabfromlocationbar/
+locale	newtabfromlocationbar	es-ES	locale/es-ES/newtabfromlocationbar/
+locale	newtabfromlocationbar	de-DE	locale/de-DE/newtabfromlocationbar/
+locale	newtabfromlocationbar	zh-TW	locale/zh-TW/newtabfromlocationbar/
+locale	newtabfromlocationbar	ru-RU	locale/ru-RU/newtabfromlocationbar/
+locale	newtabfromlocationbar	pl	locale/pl/newtabfromlocationbar/
+locale	newtabfromlocationbar	fr-FR	locale/fr-FR/newtabfromlocationbar/
 
 override chrome://newtabfromlocationbar/skin/config.css	chrome://newtabfromlocationbar/skin/config-4.css	appversion>=4.0b5pre
 
