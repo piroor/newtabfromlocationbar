@@ -1,5 +1,8 @@
 # History
 
+ - master/HEAD
+   * Fixed: Don't open new tab for in-page links. On lately versions of Firefox, URIs with different hash (fragment) were unexpectedly detected as "different page" because the value entered to the location bar has no scheme (the "http://" part.)
+   * Modified: "jar" archive is no longer included.
  - 0.1.2012122901
    * Works on Nightly 20.0a1.
  - 0.1.2012112401
