@@ -1,10 +1,10 @@
 /* 
  Helper Library for Automatic New Tab Features
 
- license: The MIT License, Copyright (c) 2009-2012 YUKI "Piro" Hiroshi
-   http://github.com/piroor/fxaddonlibs/blob/master/license.txt
+ license: The MIT License, Copyright (c) 2009-2013 YUKI "Piro" Hiroshi
+   http://github.com/piroor/fxaddonlib-auto-new-tab-helper/blob/master/license.txt
  original:
-   http://github.com/piroor/fxaddonlibs/blob/master/autoNewTabHelper.js
+   http://github.com/piroor/fxaddonlib-auto-new-tab-helper
 */
  
 /* To work as a JS Code Module  */ 
@@ -13,7 +13,7 @@ if (typeof window == 'undefined' ||
 	this.EXPORTED_SYMBOLS = ['autoNewTabHelper'];
 
 	// If namespace.jsm is available, export symbols to the shared namespace.
-	// See: http://github.com/piroor/fxaddonlibs/blob/master/namespace.jsm
+	// See: http://github.com/piroor/fxaddonlib-namespace
 	try {
 		let ns = {};
 		Components.utils.import('resource://newtabfromlocationbar-modules/namespace.jsm', ns);
@@ -25,7 +25,7 @@ if (typeof window == 'undefined' ||
 }
  
 (function() { 
-	const currentRevision = 5;
+	const currentRevision = 6;
 
 	if (!('piro.sakura.ne.jp' in window)) window['piro.sakura.ne.jp'] = {};
 
@@ -70,6 +70,14 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		return this.__EffectiveTLD;
 	},
 //	__EffectiveTLD : null,
+
+	get _URIFixup()
+	{
+		if (!('__URIFixup' in this)) {
+			this.__URIFixup = Cc['@mozilla.org/docshell/urifixup;1'].getService(Ci.nsIURIFixup);
+		}
+		return this.__URIFixup;
+	},
  
 /* utilities */ 
 	
@@ -219,6 +227,13 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 */
 
 		var info = aInfo || { uri : '' };
+		try{
+			info.uri = this._URIFixup.createFixupURI(info.uri, Ci.nsIURIFixup.FIXUP_FLAG_USE_UTF8);
+			info.uri = info.uri.spec || '';
+		}
+		catch(e) {
+		}
+
 		if (/^(javascript|moz-action|mailto):/.test(info.uri))
 			return false;
 
