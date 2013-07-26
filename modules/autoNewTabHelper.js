@@ -25,7 +25,7 @@ if (typeof window == 'undefined' ||
 }
  
 (function() { 
-	const currentRevision = 6;
+	const currentRevision = 7;
 
 	if (!('piro.sakura.ne.jp' in window)) window['piro.sakura.ne.jp'] = {};
 
@@ -77,6 +77,16 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 			this.__URIFixup = Cc['@mozilla.org/docshell/urifixup;1'].getService(Ci.nsIURIFixup);
 		}
 		return this.__URIFixup;
+	},
+
+	get _Task()
+	{
+		if (!this.__Task) {
+			let TaskNS = {};
+			Components.utils.import('resource://gre/modules/Task.jsm', TaskNS);
+			this.__Task = TaskNS.Task;
+		}
+		return this.__Task;
 	},
  
 /* utilities */ 
@@ -234,6 +244,8 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		catch(e) {
 		}
 
+		info.uri = this._getShortcutOrURI(info.uri);
+
 		if (/^(javascript|moz-action|mailto):/.test(info.uri))
 			return false;
 
@@ -322,13 +334,37 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		};
 	},
 	
+	_getShortcutOrURI : function OLITUtils__getShortcutOrURI(aURI) 
+	{
+		if (this.browserWindow.getShortcutOrURI) // Firefox 24 and older
+			return this.browserWindow.getShortcutOrURI(aURI);
+
+		// Firefox 25 and later
+		var Task = this._Task;
+		var getShortcutOrURIAndPostData = this.browserWindow.getShortcutOrURIAndPostData;
+		var done = false;
+		Task.spawn(function() {
+			var data = yield getShortcutOrURIAndPostData(aURI);
+			aURI = data.url;
+			done = true;
+		});
+
+		// this should be rewritten in asynchronous style...
+		var thread = Cc['@mozilla.org/thread-manager;1'].getService().mainThread;
+		while (!done)
+		{
+			thread.processNextEvent(true);
+		}
+
+		return aURI;
+	},
+ 
 	_getDomainFromURI : function OLITUtils__getDomainFromURI(aURI, aUseEffectiveTLD, aCheckUserHome) 
 	{
 		if (!aURI) return null;
 
 		var str = aURI;
 		if (str instanceof Ci.nsIURI) str = aURI.spec;
-		str = this.browserWindow.getShortcutOrURI(str);
 
 		var userHomePart = aCheckUserHome ? str.match(/^\w+:\/\/[^\/]+(\/~[^\/]+)\//) : '' ;
 		if (userHomePart) userHomePart = userHomePart[1];
