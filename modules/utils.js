@@ -45,7 +45,6 @@ Components.utils.import('resource://newtabfromlocationbar-modules/namespace.jsm'
 var window = getNamespaceFor('piro.sakura.ne.jp');
  
 var NewTabFromLocationBarUtils = { 
-	__proto__ : window['piro.sakura.ne.jp'].prefs,
 
 	kPREFROOT : 'extensions.newtabfromlocationbar@piro.sakura.ne.jp',
 	
@@ -104,17 +103,17 @@ var NewTabFromLocationBarUtils = {
 	
 	getMyPref : function NTFLBUtils_getMyPref(aPrefstring) 
 	{
-		return this.getPref(this.kPREFROOT+'.'+aPrefstring);
+		return prefs.getPref(this.kPREFROOT+'.'+aPrefstring);
 	},
  
 	setMyPref : function NTFLBUtils_setMyPref(aPrefstring, aNewValue) 
 	{
-		return this.setPref(this.kPREFROOT+'.'+aPrefstring, aNewValue);
+		return prefs.setPref(this.kPREFROOT+'.'+aPrefstring, aNewValue);
 	},
  
 	clearMyPref : function NTFLBUtils_clearMyPref(aPrefstring) 
 	{
-		return this.clearPref(this.kPREFROOT+'.'+aPrefstring);
+		return prefs.clearPref(this.kPREFROOT+'.'+aPrefstring);
 	}
   
 }; 
