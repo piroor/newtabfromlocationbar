@@ -1,7 +1,7 @@
 /* 
  Helper Library for Automatic New Tab Features
 
- license: The MIT License, Copyright (c) 2009-2013 YUKI "Piro" Hiroshi
+ license: The MIT License, Copyright (c) 2009-2014 YUKI "Piro" Hiroshi
    http://github.com/piroor/fxaddonlib-auto-new-tab-helper/blob/master/license.txt
  original:
    http://github.com/piroor/fxaddonlib-auto-new-tab-helper
@@ -25,7 +25,7 @@ if (typeof window == 'undefined' ||
 }
  
 (function() { 
-	const currentRevision = 7;
+	const currentRevision = 8;
 
 	if (!('piro.sakura.ne.jp' in window)) window['piro.sakura.ne.jp'] = {};
 
@@ -339,15 +339,24 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		if (this.browserWindow.getShortcutOrURI) // Firefox 24 and older
 			return this.browserWindow.getShortcutOrURI(aURI);
 
-		// Firefox 25 and later
-		var Task = this._Task;
 		var getShortcutOrURIAndPostData = this.browserWindow.getShortcutOrURIAndPostData;
 		var done = false;
-		Task.spawn(function() {
-			var data = yield getShortcutOrURIAndPostData(aURI);
-			aURI = data.url;
-			done = true;
-		});
+		if (getShortcutOrURIAndPostData.length == 2) {
+			// Firefox 31 and later, after https://bugzilla.mozilla.org/show_bug.cgi?id=989984
+			getShortcutOrURIAndPostData(aURI, function(aData) {
+				aURI = aData.url;
+				done = true;
+			});
+		}
+		else {
+			// Firefox 25-30
+			let Task = this._Task;
+			Task.spawn(function() {
+				var data = yield getShortcutOrURIAndPostData(aURI);
+				aURI = data.url;
+				done = true;
+			});
+		}
 
 		// this should be rewritten in asynchronous style...
 		var thread = Cc['@mozilla.org/thread-manager;1'].getService().mainThread;
