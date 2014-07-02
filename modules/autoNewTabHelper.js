@@ -25,7 +25,7 @@ if (typeof window == 'undefined' ||
 }
  
 (function() { 
-	const currentRevision = 8;
+	const currentRevision = 9;
 
 	if (!('piro.sakura.ne.jp' in window)) window['piro.sakura.ne.jp'] = {};
 
@@ -43,6 +43,7 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 	revision : currentRevision,
 
 	kID : 'checknewtab-id',
+	kNEW_TAB_READY: 'data-moz-open-newtab-ready',
 	
 	get _IOService() { 
 		if (!this.__IOService) {
@@ -278,7 +279,15 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		var owner        = null;
 		var lastRelated  = null;
 
-		if (info.modifier) openTab = true;
+		if (
+			info.modifier ||
+			(
+				info.link &&
+				info.link instanceof Ci.nsIDOMElement &&
+				info.link.getAttribute(this.kNEW_TAB_READY) == 'true'
+			)
+			)
+			openTab = true;
 
 		var isBlank = w.isBlankPageURL ? w.isBlankPageURL(currentURI) : (currentURI == 'about:blank');
 		if (
