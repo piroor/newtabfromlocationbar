@@ -25,7 +25,7 @@ if (typeof window == 'undefined' ||
 }
  
 (function() { 
-	const currentRevision = 9;
+	const currentRevision = 10;
 
 	if (!('piro.sakura.ne.jp' in window)) window['piro.sakura.ne.jp'] = {};
 
@@ -283,7 +283,7 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 			info.modifier ||
 			(
 				info.link &&
-				info.link instanceof Ci.nsIDOMElement &&
+				info.link instanceof w.Element &&
 				info.link.getAttribute(this.kNEW_TAB_READY) == 'true'
 			)
 			)
