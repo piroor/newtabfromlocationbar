@@ -47,8 +47,8 @@ var NewTabFromLocationBarService = {
  
 	overrideGlobalFunctions : function NTFLBService_overrideGlobalFunctions() 
 	{
-		let (toolbox) {
-			toolbox = document.getElementById('navigator-toolbox');
+		{
+			let toolbox = document.getElementById('navigator-toolbox');
 			if (toolbox.customizeDone) {
 				toolbox.__newtabfromlocationbar__customizeDone = toolbox.customizeDone;
 				toolbox.customizeDone = function(aChanged) {
