@@ -43,12 +43,15 @@ var NewTabFromLocationBarService = {
 	{
 		window.removeEventListener('unload', this, false);
 		window.removeEventListener('TabOpen', this, true);
+		let toolbox = document.getElementById('navigator-toolbox');
+		toolbox.removeEventListener('customizationending', this, false);
 	},
  
 	overrideGlobalFunctions : function NTFLBService_overrideGlobalFunctions() 
 	{
 		{
 			let toolbox = document.getElementById('navigator-toolbox');
+			toolbox.addEventListener('customizationending', this, false);
 			if (toolbox.customizeDone) {
 				toolbox.__newtabfromlocationbar__customizeDone = toolbox.customizeDone;
 				toolbox.customizeDone = function(aChanged) {
@@ -106,10 +109,6 @@ var NewTabFromLocationBarService = {
 			source.indexOf('NewTabFromLocationBarService') < 0
 			) {
 			eval('bar.handleCommand = '+source.replace(
-				// for Firefox 3.6
-				'openUILink(url,',
-				'NewTabFromLocationBarService.onGoButtonClick(url, aTriggeringEvent); $&'
-			).replace(
 				// for Firefox 4 or later
 				/(whereToOpenLink\([^\)]*\))/g,
 				'NewTabFromLocationBarService.overrideWhere(url, $1)'
@@ -142,6 +141,9 @@ var NewTabFromLocationBarService = {
 
 			case 'TabOpen':
 				return this.onTabOpened(aEvent);
+
+			case 'customizationending':
+				return this.initToolbarItems();
 		}
 	},
  
