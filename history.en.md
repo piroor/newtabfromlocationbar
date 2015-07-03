@@ -1,6 +1,7 @@
 # History
 
  - master/HEAD
+   * Works on Nightly 42.0a1.
  - 0.1.2014050101
    * Works on Nightly 32.0a1.
  - 0.1.2013100801
