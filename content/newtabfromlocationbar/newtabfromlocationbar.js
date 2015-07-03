@@ -113,7 +113,7 @@ var NewTabFromLocationBarService = {
 				/(whereToOpenLink\([^\)]*\))/g,
 				'NewTabFromLocationBarService.overrideWhere(url, $1)'
 			).replace(
-				/(aTriggeringEvent && aTriggeringEvent\.altKey)/g,
+				/(aTriggeringEvent &&\s*\n?\s*aTriggeringEvent\.altKey)/g,
 				'NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(this.value, $1)'
 			).replace(
 				// by the modification above, preventDefault() and stopPropagation()
