@@ -33,7 +33,7 @@
  *
  * ***** END LICENSE BLOCK ******/
  
-const EXPORTED_SYMBOLS = ['NewTabFromLocationBarUtils']; 
+var EXPORTED_SYMBOLS = ['NewTabFromLocationBarUtils']; 
 
 const Cc = Components.classes;
 const Ci = Components.interfaces;
