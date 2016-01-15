@@ -14,7 +14,7 @@
  * The Original Code is the New Tab from Location Bar.
  *
  * The Initial Developer of the Original Code is YUKI "Piro" Hiroshi.
- * Portions created by the Initial Developer are Copyright (C) 2010
+ * Portions created by the Initial Developer are Copyright (C) 2010-2016
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s): YUKI "Piro" Hiroshi <piro.outsider.reflex@gmail.com>
@@ -38,19 +38,16 @@ var EXPORTED_SYMBOLS = ['NewTabFromLocationBarUtils'];
 const Cc = Components.classes;
 const Ci = Components.interfaces;
  
-Components.utils.import('resource://newtabfromlocationbar-modules/prefs.js'); 
-Components.utils.import('resource://newtabfromlocationbar-modules/autoNewTabHelper.js');
+var { prefs } = Components.utils.import('resource://newtabfromlocationbar-modules/prefs.js', {}); 
+var { autoNewTabHelper } = Components.utils.import('resource://newtabfromlocationbar-modules/autoNewTabHelper.js', {});
 
-Components.utils.import('resource://newtabfromlocationbar-modules/namespace.jsm');
-var window = getNamespaceFor('piro.sakura.ne.jp');
- 
 var NewTabFromLocationBarUtils = { 
 
 	kPREFROOT : 'extensions.newtabfromlocationbar@piro.sakura.ne.jp',
 	
 	checkReadyToOpenNewTabOnLocationBar : function NTFLBUtils_checkReadyToOpenNewTabOnLocationBar(aURI, aModifier, aBrowser) 
 	{
-		var result = window['piro.sakura.ne.jp'].autoNewTabHelper.checkReadyToOpenNewTab({
+		var result = autoNewTabHelper.checkReadyToOpenNewTab({
 			uri      : aURI,
 			external : {
 				newTab     : this.getMyPref('loadDifferentDomainToNewTab'),

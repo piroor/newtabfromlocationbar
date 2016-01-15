@@ -180,11 +180,10 @@ var NewTabFromLocationBarService = {
 }; 
   
 (function() { 
-	var namespace = {};
-	Components.utils.import('resource://newtabfromlocationbar-modules/utils.js', namespace);
-	Components.utils.import('resource://newtabfromlocationbar-modules/autoNewTabHelper.js', namespace);
-	NewTabFromLocationBarService.utils = namespace.NewTabFromLocationBarUtils;
-	NewTabFromLocationBarService.helper = namespace.autoNewTabHelper;
+	var { NewTabFromLocationBarUtils } = Components.utils.import('resource://newtabfromlocationbar-modules/utils.js', {});
+	var { autoNewTabHelper } = Components.utils.import('resource://newtabfromlocationbar-modules/autoNewTabHelper.js', {});
+	NewTabFromLocationBarService.utils = NewTabFromLocationBarUtils;
+	NewTabFromLocationBarService.helper = autoNewTabHelper;
 
 	window.addEventListener('DOMContentLoaded', NewTabFromLocationBarService, false);
 	window.addEventListener('load', NewTabFromLocationBarService, false);
