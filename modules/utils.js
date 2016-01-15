@@ -70,6 +70,20 @@ var NewTabFromLocationBarUtils = {
 				result.shouldOpenNewTab = false;
 		}
 
+		if (this.getMyPref('debug'))
+			dump('NTFLBUtils_checkReadyToOpenNewTabOnLocationBar('+
+			JSON.stringify({
+				uri:      aURI,
+				modifier: aModifier,
+				browser:  String(aBrowser)
+			})+')\n'+
+			JSON.stringify({
+				shouldOpenNewTab: result.shouldOpenNewTab,
+				ownerTab:         String(result.ownerTab),
+				tabbrwser:        String(result.tabbrwser),
+				lastRelatedTab:   String(result.lastRelatedTab)
+			})+'\n');
+
 		if (result.shouldOpenNewTab && result.ownerTab) {
 			if ('treeStyleTab' in result.tabbrowser &&
 				'readyToOpenChildTab' in result.tabbrowser.treeStyleTab) {

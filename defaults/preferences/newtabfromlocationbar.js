@@ -7,3 +7,6 @@ pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.useEffectiveTLD", true)
 pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.checkUserHome", true);
 pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.preventNewTab.responseStatus.404", true);
 
+pref("extensions.newtabfromlocationbar@piro.sakura.ne.jp.debug", false);
+
+
