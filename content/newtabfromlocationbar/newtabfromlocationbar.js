@@ -2,8 +2,7 @@ var NewTabFromLocationBarService = {
 	
 	get browser() 
 	{
-		return 'SplitBrowser' in window ? window.SplitBrowser.activeBrowser :
-			window.gBrowser ;
+		return window.gBrowser ;
 	},
  
 	preInit : function TSTService_preInit() 
@@ -157,11 +156,6 @@ var NewTabFromLocationBarService = {
 			b.__newtabfromlocationbar__owner = null;
 			b.__newtabfromlocationbar__lastRelatedTab = null;
 		}
-	},
- 
-	onGoButtonClick : function NTFLBService_onGoButtonClick(aURI, aEvent) // for Firefox 3.6 
-	{
-		this.checkReadyToOpenNewTabOnLocationBar(aURI, aEvent.button == 1 || (aEvent.button == 0 && (aEvent.ctrlKey || aEvent.metaKey)));
 	},
  
 	overrideWhere : function NTFLBService_overrideWhere(aURI, aWhere) // for Firefox 4 or later 
