@@ -49,6 +49,7 @@ var NewTabFromLocationBarUtils = {
 	{
 		var result = autoNewTabHelper.checkReadyToOpenNewTab({
 			uri      : aURI,
+			sourceURI : aBrowser.currentURI.spec,
 			external : {
 				newTab     : this.getMyPref('loadDifferentDomainToNewTab'),
 				forceChild : this.getMyPref('loadDifferentDomainToNewTab.asChild')
