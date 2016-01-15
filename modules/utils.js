@@ -80,7 +80,7 @@ var NewTabFromLocationBarUtils = {
 			JSON.stringify({
 				shouldOpenNewTab: result.shouldOpenNewTab,
 				ownerTab:         String(result.ownerTab),
-				tabbrwser:        String(result.tabbrwser),
+				tabbrowser:       String(result.tabbrowser),
 				lastRelatedTab:   String(result.lastRelatedTab)
 			})+'\n');
 
