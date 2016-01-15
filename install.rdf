@@ -10,7 +10,8 @@
                    em:description="Opens new tabs from the location bar, by conditions."
                    em:homepageURL="http://piro.sakura.ne.jp/xul/_newtabfromlocationbar.html.en"
                    em:optionsURL="chrome://newtabfromlocationbar/content/config.xul"
-                   em:type="2">
+                   em:type="2"
+                   em:multiprocessCompatible="true">
 <!--
                    em:iconURL="chrome://newtabfromlocationbar/content/res/icon32.png"
 -->
@@ -59,8 +60,8 @@
 
     <em:targetApplication>
       <RDF:Description em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                       em:minVersion="31"
-                       em:maxVersion="42.0a1" />
+                       em:minVersion="38"
+                       em:maxVersion="46.0a1" />
     </em:targetApplication>
   </RDF:Description>
 </RDF:RDF>
