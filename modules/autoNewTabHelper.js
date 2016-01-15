@@ -1,49 +1,21 @@
-/* 
- Helper Library for Automatic New Tab Features
-
- license: The MIT License, Copyright (c) 2009-2014 YUKI "Piro" Hiroshi
-   http://github.com/piroor/fxaddonlib-auto-new-tab-helper/blob/master/license.txt
- original:
-   http://github.com/piroor/fxaddonlib-auto-new-tab-helper
-*/
+/**
+ * @fileOverview Helper Library for Automatic New Tab Features
+ * @author       YUKI "Piro" Hiroshi
+ * @version      11
+ *
+ * @license
+ *   The MIT License, Copyright (c) 2009-2016 YUKI "Piro" Hiroshi.
+ *   http://github.com/piroor/fxaddonlib-auto-new-tab-helper/blob/master/license.txt
+ * @url http://github.com/piroor/fxaddonlib-auto-new-tab-helper
+ */
  
-/* To work as a JS Code Module  */ 
-if (typeof window == 'undefined' ||
-	(window && typeof window.constructor == 'function')) {
-	this.EXPORTED_SYMBOLS = ['autoNewTabHelper'];
-
-	// If namespace.jsm is available, export symbols to the shared namespace.
-	// See: http://github.com/piroor/fxaddonlib-namespace
-	try {
-		let ns = {};
-		Components.utils.import('resource://newtabfromlocationbar-modules/namespace.jsm', ns);
-		/* var */ window = ns.getNamespaceFor('piro.sakura.ne.jp');
-	}
-	catch(e) {
-		window = {};
-	}
-}
+var EXPORTED_SYMBOLS = ['autoNewTabHelper'];
  
-(function() { 
-	const currentRevision = 10;
-
-	if (!('piro.sakura.ne.jp' in window)) window['piro.sakura.ne.jp'] = {};
-
-	var loadedRevision = 'autoNewTabHelper' in window['piro.sakura.ne.jp'] ?
-			window['piro.sakura.ne.jp'].autoNewTabHelper.revision :
-			0 ;
-	if (loadedRevision && loadedRevision > currentRevision) {
-		return;
-	}
-
-	const Cc = Components.classes;
-	const Ci = Components.interfaces;
+const Cc = Components.classes;
+const Ci = Components.interfaces;
 	
-window['piro.sakura.ne.jp'].autoNewTabHelper = { 
-	revision : currentRevision,
-
+var autoNewTabHelper = { 
 	kID : 'checknewtab-id',
-	kNEW_TAB_READY: 'data-moz-open-newtab-ready',
 	
 	get _IOService() { 
 		if (!this.__IOService) {
@@ -100,25 +72,10 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 	get browser() 
 	{
 		var w = this.browserWindow;
-		return !w ? null :
-			'SplitBrowser' in w ? w.SplitBrowser.activeBrowser :
-			w.gBrowser ;
+		return w && w.gBrowser;
 	},
  
 // tabbrowser 
-	
-	getTabFromFrame : function OLITUtils_getTabFromFrame(aFrame, aTabBrowser) 
-	{
-		var b = aTabBrowser || this.browser;
-		var top = aFrame.top;
-		var tabs = Array.slice(b.mTabContainer.childNodes) ;
-		for each (var tab in tabs)
-		{
-			if (tab.linkedBrowser.contentWindow == top)
-				return tab;
-		}
-		return null;
-	},
  
 	getTabBrowserFromChild : function OLITUtils_getTabBrowserFromChild(aTabBrowserChild) 
 	{
@@ -144,36 +101,6 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 				null
 			).singleNodeValue;
 		return (b && b.tabbrowser) || b;
-	},
- 
-	getTabBrowserFromFrame : function OLITUtils_getTabBrowserFromFrame(aFrame) 
-	{
-		var w = this.browserWindow;
-		return !w ? null :
-			('SplitBrowser' in w) ? this.getTabBrowserFromChild(w.SplitBrowser.getSubBrowserAndBrowserFromFrame(aFrame.top).browser) :
-			this.browser ;
-	},
- 
-	getFrameFromTabBrowserElements : function OLITUtils_getFrameFromTabBrowserElements(aFrameOrTabBrowser) 
-	{
-		var frame = aFrameOrTabBrowser;
-		if (frame == '[object XULElement]') {
-			if (frame.localName == 'tab') {
-				frame = frame.linkedBrowser.contentWindow;
-			}
-			else if (frame.localName == 'browser') {
-				frame = frame.contentWindow;
-			}
-			else {
-				frame = this.getTabBrowserFromChild(frame);
-				if (!frame) return null;
-				frame = frame.contentWindow;
-			}
-		}
-		if (!frame)
-			frame = this.browser.contentWindow;
-
-		return frame;
 	},
    
 /* get tab(s) */ 
@@ -214,110 +141,115 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		return next;
 	},
   
-	checkReadyToOpenNewTab : function OLITUtils_checkReadyToOpenNewTab(aInfo) 
+	/*
+	 params:
+	   global: the global object of the caller's namespace
+	   uri: uri ustring (or a nsIURI instance)
+	   external: hash
+	     external.newTab: bool
+	     external.forceChild: bool
+	   internal: hash
+	     internal.newTab: bool
+	     internal.forceChild: bool
+	   useEffectiveTLD: bool
+	   checkUserHome: bool
+	   sourceURI: uri string
+	   newTab: bool
+	   invert: bool
+
+	   sourceTab: XUL element
+	 */
+	checkReadyToOpenNewTab : function OLITUtils_checkReadyToOpenNewTab(aParams) 
 	{
 /*
-	挙動の説明
+	* When the domain of the loading URI is different from the domain of the source URI,
+	  and a new tab will be opened:
+	  => Do nothing for tab. If the tab should be opened as a child of the source tab,
+	     call TST's readyToOpenChildTab() automatically.
 
-	・現在のサイトと異なるサイトを読み込む場合にタブを開く時：
-	  →特に何もしない。新しく開くタブを子タブにする場合は別途
-	    readyToOpenChildTabを使う。
-
-	・現在のサイトと同じサイトのページを読み込む場合にタブを開く時：
-	  →親のタブは同じサイトか？
-	    No ：子タブを開く
-	    Yes：兄弟としてタブを開く。ただし、このタブからのタブはすべて
-	         現在のタブと次の兄弟タブとの間に開かれ、仮想サブツリーとなる。
-	         →現在のタブに「__autoNewTabHelper__next」プロパティが
-	           あるか？
-	           Yes：__autoNewTabHelper__nextで示されたタブの直前に
-	                新しい兄弟タブを挿入する。
-	           No ：現在のタブの次の兄弟タブのIDを__autoNewTabHelper__next
-	                プロパティに保持し、仮想の子タブを挿入する位置の
-	                基準とする。
+	* When the domain of the loading URI is same to the domain of the source URI,
+	  and a new tab will be opened:
+	  => Is the domain of the parent tab is same to the source?
+	     No : Open it as a new child tab (regular behavior).
+	     Yes: Open it as a new sibling tab (special behavior).
+	          If more other sibling tabs are going to be opened,
+	          then they are placed after existing newly opened siblings
+	          like a virtual tree.
+	          => Does the current (source) tab has the "__autoNewTabHelper__next" property?
+	             Yes: Open new sibling tab before the tab referred by the "__autoNewTabHelper__next".
+	             No : Store the next sibling of the current tab to the "__autoNewTabHelper__next",
+	                  and use the information on the next time.
 */
 
-		var info = aInfo || { uri : '' };
+		aParams = aParams || { uri : '' };
 		try{
-			info.uri = this._URIFixup.createFixupURI(info.uri, Ci.nsIURIFixup.FIXUP_FLAG_USE_UTF8);
-			info.uri = info.uri.spec || '';
+			aParams.uri = this._URIFixup.createFixupURI(aParams.uri, Ci.nsIURIFixup.FIXUP_FLAG_USE_UTF8);
+			aParams.uri = aParams.uri.spec || '';
 		}
 		catch(e) {
 		}
 
-		info.uri = this._getShortcutOrURI(info.uri);
-
-		if (/^(javascript|moz-action|mailto):/.test(info.uri))
+		if (/^(javascript|moz-action|mailto):/.test(aParams.uri))
 			return false;
 
-		var frame = this.getFrameFromTabBrowserElements(info.target);
-		if (!frame) return false;
+		var external = aParams.external || {};
+		var internal = aParams.internal || {};
 
-		var external = info.external || {};
-		var internal = info.internal || {};
+		var useEffectiveTLD = 'useEffectiveTLD' in aParams ? aParams.useEffectiveTLD : true ;
+		var checkUserHome = 'checkUserHome' in aParams ? aParams.checkUserHome : true ;
 
-		var b       = this.getTabBrowserFromFrame(frame);
-		var w       = b.ownerDocument.defaultView;
-		var TST     = 'treeStyleTab' in b ? b.treeStyleTab : null ;
+		var targetHost  = this._getDomainFromURI(aParams.uri, useEffectiveTLD, checkUserHome);
+		var sourceURI   = aParams.sourceURI;
+		var sourceHost  = this._getDomainFromURI(sourceURI, useEffectiveTLD, checkUserHome);
 
-		var useEffectiveTLD = 'useEffectiveTLD' in info ? info.useEffectiveTLD : true ;
-		var checkUserHome = 'checkUserHome' in info ? info.checkUserHome : true ;
-
-		var targetHost  = this._getDomainFromURI(info.uri, useEffectiveTLD, checkUserHome);
-		var currentTab  = this.getTabFromFrame(frame);
-		var currentURI  = frame.location.href;
-		var currentHost = this._getDomainFromURI(currentURI, useEffectiveTLD, checkUserHome);
+		// tab detection: unavailable on the content process
+		var sourceTab   = aParams.sourceTab;
+		var tabbrowser  = sourceTab ? this.getTabBrowserFromChild(sourceTab.linkedBrowser) : null ;
+		var TST         = tabbrowser && 'treeStyleTab' in tabbrowser ? tabbrowser.treeStyleTab : null ;
 		var ownerTab    = TST ?
-							TST.getParentTab(currentTab) :
-						currentTab ?
-							currentTab.owner :
+							TST.getParentTab(sourceTab) :
+						sourceTab ?
+							sourceTab.owner :
 							null ;
 		var ownerURI    = ownerTab ? ownerTab.linkedBrowser.currentURI : null ;
 		var ownerHost   = this._getDomainFromURI(ownerURI, useEffectiveTLD, checkUserHome);
 
-		var openTab      = false;
-		var owner        = null;
+		var shouldOpenNewTab = Boolean(aParams.newTab);
+		var nextOwnerTab = null;
 		var lastRelated  = null;
 
-		if (
-			info.modifier ||
-			(
-				info.link &&
-				info.link instanceof w.Element &&
-				info.link.getAttribute(this.kNEW_TAB_READY) == 'true'
-			)
-			)
-			openTab = true;
-
-		var isBlank = w.isBlankPageURL ? w.isBlankPageURL(currentURI) : (currentURI == 'about:blank');
+		var global = aParams.global;
+		var isBlank = global && global.isBlankPageURL ? global.isBlankPageURL(sourceURI) : (sourceURI == 'about:blank');
 		if (
 			internal.newTab &&
-			currentHost == targetHost &&
-			!this._isRedirectorLink(info.uri, targetHost, currentHost) &&
+			sourceHost == targetHost &&
+			!this._isRedirectorLink(aParams.uri, targetHost, sourceHost) &&
 			!isBlank &&
-			currentURI.split('#')[0] != info.uri.split('#')[0]
+			sourceURI.split('#')[0] != aParams.uri.split('#')[0]
 			) {
-			openTab = info.modifier && info.invert ? !openTab : true ;
-			owner = ('forceChild' in internal && !internal.forceChild) ? null :
+			shouldOpenNewTab = aParams.newTab && aParams.invert ? !shouldOpenNewTab : true ;
+			nextOwnerTab = ('forceChild' in internal && !internal.forceChild) ? null :
 					(ownerHost == targetHost && !internal.forceChild) ? ownerTab :
-					this.getTabFromFrame(frame) ;
+					sourceTab ;
 			let nextTab = TST ?
-							TST.getNextSiblingTab(currentTab) :
-							this._getNextVisibleTab(currentTab) ;
+							TST.getNextSiblingTab(sourceTab) :
+							this._getNextVisibleTab(sourceTab) ;
 			let insertNewChildAtFirst = false;
 			if (TST) {
 				try {
-					insertNewChildAtFirst = this.getPref('extensions.treestyletab.insertNewChildAt') == 0;
+					insertNewChildAtFirst = Cc['@mozilla.org/preferences;1']
+											.getService(Ci.nsIPrefBranch)
+											.getIntPref('extensions.treestyletab.insertNewChildAt') == 0;
 				}
 				catch(e) {
 				}
 			}
-			let insertBefore = ownerHost == targetHost && !internal.forceChild &&
+			let insertBefore = tabbrowser && ownerHost == targetHost && !internal.forceChild &&
 					(insertNewChildAtFirst ?
 						nextTab :
 						(
-							this._getTabById(currentTab.__autoNewTabHelper__next, b) ||
-							(nextTab ? (currentTab.__autoNewTabHelper__next = this._getTabId(nextTab), nextTab) : null )
+							this._getTabById(sourceTab.__autoNewTabHelper__next, tabbrowser) ||
+							(nextTab ? (sourceTab.__autoNewTabHelper__next = this._getTabId(nextTab), nextTab) : null )
 						)
 					);
 			lastRelated = insertBefore ? insertBefore.previousSibling : null ;
@@ -325,56 +257,25 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		else if (
 			external.newTab &&
 			(
-				currentHost != targetHost || 
-				this._isRedirectorLink(info.uri, targetHost, currentHost)
+				sourceHost != targetHost || 
+				this._isRedirectorLink(aParams.uri, targetHost, sourceHost)
 			) &&
 			!isBlank
 			) {
-			openTab = info.modifier && info.invert ? !openTab : true ;
+			shouldOpenNewTab = aParams.newTab && aParams.invert ? !shouldOpenNewTab : true ;
 			if (external.forceChild)
-				owner = this.getTabFromFrame(frame);
+				nextOwnerTab = sourceTab;
 		}
 
 		return {
-			open           : openTab,
-			owner          : owner,
-			lastRelatedTab : lastRelated,
-			tabbrowser     : b
+			shouldOpenNewTab : shouldOpenNewTab,
+			ownerTab         : nextOwnerTab,
+			lastRelatedTab   : lastRelated,
+			tabbrowser       : tabbrowser,
+			// for debugging
+			sourceHost       : sourceHost,
+			targetHost       : targetHost
 		};
-	},
-	
-	_getShortcutOrURI : function OLITUtils__getShortcutOrURI(aURI) 
-	{
-		if (this.browserWindow.getShortcutOrURI) // Firefox 24 and older
-			return this.browserWindow.getShortcutOrURI(aURI);
-
-		var getShortcutOrURIAndPostData = this.browserWindow.getShortcutOrURIAndPostData;
-		var done = false;
-		if (getShortcutOrURIAndPostData.length == 2) {
-			// Firefox 31 and later, after https://bugzilla.mozilla.org/show_bug.cgi?id=989984
-			getShortcutOrURIAndPostData(aURI, function(aData) {
-				aURI = aData.url;
-				done = true;
-			});
-		}
-		else {
-			// Firefox 25-30
-			let Task = this._Task;
-			Task.spawn(function() {
-				var data = yield getShortcutOrURIAndPostData(aURI);
-				aURI = data.url;
-				done = true;
-			});
-		}
-
-		// this should be rewritten in asynchronous style...
-		var thread = Cc['@mozilla.org/thread-manager;1'].getService().mainThread;
-		while (!done)
-		{
-			thread.processNextEvent(true);
-		}
-
-		return aURI;
 	},
  
 	_getDomainFromURI : function OLITUtils__getDomainFromURI(aURI, aUseEffectiveTLD, aCheckUserHome) 
@@ -385,7 +286,7 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		if (str instanceof Ci.nsIURI) str = aURI.spec;
 
 		var userHomePart = aCheckUserHome ? str.match(/^\w+:\/\/[^\/]+(\/~[^\/]+)\//) : '' ;
-		if (userHomePart) userHomePart = userHomePart[1];
+		userHomePart = (userHomePart && userHomePart[1]) || '';
 
 		if (aUseEffectiveTLD && this._EffectiveTLD) {
 			try {
@@ -420,19 +321,12 @@ window['piro.sakura.ne.jp'].autoNewTabHelper = {
 		return newURI;
 	},
  
-	_isRedirectorLink : function OLITUtils_isRedirectorLink(aURIToOpen, aTargetHost, aCurrentHost) 
+	_isRedirectorLink : function OLITUtils_isRedirectorLink(aURIToOpen, aTargetHost, aSourceHost) 
 	{
-		if (aTargetHost != aCurrentHost) return false;
+		if (aTargetHost != aSourceHost) return false;
 
 		var isGoogleRedirectLink = /https?:\/\/[^\/]*\.google\.[^\/]+\/url\?/.test(aURIToOpen);
 		return isGoogleRedirectLink;
 	}
    
-}; 
-   
-})(); 
-
-if (window != this) { // work as a JS Code Module
-	this.autoNewTabHelper = window['piro.sakura.ne.jp'].autoNewTabHelper;
-}
- 
+};

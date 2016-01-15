@@ -57,34 +57,34 @@ var NewTabFromLocationBarUtils = {
 				newTab     : this.getMyPref('loadSameDomainToNewTab'),
 				forceChild : this.getMyPref('loadSameDomainToNewTab.asChild')
 			},
-			modifier : aModifier,
+			newTab   : aModifier,
 			invert   : this.getMyPref('invertDefaultBehavior'),
 			useEffectiveTLD : this.getMyPref('useEffectiveTLD'),
 			checkUserHome   : this.getMyPref('checkUserHome')
 		});
 
-		if (result.open && aBrowser) {
+		if (result.shouldOpenNewTab && aBrowser) {
 			let currentStatus = this.getCurrentStatus(aBrowser);
 			if (this.getMyPref('preventNewTab.responseStatus.'+currentStatus))
-				result.open = false;
+				result.shouldOpenNewTab = false;
 		}
 
-		if (result.open && result.owner) {
+		if (result.shouldOpenNewTab && result.ownerTab) {
 			if ('treeStyleTab' in result.tabbrowser &&
 				'readyToOpenChildTab' in result.tabbrowser.treeStyleTab) {
 				result.tabbrowser.treeStyleTab.readyToOpenChildTab(
-					result.owner,
+					result.ownerTab,
 					false,
 					result.lastRelatedTab && result.lastRelatedTab.nextSibling
 				);
 			}
 			else {
-				result.tabbrowser.__newtabfromlocationbar__owner = result.owner;
+				result.tabbrowser.__newtabfromlocationbar__owner = result.ownerTab;
 				result.tabbrowser.__newtabfromlocationbar__lastRelatedTab = result.lastRelatedTab;
 			}
 		}
 
-		return result.open;
+		return result.shouldOpenNewTab;
 	},
  
 	getCurrentStatus : function NTFLBUtils_getCurrentStatus(aBrowser)
