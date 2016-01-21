@@ -106,30 +106,100 @@ var NewTabFromLocationBarService = {
 						dump('  realAltKey      = '+realAltKey+'\n');
 					}
 					if (where !== overriddenWhere &&
-						overriddenWhere.indexOf('tab') == 0) {
+						overriddenWhere.indexOf('tab') == 0 &&
+						aTriggeringEvent &&
+						!aTriggeringEvent.__newtabfromlocationbar__proxied) {
 						var reallyNewTab = NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(uri, realAltKey);
 						if (NewTabFromLocationBarService.utils.getMyPref('debug'))
 							dump('  => Overridden by New Tab from Location Bar, newtab = '+reallyNewTab+'\n');
-						aTriggeringEvent = new Proxy(aTriggeringEvent, {
-							get: function(aTarget, aName) {
-								switch (aName)
-								{
-									case 'altKey':
-										return reallyNewTab;
-									default:
-										var object = aTarget[aName];
-										if (typeof object == 'function')
-											return object.bind(aTarget);
-										return object;
-								}
-							}
+						aTriggeringEvent = NewTabFromLocationBarService.wrapTriggeringEvent(aTriggeringEvent, {
+							altKey : reallyNewTab
 						});
 					}
 					this.__newtabfromlocationbar__handleCommand.apply(this, [aTriggeringEvent].concat(aArgs));
 				}).bind(this));
 			};
+
+			bar.popup.__newtabfromlocationbar__onPopupClick = bar.popup.onPopupClick;
+			bar.popup.onPopupClick = function(aEvent, ...aArgs) {
+				if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
+					dump('onPopupClick\n');
+				}
+
+				var controller = this.view.QueryInterface(Components.interfaces.nsIAutoCompleteController);
+				var uri = controller.getValueAt(this.selectedIndex);
+				if (NewTabFromLocationBarService.utils.getMyPref('debug'))
+					dump('  uri             = '+uri+'\n');
+				var action = this.input._parseActionUrl(uri);
+				if (action) {
+					switch (action.type)
+					{
+						case 'switchtab':
+						case 'keyword':
+						case 'visiturl':
+							uri = action.params.url;
+							break;
+						case 'searchengine':
+							[uri] = this.input._parseAndRecordSearchEngineAction(action);
+							break;
+						default:
+							uri = null;
+							break;
+					}
+				}
+				if (NewTabFromLocationBarService.utils.getMyPref('debug'))
+					dump('                 => '+uri+'\n');
+				if (!uri) {
+					this.__newtabfromlocationbar__onPopupClick.apply(this, [aEvent].concat(aArgs));
+					return;
+				}
+
+				var where = whereToOpenLink(aEvent, false, true);
+				var overriddenWhere = NewTabFromLocationBarService.overrideWhere(uri, where);
+				var modifier = NewTabFromLocationBarService.utils.isMac ? 'metaKey' : 'ctrlKey';
+				var realModifier = aEvent && aEvent[modifier];
+				if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
+					dump('  where           = '+where+'\n');
+					dump('  overriddenWhere = '+overriddenWhere+'\n');
+					dump('  realModifier    = '+realModifier+'\n');
+				}
+				if (where !== overriddenWhere &&
+					overriddenWhere.indexOf('tab') == 0 &&
+					aEvent &&
+					!aEvent.__newtabfromlocationbar__proxied) {
+					var reallyNewTab = NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(uri, realModifier);
+					if (NewTabFromLocationBarService.utils.getMyPref('debug'))
+						dump('  => Overridden by New Tab from Location Bar, newtab = '+reallyNewTab+'\n');
+					var fixedFields = {};
+					fixedFields[modifier] = reallyNewTab;
+					aEvent = NewTabFromLocationBarService.wrapTriggeringEvent(aEvent, fixedFields);
+				}
+				this.__newtabfromlocationbar__onPopupClick.apply(this, [aEvent].concat(aArgs));
+			};
 		}
 		bar    = null;
+	},
+
+	wrapTriggeringEvent : function NTFLBService_wrapTriggeringEvent(aEvent, aFixedFields)
+	{
+		return new Proxy(aEvent, {
+			get: function(aTarget, aName) {
+				switch (aName)
+				{
+					case '__newtabfromlocationbar__proxied':
+						return true;
+
+					default:
+						if (aName in aFixedFields)
+							return aFixedFields[aName];
+
+						var object = aTarget[aName];
+						if (typeof object == 'function')
+							return object.bind(aTarget);
+						return object;
+				}
+			}
+		});
 	},
  
 	handleEvent : function NTFLBService_handleEvent(aEvent) 

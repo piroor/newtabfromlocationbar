@@ -45,6 +45,8 @@ var NewTabFromLocationBarUtils = {
 
 	kPREFROOT : 'extensions.newtabfromlocationbar@piro.sakura.ne.jp',
 	
+	isMac : Cc['@mozilla.org/xre/app-info;1'].getService(Ci.nsIXULAppInfo).QueryInterface(Ci.nsIXULRuntime).OS == 'Darwin',
+ 
 	checkReadyToOpenNewTabOnLocationBar : function NTFLBUtils_checkReadyToOpenNewTabOnLocationBar(aURI, aModifier, aBrowser) 
 	{
 		var result = autoNewTabHelper.checkReadyToOpenNewTab({
