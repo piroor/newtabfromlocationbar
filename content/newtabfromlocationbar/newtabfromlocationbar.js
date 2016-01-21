@@ -84,8 +84,14 @@ var NewTabFromLocationBarService = {
 			) {
 			bar.__newtabfromlocationbar__handleCommand = bar.handleCommand;
 			bar.handleCommand = function(aTriggeringEvent, ...aArgs) {
+				if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
+					dump('handleCommand\n');
+				}
 				this._canonizeURL(aTriggeringEvent, (function(aResponse) {
 					var [uri, postData, mayInheritPrincipal] = aResponse;
+					if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
+						dump('  uri             = '+uri+'\n');
+					}
 					if (!uri) {
 						this.__newtabfromlocationbar__handleCommand.apply(this, [aTriggeringEvent].concat(aArgs));
 						return;
@@ -95,8 +101,6 @@ var NewTabFromLocationBarService = {
 					var overriddenWhere = NewTabFromLocationBarService.overrideWhere(uri, where);
 					var realAltKey = aTriggeringEvent && aTriggeringEvent.altKey;
 					if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
-						dump('handleCommand\n');
-						dump('  uri             = '+uri+'\n');
 						dump('  where           = '+where+'\n');
 						dump('  overriddenWhere = '+overriddenWhere+'\n');
 						dump('  realAltKey      = '+realAltKey+'\n');
