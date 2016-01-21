@@ -68,32 +68,6 @@ var NewTabFromLocationBarService = {
 			this.initToolbarItems();
 			toolbox = null;
 		}
-
-		[
-			'window.permaTabs.utils.wrappedFunctions["window.BrowserLoadURL"]',
-			'window.BrowserLoadURL'
-		].forEach(function(aFunc) {
-			let source = this._getFunctionSource(aFunc);
-			if (!source || !/^\(?function BrowserLoadURL/.test(source))
-				return;
-			eval(aFunc+' = '+source.replace(
-				'aTriggeringEvent && aTriggeringEvent.altKey',
-				'NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(url, $&)'
-			));
-			source = null;
-		}, this);
-	},
-	
-	_getFunctionSource : function NTFLBService_getFunctionSource(aFunc) 
-	{
-		var func;
-		try {
-			eval('func = '+aFunc);
-		}
-		catch(e) {
-			return null;
-		}
-		return func ? func.toString() : null ;
 	},
   
 	initToolbarItems : function NTFLBService_initToolbarItems() 
@@ -101,28 +75,54 @@ var NewTabFromLocationBarService = {
 		var bar = document.getElementById('urlbar');
 		if (!bar) return;
 
-		var source;
 		if (
 			'handleCommand' in bar &&
-			(source = bar.handleCommand.toString()) &&
-			source.indexOf('NewTabFromLocationBarService') < 0
+			(
+				!('__newtabfromlocationbar__handleCommand' in bar) ||
+				bar.handleCommand.toString() !== bar.__newtabfromlocationbar__handleCommand.toString()
+			)
 			) {
-			eval('bar.handleCommand = '+source.replace(
-				// for Firefox 4 or later
-				/(whereToOpenLink\([^\)]*\))/g,
-				'NewTabFromLocationBarService.overrideWhere(url, $1)'
-			).replace(
-				/(aTriggeringEvent &&\s*\n?\s*aTriggeringEvent\.altKey)/g,
-				'NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(this.value, $1)'
-			).replace(
-				// by the modification above, preventDefault() and stopPropagation()
-				// can be called even if aTriggeringEvent is null!
-				/(aTriggeringEvent\.(?:preventDefault|stopPropagation)\(\))/g,
-				'aTriggeringEvent && $1'
-			));
+			bar.__newtabfromlocationbar__handleCommand = bar.handleCommand;
+			bar.handleCommand = function(aTriggeringEvent, ...aArgs) {
+				this._canonizeURL(aTriggeringEvent, (function(aResponse) {
+					var [uri, postData, mayInheritPrincipal] = aResponse;
+					if (!uri) {
+						this.__newtabfromlocationbar__handleCommand.apply(this, [aTriggeringEvent].concat(aArgs));
+						return;
+					}
+
+					var where = whereToOpenLink(aTriggeringEvent, false, false);
+					var overriddenWhere = NewTabFromLocationBarService.overrideWhere(uri, where);
+					var realAltKey = aTriggeringEvent && aTriggeringEvent.altKey;
+					if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
+						dump('handleCommand\n');
+						dump('  uri             = '+uri+'\n');
+						dump('  where           = '+where+'\n');
+						dump('  overriddenWhere = '+overriddenWhere+'\n');
+						dump('  realAltKey      = '+realAltKey+'\n');
+					}
+					if (where !== overriddenWhere &&
+						overriddenWhere.indexOf('tab') == 0 &&
+						NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(uri, realAltKey)) {
+						if (NewTabFromLocationBarService.utils.getMyPref('debug'))
+							dump('  => NEW TAB FROM LOCATION BAR!\n');
+						aTriggeringEvent = new Proxy(aTriggeringEvent, {
+							get: function(aTarget, aName) {
+								switch (aName)
+								{
+									case 'altKey':
+										return true;
+									default:
+										return aTarget[aName];
+								}
+							}
+						});
+					}
+					this.__newtabfromlocationbar__handleCommand.apply(this, [aTriggeringEvent].concat(aArgs));
+				}).bind(this));
+			};
 		}
 		bar    = null;
-		source = null;
 	},
  
 	handleEvent : function NTFLBService_handleEvent(aEvent) 
@@ -158,7 +158,7 @@ var NewTabFromLocationBarService = {
 		}
 	},
  
-	overrideWhere : function NTFLBService_overrideWhere(aURI, aWhere) // for Firefox 4 or later 
+	overrideWhere : function NTFLBService_overrideWhere(aURI, aWhere)
 	{
 		var newTab = aWhere.indexOf('tab') == 0;
 		if (this.checkReadyToOpenNewTabOnLocationBar(aURI, newTab) &&
