@@ -102,16 +102,16 @@ var NewTabFromLocationBarService = {
 						dump('  realAltKey      = '+realAltKey+'\n');
 					}
 					if (where !== overriddenWhere &&
-						overriddenWhere.indexOf('tab') == 0 &&
-						NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(uri, realAltKey)) {
+						overriddenWhere.indexOf('tab') == 0) {
+						var reallyNewTab = NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(uri, realAltKey);
 						if (NewTabFromLocationBarService.utils.getMyPref('debug'))
-							dump('  => NEW TAB FROM LOCATION BAR!\n');
+							dump('  => Overridden by New Tab from Location Bar, newtab = '+reallyNewTab+'\n');
 						aTriggeringEvent = new Proxy(aTriggeringEvent, {
 							get: function(aTarget, aName) {
 								switch (aName)
 								{
 									case 'altKey':
-										return true;
+										return reallyNewTab;
 									default:
 										return aTarget[aName];
 								}
