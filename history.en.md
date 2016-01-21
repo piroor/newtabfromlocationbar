@@ -1,6 +1,8 @@
 # History
 
  - master/HEAD
+ - 2.0.2016012102
+   * Click on autocomplete items in the location bar works correctly again. (regression)
  - 2.0.2016012101
    * Isolated from `eval` hack.
  - 1.0.2016011501
