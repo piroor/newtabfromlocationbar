@@ -1,6 +1,8 @@
 # History
 
  - master/HEAD
+ - 2.0.2016012101
+   * Isolated from `eval` hack.
  - 1.0.2016011501
    * Works on Nightly 46.0a1.
    * Drop support for Firefox 37 and older versions.
