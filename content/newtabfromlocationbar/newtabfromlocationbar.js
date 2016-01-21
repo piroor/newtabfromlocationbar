@@ -117,7 +117,10 @@ var NewTabFromLocationBarService = {
 									case 'altKey':
 										return reallyNewTab;
 									default:
-										return aTarget[aName].bind(aTarget);
+										var object = aTarget[aName];
+										if (typeof object == 'function')
+											return object.bind(aTarget);
+										return object;
 								}
 							}
 						});
