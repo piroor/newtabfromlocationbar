@@ -88,6 +88,9 @@ var NewTabFromLocationBarService = {
 					console.log('handleCommand\n');
 				}
 				var processURL = (function(aURL) {
+					if (aURL.indexOf('moz-action:visiturl,') === 0) {
+						aURL = JSON.parse(decodeURIComponent(aURL.replace(/[^,]+,/, ''))).url;
+					}
 					if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
 						console.log('  uri             = '+aURL+'\n');
 					}
