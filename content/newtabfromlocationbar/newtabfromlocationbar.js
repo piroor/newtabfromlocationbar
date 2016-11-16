@@ -88,8 +88,9 @@ var NewTabFromLocationBarService = {
 					console.log('handleCommand\n');
 				}
 				var processURL = (function(aURL) {
-					if (aURL.indexOf('moz-action:visiturl,') === 0) {
-						aURL = JSON.parse(decodeURIComponent(aURL.replace(/[^,]+,/, ''))).url;
+					let action = this._parseActionUrl(aURL);
+					if (action && /^(visiturl|keyword|remotetab)$/.test(action.type)) {
+						aURL = action.params.url;
 					}
 					if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
 						console.log('  uri             = '+aURL+'\n');
@@ -120,10 +121,19 @@ var NewTabFromLocationBarService = {
 					}
 					this.__newtabfromlocationbar__handleCommand(aTriggeringEvent, ...aArgs);
 				}).bind(this);
-				if (typeof this.maybeCanonizeURL == 'function') { // Firefox 50 and later
+				if (typeof this.maybeCanonizeURL == 'function') {
+					// Firefox 52 and later
+					//   after https://bugzilla.mozilla.org/show_bug.cgi?id=1306639
 					processURL(this.popup.overrideValue || this.value);
 				}
-				else { // Firefox 49 or older versions
+				else if (typeof this._loadURL == 'function') {
+					// Firefox 50-51
+					//   after https://bugzilla.mozilla.org/show_bug.cgi?id=1304027
+					let uri = this._canonizeURL(aTriggeringEvent, this.popup.overrideValue || this.value);
+					processURL(this.popup.overrideValue || this.value);
+				}
+				else {
+					// Firefox 49 or older versions
 					this._canonizeURL(aTriggeringEvent, function(aResponse) {
 						var [uri, postData, mayInheritPrincipal] = aResponse;
 						processURL(uri);
