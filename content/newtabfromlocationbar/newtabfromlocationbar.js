@@ -53,15 +53,15 @@ var NewTabFromLocationBarService = {
 			toolbox.addEventListener('customizationending', this, false);
 			if (toolbox.customizeDone) {
 				toolbox.__newtabfromlocationbar__customizeDone = toolbox.customizeDone;
-				toolbox.customizeDone = function(aChanged) {
-					this.__newtabfromlocationbar__customizeDone(aChanged);
+				toolbox.customizeDone = function(...aArgs) {
+					this.__newtabfromlocationbar__customizeDone(...aArgs);
 					NewTabFromLocationBarService.initToolbarItems();
 				};
 			}
 			if ('BrowserToolboxCustomizeDone' in window) {
 				window.__newtabfromlocationbar__BrowserToolboxCustomizeDone = window.BrowserToolboxCustomizeDone;
-				window.BrowserToolboxCustomizeDone = function(aChanged) {
-					window.__newtabfromlocationbar__BrowserToolboxCustomizeDone.apply(window, arguments);
+				window.BrowserToolboxCustomizeDone = function(...aArgs) {
+					window.__newtabfromlocationbar__BrowserToolboxCustomizeDone(...aArgs);
 					NewTabFromLocationBarService.initToolbarItems();
 				};
 			}
@@ -158,7 +158,7 @@ var NewTabFromLocationBarService = {
 				if (NewTabFromLocationBarService.utils.getMyPref('debug'))
 					console.log('                 => '+uri+'\n');
 				if (!uri) {
-					this.__newtabfromlocationbar__onPopupClick.apply(this, [aEvent].concat(aArgs));
+					this.__newtabfromlocationbar__onPopupClick(aEvent, ...aArgs);
 					return;
 				}
 
@@ -182,7 +182,7 @@ var NewTabFromLocationBarService = {
 					fixedFields[modifier] = reallyNewTab;
 					aEvent = NewTabFromLocationBarService.wrapTriggeringEvent(aEvent, fixedFields);
 				}
-				this.__newtabfromlocationbar__onPopupClick.apply(this, [aEvent].concat(aArgs));
+				this.__newtabfromlocationbar__onPopupClick(aEvent, ...aArgs);
 			};
 		}
 		bar    = null;
