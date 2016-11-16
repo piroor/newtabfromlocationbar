@@ -87,18 +87,17 @@ var NewTabFromLocationBarService = {
 				if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
 					dump('handleCommand\n');
 				}
-				this._canonizeURL(aTriggeringEvent, (function(aResponse) {
-					var [uri, postData, mayInheritPrincipal] = aResponse;
+				var processURL = (function(aURL) {
 					if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
-						dump('  uri             = '+uri+'\n');
+						dump('  uri             = '+aURL+'\n');
 					}
-					if (!uri) {
-						this.__newtabfromlocationbar__handleCommand.apply(this, [aTriggeringEvent].concat(aArgs));
+					if (!aURL) {
+						this.__newtabfromlocationbar__handleCommand(aTriggeringEvent, ...aArgs);
 						return;
 					}
 
 					var where = whereToOpenLink(aTriggeringEvent, false, false);
-					var overriddenWhere = NewTabFromLocationBarService.overrideWhere(uri, where);
+					var overriddenWhere = NewTabFromLocationBarService.overrideWhere(aURL, where);
 					var realAltKey = aTriggeringEvent && aTriggeringEvent.altKey;
 					if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
 						dump('  where           = '+where+'\n');
@@ -109,15 +108,24 @@ var NewTabFromLocationBarService = {
 						overriddenWhere.indexOf('tab') == 0 &&
 						aTriggeringEvent &&
 						!aTriggeringEvent.__newtabfromlocationbar__proxied) {
-						var reallyNewTab = NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(uri, realAltKey);
+						var reallyNewTab = NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(aURL, realAltKey);
 						if (NewTabFromLocationBarService.utils.getMyPref('debug'))
 							dump('  => Overridden by New Tab from Location Bar, newtab = '+reallyNewTab+'\n');
 						aTriggeringEvent = NewTabFromLocationBarService.wrapTriggeringEvent(aTriggeringEvent, {
 							altKey : reallyNewTab
 						});
 					}
-					this.__newtabfromlocationbar__handleCommand.apply(this, [aTriggeringEvent].concat(aArgs));
-				}).bind(this));
+					this.__newtabfromlocationbar__handleCommand(aTriggeringEvent, ...aArgs);
+				}).bind(this);
+				if (typeof this.maybeCanonizeURL == 'function') { // Firefox 50 and later
+					processURL(this.popup.overrideValue || this.value);
+				}
+				else { // Firefox 49 or older versions
+					this._canonizeURL(aTriggeringEvent, function(aResponse) {
+						var [uri, postData, mayInheritPrincipal] = aResponse;
+						processURL(uri);
+					});
+				}
 			};
 
 			bar.popup.__newtabfromlocationbar__onPopupClick = bar.popup.onPopupClick;
