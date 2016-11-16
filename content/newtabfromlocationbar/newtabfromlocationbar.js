@@ -115,11 +115,11 @@ var NewTabFromLocationBarService = {
 						overriddenWhere.indexOf('tab') == 0) {
 						if (aTriggeringEvent && !aTriggeringEvent.__newtabfromlocationbar__proxied) {
 							let reallyNewTab = NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(aURL, realAltKey);
-						if (NewTabFromLocationBarService.utils.getMyPref('debug'))
-							console.log('  => Overridden by New Tab from Location Bar, newtab = '+reallyNewTab+'\n');
-						aTriggeringEvent = NewTabFromLocationBarService.wrapTriggeringEvent(aTriggeringEvent, {
-							altKey : reallyNewTab
-						});
+							if (NewTabFromLocationBarService.utils.getMyPref('debug'))
+								console.log('  => Overridden by New Tab from Location Bar, newtab = '+reallyNewTab+'\n');
+							aTriggeringEvent = NewTabFromLocationBarService.wrapTriggeringEvent(aTriggeringEvent, {
+								altKey : reallyNewTab
+							});
 						}
 					}
 					this.__newtabfromlocationbar__handleCommand(aTriggeringEvent, ...aArgs);
