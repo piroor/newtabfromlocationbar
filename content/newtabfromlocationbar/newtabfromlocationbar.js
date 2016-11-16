@@ -107,17 +107,20 @@ var NewTabFromLocationBarService = {
 						console.log('  where           = '+where+'\n');
 						console.log('  overriddenWhere = '+overriddenWhere+'\n');
 						console.log('  realAltKey      = '+realAltKey+'\n');
+						console.log('  aTriggeringEvent= ' + aTriggeringEvent);
+						if (aTriggeringEvent)
+							console.log('    (proxied = ' + aTriggeringEvent.__newtabfromlocationbar__proxied + ')');
 					}
 					if (where !== overriddenWhere &&
-						overriddenWhere.indexOf('tab') == 0 &&
-						aTriggeringEvent &&
-						!aTriggeringEvent.__newtabfromlocationbar__proxied) {
-						var reallyNewTab = NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(aURL, realAltKey);
+						overriddenWhere.indexOf('tab') == 0) {
+						if (aTriggeringEvent && !aTriggeringEvent.__newtabfromlocationbar__proxied) {
+							let reallyNewTab = NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(aURL, realAltKey);
 						if (NewTabFromLocationBarService.utils.getMyPref('debug'))
 							console.log('  => Overridden by New Tab from Location Bar, newtab = '+reallyNewTab+'\n');
 						aTriggeringEvent = NewTabFromLocationBarService.wrapTriggeringEvent(aTriggeringEvent, {
 							altKey : reallyNewTab
 						});
+						}
 					}
 					this.__newtabfromlocationbar__handleCommand(aTriggeringEvent, ...aArgs);
 				}).bind(this);
