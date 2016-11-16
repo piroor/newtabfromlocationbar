@@ -113,10 +113,13 @@ var NewTabFromLocationBarService = {
 					}
 					if (where !== overriddenWhere &&
 						overriddenWhere.indexOf('tab') == 0) {
+						let reallyNewTab = NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(aURL, realAltKey);
+						if (NewTabFromLocationBarService.utils.getMyPref('debug'))
+							console.log('  => Overridden by New Tab from Location Bar, newtab = '+reallyNewTab+'\n');
+						if (!aTriggeringEvent && reallyNewTab) { // paste and go
+							return this.__newtabfromlocationbar__handleCommand(aTriggeringEvent, overriddenWhere, ...aArgs.slice(1));
+						}
 						if (aTriggeringEvent && !aTriggeringEvent.__newtabfromlocationbar__proxied) {
-							let reallyNewTab = NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(aURL, realAltKey);
-							if (NewTabFromLocationBarService.utils.getMyPref('debug'))
-								console.log('  => Overridden by New Tab from Location Bar, newtab = '+reallyNewTab+'\n');
 							aTriggeringEvent = NewTabFromLocationBarService.wrapTriggeringEvent(aTriggeringEvent, {
 								altKey : reallyNewTab
 							});
