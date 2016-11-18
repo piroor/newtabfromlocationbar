@@ -40,6 +40,7 @@ const Ci = Components.interfaces;
  
 var { prefs } = Components.utils.import('resource://newtabfromlocationbar-modules/prefs.js', {}); 
 var { autoNewTabHelper } = Components.utils.import('resource://newtabfromlocationbar-modules/autoNewTabHelper.js', {});
+var { Services } = Components.utils.import('resource://gre/modules/Services.jsm', {});
 
 var NewTabFromLocationBarUtils = { 
 
@@ -74,7 +75,7 @@ var NewTabFromLocationBarUtils = {
 		}
 
 		if (this.getMyPref('debug'))
-			dump('NTFLBUtils_checkReadyToOpenNewTabOnLocationBar('+
+			Services.console.logStringMessage('NTFLBUtils_checkReadyToOpenNewTabOnLocationBar('+
 			JSON.stringify({
 				uri:      aURI,
 				modifier: aModifier,
@@ -85,7 +86,7 @@ var NewTabFromLocationBarUtils = {
 				ownerTab:         String(result.ownerTab),
 				tabbrowser:       String(result.tabbrowser),
 				lastRelatedTab:   String(result.lastRelatedTab)
-			})+'\n');
+			}));
 
 		if (result.shouldOpenNewTab && result.ownerTab) {
 			if ('treeStyleTab' in result.tabbrowser &&
