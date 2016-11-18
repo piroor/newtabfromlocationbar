@@ -1,6 +1,7 @@
 # History
 
  - master/HEAD
+   * Click on autocomplete items of the location bar works correctly.
  - 2.0.2016111701
    * Supports Firefox 50 and later.
    * Works for "Paste and Go" also.
