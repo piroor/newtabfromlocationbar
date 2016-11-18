@@ -209,7 +209,7 @@ var NewTabFromLocationBarService = {
 
 	wrapTriggeringEvent : function NTFLBService_wrapTriggeringEvent(aEvent, aFixedFields)
 	{
-		return new Proxy(aEvent, {
+		var wrappedEvent = new Proxy(aEvent, {
 			get: function(aTarget, aName) {
 				switch (aName)
 				{
@@ -227,6 +227,7 @@ var NewTabFromLocationBarService = {
 				}
 			}
 		});
+		return new aEvent.constructor(aEvent.type, wrappedEvent);
 	},
  
 	handleEvent : function NTFLBService_handleEvent(aEvent) 
