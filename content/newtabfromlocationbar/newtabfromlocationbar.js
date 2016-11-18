@@ -1,5 +1,12 @@
 var NewTabFromLocationBarService = { 
 	
+	log : function(...aArgs)
+	{
+		if (!this.utils.getMyPref('debug'))
+			return;
+		console.log(...aArgs);
+	},
+
 	get browser() 
 	{
 		return window.gBrowser ;
@@ -84,17 +91,13 @@ var NewTabFromLocationBarService = {
 			) {
 			bar.__newtabfromlocationbar__handleCommand = bar.handleCommand;
 			bar.handleCommand = function(aTriggeringEvent, ...aArgs) {
-				if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
-					console.log('handleCommand\n');
-				}
+				NewTabFromLocationBarService.log('handleCommand');
 				var processURL = (function(aURL) {
 					let action = this._parseActionUrl(aURL);
 					if (action && /^(visiturl|keyword|remotetab)$/.test(action.type)) {
 						aURL = action.params.url;
 					}
-					if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
-						console.log('  uri             = '+aURL+'\n');
-					}
+					NewTabFromLocationBarService.log('  uri             = '+aURL);
 					if (!aURL) {
 						this.__newtabfromlocationbar__handleCommand(aTriggeringEvent, ...aArgs);
 						return;
@@ -103,19 +106,16 @@ var NewTabFromLocationBarService = {
 					var where = whereToOpenLink(aTriggeringEvent, false, false);
 					var overriddenWhere = NewTabFromLocationBarService.overrideWhere(aURL, where);
 					var realAltKey = aTriggeringEvent && aTriggeringEvent.altKey;
-					if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
-						console.log('  where           = '+where+'\n');
-						console.log('  overriddenWhere = '+overriddenWhere+'\n');
-						console.log('  realAltKey      = '+realAltKey+'\n');
-						console.log('  aTriggeringEvent= ' + aTriggeringEvent);
-						if (aTriggeringEvent)
-							console.log('    (proxied = ' + aTriggeringEvent.__newtabfromlocationbar__proxied + ')');
-					}
+					NewTabFromLocationBarService.log('  where           = '+where);;
+					NewTabFromLocationBarService.log('  overriddenWhere = '+overriddenWhere);
+					NewTabFromLocationBarService.log('  realAltKey      = '+realAltKey);
+					NewTabFromLocationBarService.log('  aTriggeringEvent= ' + aTriggeringEvent);
+					if (aTriggeringEvent)
+						NewTabFromLocationBarService.log('    (proxied = ' + aTriggeringEvent.__newtabfromlocationbar__proxied + ')');
 					if (where !== overriddenWhere &&
 						overriddenWhere.indexOf('tab') == 0) {
 						let reallyNewTab = NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(aURL, realAltKey);
-						if (NewTabFromLocationBarService.utils.getMyPref('debug'))
-							console.log('  => Overridden by New Tab from Location Bar, newtab = '+reallyNewTab+'\n');
+						NewTabFromLocationBarService.log('  => Overridden by New Tab from Location Bar, newtab = '+reallyNewTab);
 						if (!aTriggeringEvent && reallyNewTab) { // paste and go
 							return this.__newtabfromlocationbar__handleCommand(aTriggeringEvent, overriddenWhere, ...aArgs.slice(1));
 						}
@@ -149,14 +149,11 @@ var NewTabFromLocationBarService = {
 
 			bar.popup.__newtabfromlocationbar__onPopupClick = bar.popup.onPopupClick;
 			bar.popup.onPopupClick = function(aEvent, ...aArgs) {
-				if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
-					console.log('onPopupClick\n');
-				}
+				NewTabFromLocationBarService.log('onPopupClick');
 
 				var controller = this.view.QueryInterface(Components.interfaces.nsIAutoCompleteController);
 				var uri = controller.getValueAt(this.selectedIndex);
-				if (NewTabFromLocationBarService.utils.getMyPref('debug'))
-					console.log('  uri             = '+uri+'\n');
+				NewTabFromLocationBarService.log('  uri             = '+uri);
 				var action = this.input._parseActionUrl(uri);
 				if (action) {
 					switch (action.type)
@@ -174,8 +171,7 @@ var NewTabFromLocationBarService = {
 							break;
 					}
 				}
-				if (NewTabFromLocationBarService.utils.getMyPref('debug'))
-					console.log('                 => '+uri+'\n');
+				NewTabFromLocationBarService.log('                 => '+uri);
 				if (!uri) {
 					this.__newtabfromlocationbar__onPopupClick(aEvent, ...aArgs);
 					return;
@@ -185,18 +181,15 @@ var NewTabFromLocationBarService = {
 				var overriddenWhere = NewTabFromLocationBarService.overrideWhere(uri, where);
 				var modifier = NewTabFromLocationBarService.utils.isMac ? 'metaKey' : 'ctrlKey';
 				var realModifier = aEvent && aEvent[modifier];
-				if (NewTabFromLocationBarService.utils.getMyPref('debug')) {
-					console.log('  where           = '+where+'\n');
-					console.log('  overriddenWhere = '+overriddenWhere+'\n');
-					console.log('  realModifier    = '+realModifier+'\n');
-				}
+				NewTabFromLocationBarService.log('  where           = '+where);
+				NewTabFromLocationBarService.log('  overriddenWhere = '+overriddenWhere);
+				NewTabFromLocationBarService.log('  realModifier    = '+realModifier);
 				if (where !== overriddenWhere &&
 					overriddenWhere.indexOf('tab') == 0 &&
 					aEvent &&
 					!aEvent.__newtabfromlocationbar__proxied) {
 					var reallyNewTab = NewTabFromLocationBarService.checkReadyToOpenNewTabOnLocationBar(uri, realModifier);
-					if (NewTabFromLocationBarService.utils.getMyPref('debug'))
-						console.log('  => Overridden by New Tab from Location Bar, newtab = '+reallyNewTab+'\n');
+					NewTabFromLocationBarService.log('  => Overridden by New Tab from Location Bar, newtab = '+reallyNewTab);
 					var fixedFields = {};
 					fixedFields[modifier] = reallyNewTab;
 					aEvent = NewTabFromLocationBarService.wrapTriggeringEvent(aEvent, fixedFields);
