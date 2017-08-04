@@ -123,7 +123,7 @@ var autoNewTabHelper = {
 		var b = this.getTabBrowserFromChild(aTabBrowserChildren) || this.browser;
 		return b.ownerDocument.evaluate(
 			'descendant::*[local-name()="tab" and @'+this.kID+' = "'+aId+'"]',
-			b.mTabContainer,
+			b.tabContainer,
 			null,
 			Ci.nsIDOMXPathResult.FIRST_ORDERED_NODE_TYPE,
 			null
