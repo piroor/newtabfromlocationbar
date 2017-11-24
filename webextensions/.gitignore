@@ -1,0 +1,7 @@
+*.xpi
+**/Configs.js
+**/l10n.js
+**/Options.js
+
+# node.js dependency
+node_modules/
