@@ -70,7 +70,7 @@ browser.webNavigation.onCommitted.addListener(
       if (!configs.newTabForSameOrigin)
         return;
       if (configs.openAsChildIfSameOrigin)
-        params.openerTabId = aDetails.tabId;
+        newTabParams.openerTabId = aDetails.tabId;
     }
 
     browser.tabs.executeScript(aDetails.tabId, {
