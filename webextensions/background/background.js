@@ -5,6 +5,8 @@
 */
 'use strict';
 
+gLogContext = 'BG';
+
 var gTabs = {};
 
 browser.tabs.query({}).then(aTabs => {
