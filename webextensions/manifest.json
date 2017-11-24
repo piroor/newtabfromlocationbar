@@ -11,8 +11,14 @@
   ],
   "background": {
     "scripts": [
+      "common/Configs.js",
+      "common/common.js",
       "background/background.js"
     ]
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": true
   },
   "default_locale": "en",
   "applications": {

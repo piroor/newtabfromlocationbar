@@ -47,9 +47,11 @@ browser.webNavigation.onCommitted.addListener(
 
     var tab = gTabs[aDetails.tabId];
     var url = tab.previousUrl || tab.url;
-    if (url == 'about:blank' ||
-        /^about:(newtab|home)$/.test(url))
-      return;
+    if (configs.recycleBlankCurrentTab) {
+      if (url == 'about:blank' ||
+          (new RegExp(configs.recycleTabUrlPattern)).test(url))
+        return;
+    }
 
     browser.tabs.executeScript(aDetails.tabId, {
       code:  'history.back()',
@@ -59,9 +61,11 @@ browser.webNavigation.onCommitted.addListener(
         active: true,
         url:    aDetails.url
       };
-      var origin = extractOriginPart(aDetails.url);
-      if (origin && extractOriginPart(url))
-        params.openerTabId = aDetails.tabId;
+      if (configs.openAsChildIfSameOrigin) {
+        let origin = extractOriginPart(aDetails.url);
+        if (origin && extractOriginPart(url))
+          params.openerTabId = aDetails.tabId;
+      }
       browser.tabs.create(params);
     });
   }
