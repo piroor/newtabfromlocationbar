@@ -1,6 +1,8 @@
 # History
 
  - master/HEAD
+ - 3.0.0 (2017.11.24)
+   * Restructured on WebExtensions APIs.
  - 2.0.2016111801
    * Click on autocomplete items of the location bar works correctly.
  - 2.0.2016111701
