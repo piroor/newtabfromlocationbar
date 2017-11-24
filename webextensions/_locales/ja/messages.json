@@ -2,6 +2,9 @@
   "extensionName": { "message": "ロケーションバーから新しいタブを開く" },
   "extensionDescription": { "message": "ロケーションバーから条件に応じてタブを開きます。" },
 
+  "config.allowBlockRequest.caption": { "message": "ブロック方法" },
+  "config.allowBlockRequest.true": { "message": "webRequest" },
+  "config.allowBlockRequest.false": { "message": "webNavigation" },
   "config.newTabForSameOrigin.caption": { "message": "読み込もうとしているURIのオリジンが現在のタブと同じ場合" },
   "config.newTabForSameOrigin.current": { "message": "現在のタブで開く" },
   "config.newTabForSameOrigin.tab": { "message": "新しいタブで開く" },

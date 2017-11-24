@@ -12,14 +12,16 @@ var gTabs = {};
 browser.tabs.query({}).then(aTabs => {
   for (let tab of aTabs) {
     gTabs[tab.id] = {
-      url: tab.url
+      url: tab.url,
+      newTab: false
     };
   }
 });
 
 browser.tabs.onCreated.addListener(aTab => {
   gTabs[aTab.id] = {
-    url: aTab.url
+    url: aTab.url,
+    newTab: true
   };
 });
 
@@ -29,6 +31,7 @@ browser.tabs.onUpdated.addListener((aTabId, aChangeInfo, aTab) => {
   let tab = gTabs[aTab.id];
   tab.previousUrl = tab.url;
   tab.url = aChangeInfo.url;
+  tab.newTab = false;
 });
 
 browser.tabs.onRemoved.addListener(aTabId => {
@@ -42,8 +45,55 @@ browser.windows.onRemoved.addListener(aWindowId => {
   }
 });
 
+browser.webRequest.onBeforeRequest.addListener(
+  aDetails => {
+    if (!configs.allowBlockRequest ||
+        aDetails.type != 'main_frame' ||
+        gTabs[aDetails.tabId].newTab)
+      return { cancel: false };
+
+    log('onBeforeRequest loading on existing tab', aDetails);
+    log('originUrl ', aDetails.originUrl);
+    if (aDetails.originUrl)
+      return { cancel: false };
+
+    var tab = gTabs[aDetails.tabId];
+    log('tab ', tab);
+    var url = tab.previousUrl || tab.url;
+    if (configs.recycleBlankCurrentTab) {
+      if (url == 'about:blank' ||
+          (new RegExp(configs.recycleTabUrlPattern)).test(url))
+        return { cancel: false };
+    }
+
+    // don't open new tab for in-page jump
+    if (url.split('#')[0] == aDetails.url.split('#')[0])
+      return { cancel: false };
+
+    var newTabParams = {
+      active: true,
+      url:    aDetails.url
+    };
+    let origin = extractOriginPart(aDetails.url);
+    if (origin && extractOriginPart(url)) {
+      if (!configs.newTabForSameOrigin)
+        return { cancel: false };
+      if (configs.openAsChildIfSameOrigin)
+        newTabParams.openerTabId = aDetails.tabId;
+    }
+    browser.tabs.create(newTabParams);
+
+    return { cancel: true };
+  },
+  { urls: ['<all_urls>'] },
+  ['blocking']
+);
+
 browser.webNavigation.onCommitted.addListener(
   aDetails => {
+    if (configs.allowBlockRequest)
+      return;
+
     log('onCommitted ', aDetails);
     if (aDetails.transitionType != 'typed' &&
         aDetails.transitionType != 'generated' /* search result */)

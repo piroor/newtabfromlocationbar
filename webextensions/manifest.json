@@ -8,7 +8,9 @@
     "<all_urls>",
     "storage",
     "tabs",
-    "webNavigation"
+    "webNavigation",
+    "webRequest",
+    "webRequestBlocking"
   ],
   "background": {
     "scripts": [

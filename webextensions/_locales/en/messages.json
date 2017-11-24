@@ -2,6 +2,9 @@
   "extensionName": { "message": "New Tab from Location Bar" },
   "extensionDescription": { "message": "Opens new tabs from the location bar, by conditions." },
 
+  "config.allowBlockRequest.caption": { "message": "Blocking method" },
+  "config.allowBlockRequest.true": { "message": "webRequest" },
+  "config.allowBlockRequest.false": { "message": "webNavigation" },
   "config.newTabForSameOrigin.caption": { "message": "For a URI which has the origin same to the current page" },
   "config.newTabForSameOrigin.current": { "message": "Load in the current tab" },
   "config.newTabForSameOrigin.tab": { "message": "Open new tab" },
