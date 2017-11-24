@@ -42,10 +42,12 @@ browser.windows.onRemoved.addListener(aWindowId => {
 
 browser.webNavigation.onCommitted.addListener(
   aDetails => {
+    log('onCommitted ', aDetails);
     if (aDetails.transitionType != 'typed')
       return;
 
     var tab = gTabs[aDetails.tabId];
+    log('tab ', tab);
     var url = tab.previousUrl || tab.url;
     if (configs.recycleBlankCurrentTab) {
       if (url == 'about:blank' ||
