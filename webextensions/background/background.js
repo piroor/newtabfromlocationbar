@@ -49,13 +49,13 @@ browser.webRequest.onBeforeRequest.addListener(
   aDetails => {
     if (!configs.allowBlockRequest ||
         aDetails.type != 'main_frame' ||
+        aDetails.documentUrl ||
+        aDetails.originUrl ||
+        requestDetails.tabId == -1 ||
         gTabs[aDetails.tabId].newTab)
       return { cancel: false };
 
     log('onBeforeRequest loading on existing tab', aDetails);
-    log('originUrl ', aDetails.originUrl);
-    if (aDetails.originUrl)
-      return { cancel: false };
 
     var tab = gTabs[aDetails.tabId];
     log('tab ', tab);
