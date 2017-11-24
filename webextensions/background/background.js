@@ -53,6 +53,10 @@ browser.webNavigation.onCommitted.addListener(
         return;
     }
 
+    // don't open new tab for in-page jump
+    if (url.split('#')[0] == aDetails.url.split('#')[0])
+      return;
+
     var newTabParams = {
       active: true,
       url:    aDetails.url
