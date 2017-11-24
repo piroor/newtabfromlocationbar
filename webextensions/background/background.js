@@ -5,3 +5,24 @@
 */
 'use strict';
 
+browser.webNavigation.onCommitted.addListener(
+  aDetails => {
+    switch (aDetails.transitionType) {
+      case 'typed':
+        browser.tabs.executeScript(aDetails.tabId, {
+          code:  'history.back()',
+          runAt: 'document_start'
+        }).then(() => {
+          var params = {
+            active: true,
+            url:    aDetails.url
+          };
+          var isSameDomain = true; // TBD
+          if (isSameDomain)
+            params.openerTabId = aDetails.tabId;
+          browser.tabs.create(params);
+        });
+        break;
+    }
+  }
+);
