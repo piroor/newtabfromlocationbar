@@ -45,7 +45,8 @@ browser.windows.onRemoved.addListener(aWindowId => {
 browser.webNavigation.onCommitted.addListener(
   aDetails => {
     log('onCommitted ', aDetails);
-    if (aDetails.transitionType != 'typed')
+    if (aDetails.transitionType != 'typed' &&
+        aDetails.transitionType != 'generated' /* search result */)
       return;
 
     var tab = gTabs[aDetails.tabId];
