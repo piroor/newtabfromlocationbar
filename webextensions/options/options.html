@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script type="application/javascript" src="/common/Configs.js"></script>
+    <script type="application/javascript" src="/common/common.js"></script>
+    <script type="application/javascript" src="/options/Options.js"></script>
+    <script type="application/javascript" src="/common/l10n.js"></script>
+    <script type="application/javascript" src="/options/init.js"></script>
+    <link rel="stylesheet" type="text/css" href="options.css"/>
+  </head>
+  <body>
+
+    <fieldset>
+      <legend>__MSG_config.newTabForSameOrigin.caption__</legend>
+      <ul>
+        <li><label><input type="radio"
+                          name="newTabForSameOrigin" value="false">
+              __MSG_config.newTabForSameOrigin.current__</label></li>
+        <li><label><input type="radio"
+                          name="newTabForSameOrigin" value="true">
+              __MSG_config.newTabForSameOrigin.tab__</label>
+            <p class="sub">
+              <label><input id="openAsChildIfSameOrigin"
+                            type="checkbox">
+                     __MSG_config.openAsChildIfSameOrigin.label__</label></p></li>
+      </ul>
+    </fieldset>
+
+    <p><label><input id="recycleBlankCurrentTab"
+                    type="checkbox">
+              __MSG_config.recycleBlankCurrentTab.label__</label></p>
+    <p class="sub">
+      <label>__MSG_config.recycleTabUrlPattern.label__
+             <input id="recycleTabUrlPattern"
+                    type="text"
+                    size="30"></label></p>
+
+    <h1>__MSG_config.debug.caption__</h1>
+    <p><label><input id="debug"
+                     type="checkbox">
+             __MSG_config.debug.label__</label></p>
+    <div id="debug-configs">
+      <h2>__MSG_config.all.caption__</h2>
+    </div>
+  </body>
+</html>

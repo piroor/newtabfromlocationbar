@@ -1,4 +1,15 @@
 {
   "extensionName": { "message": "New Tab from Location Bar" },
-  "extensionDescription": { "message": "" }
+  "extensionDescription": { "message": "Opens new tabs from the location bar, by conditions." },
+
+  "config.newTabForSameOrigin.caption": { "message": "For a URI which has the origin same to the current page" },
+  "config.newTabForSameOrigin.current": { "message": "Load in the current tab" },
+  "config.newTabForSameOrigin.tab": { "message": "Open new tab" },
+  "config.openAsChildIfSameOrigin.label": { "message": "Open as a \"child\" of the current tab" },
+  "config.recycleBlankCurrentTab.label": { "message": "Recycle current blank tab, instead of new tab" },
+  "config.recycleTabUrlPattern.label": { "message": "Recycle more tabs with URI matchis to following regular expression:" },
+
+  "config.debug.caption": { "message": "Development" },
+  "config.debug.label": { "message": "Debug mode" },
+  "config.all.caption": { "message": "All Configs" }
 }

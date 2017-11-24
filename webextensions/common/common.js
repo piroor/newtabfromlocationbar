@@ -5,7 +5,24 @@
 */
 'use strict';
 
-var configs = new Configs({
+var configs;
+var gLogContext = '?';
+
+function log(aMessage, ...aArgs)
+{
+  if (!configs || !configs.debug)
+    return;
+
+  var nest   = (new Error()).stack.split('\n').length;
+  var indent = '';
+  for (let i = 0; i < nest; i++) {
+    indent += ' ';
+  }
+  console.log(`newtabfromlocationbar<${gLogContext}>: ${indent}${aMessage}`, ...aArgs);
+}
+
+configs = new Configs({
+  newTabForSameOrigin:     true,
   openAsChildIfSameOrigin: true,
   recycleBlankCurrentTab:  true,
   recycleTabUrlPattern:    '^(about:(newtab|home))$',

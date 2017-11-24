@@ -53,20 +53,23 @@ browser.webNavigation.onCommitted.addListener(
         return;
     }
 
+    var newTabParams = {
+      active: true,
+      url:    aDetails.url
+    };
+    let origin = extractOriginPart(aDetails.url);
+    if (origin && extractOriginPart(url)) {
+      if (!configs.newTabForSameOrigin)
+        return;
+      if (configs.openAsChildIfSameOrigin)
+        params.openerTabId = aDetails.tabId;
+    }
+
     browser.tabs.executeScript(aDetails.tabId, {
       code:  'history.back()',
       runAt: 'document_start'
     }).then(() => {
-      var params = {
-        active: true,
-        url:    aDetails.url
-      };
-      if (configs.openAsChildIfSameOrigin) {
-        let origin = extractOriginPart(aDetails.url);
-        if (origin && extractOriginPart(url))
-          params.openerTabId = aDetails.tabId;
-      }
-      browser.tabs.create(params);
+      browser.tabs.create(newTabParams);
     });
   }
 );

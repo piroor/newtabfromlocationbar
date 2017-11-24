@@ -1,4 +1,15 @@
 {
   "extensionName": { "message": "ロケーションバーから新しいタブを開く" },
-  "extensionDescription": { "message": "" }
+  "extensionDescription": { "message": "ロケーションバーから条件に応じてタブを開きます。" },
+
+  "config.newTabForSameOrigin.caption": { "message": "読み込もうとしているURIのオリジンが現在のタブと同じ場合" },
+  "config.newTabForSameOrigin.current": { "message": "現在のタブで開く" },
+  "config.newTabForSameOrigin.tab": { "message": "新しいタブで開く" },
+  "config.openAsChildIfSameOrigin.label": { "message": "現在のタブの「子タブ」として開く" },
+  "config.recycleBlankCurrentTab.label": { "message": "現在のタブが空の時は、新しいタブを開かず現在のタブに読み込む" },
+  "config.recycleTabUrlPattern.label": { "message": "URIが以下の正規表現に当てはまるタブも空のタブと見なす:" },
+
+  "config.debug.caption": { "message": "開発用" },
+  "config.debug.label": { "message": "デバッグモード" },
+  "config.all.caption": { "message": "すべての設定" }
 }
