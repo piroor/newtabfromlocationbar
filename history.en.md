@@ -1,6 +1,8 @@
 # History
 
  - master/HEAD
+ - 3.0.2 (2017.11.24)
+   * Fix missing options page.
  - 3.0.1 (2017.11.24)
    * Open new tab for search results also.
    * Save configurations correctly.
