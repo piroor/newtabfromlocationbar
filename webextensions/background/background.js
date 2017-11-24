@@ -51,7 +51,7 @@ browser.webRequest.onBeforeRequest.addListener(
         aDetails.type != 'main_frame' ||
         aDetails.documentUrl ||
         aDetails.originUrl ||
-        requestDetails.tabId == -1 ||
+        aDetails.tabId == -1 ||
         gTabs[aDetails.tabId].newTab)
       return { cancel: false };
 
