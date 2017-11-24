@@ -102,7 +102,11 @@ browser.webNavigation.onCommitted.addListener(
         aDetails.transitionType != 'generated' /* search result */)
       return;
 
-    tryRedirectToNewTab(aDetails);
+    if (tryRedirectToNewTab(aDetails))
+      browser.tabs.executeScript(aDetails.tabId, {
+        code:  'history.back()',
+        runAt: 'document_start'
+      });
   }
 );
 
