@@ -46,18 +46,22 @@ browser.windows.onRemoved.addListener(aWindowId => {
 });
 
 function tryRedirectToNewTab(aDetails) {
+  log('tryRedirectToNewTab', aDetails);
   var tab = gTabs[aDetails.tabId];
   log('tab ', tab);
   var url = tab.previousUrl || tab.url;
   if (configs.recycleBlankCurrentTab) {
     if (url == 'about:blank' ||
-        (new RegExp(configs.recycleTabUrlPattern)).test(url))
+        (new RegExp(configs.recycleTabUrlPattern)).test(url)) {
+      log(' => blank tab, recycle it');
       return false;
+    }
   }
 
-  // don't open new tab for in-page jump
-  if (url.split('#')[0] == aDetails.url.split('#')[0])
+  if (url.split('#')[0] == aDetails.url.split('#')[0]) {
+    log(' => in-page jump');
     return false;
+  }
 
   var newTabParams = {
     active: true,
@@ -65,12 +69,15 @@ function tryRedirectToNewTab(aDetails) {
   };
   var origin = extractOriginPart(aDetails.url);
   if (origin && extractOriginPart(url)) {
-    if (!configs.newTabForSameOrigin)
+    if (!configs.newTabForSameOrigin) {
+      log(' => same origin');
       return false;
+    }
     if (configs.openAsChildIfSameOrigin)
       newTabParams.openerTabId = aDetails.tabId;
   }
   browser.tabs.create(newTabParams);
+  log('Redirect to new tab');
   return true;
 }
 
@@ -84,7 +91,7 @@ browser.webRequest.onBeforeRequest.addListener(
         gTabs[aDetails.tabId].newTab)
       return { cancel: false };
 
-    log('onBeforeRequest loading on existing tab', aDetails);
+    log('onBeforeRequest loading on existing tab');
 
     return { cancel: tryRedirectToNewTab(aDetails) };
   },
@@ -97,7 +104,7 @@ browser.webNavigation.onCommitted.addListener(
     if (configs.allowBlockRequest)
       return;
 
-    log('onCommitted ', aDetails);
+    log('onCommitted');
     if (aDetails.transitionType != 'typed' &&
         aDetails.transitionType != 'generated' /* search result */)
       return;
