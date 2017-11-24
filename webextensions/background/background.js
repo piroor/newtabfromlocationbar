@@ -59,7 +59,8 @@ browser.webNavigation.onCommitted.addListener(
         active: true,
         url:    aDetails.url
       };
-      if (extractOriginPart(url) == extractOriginPart(aDetails.url))
+      var origin = extractOriginPart(aDetails.url);
+      if (origin && extractOriginPart(url))
         params.openerTabId = aDetails.tabId;
       browser.tabs.create(params);
     });
