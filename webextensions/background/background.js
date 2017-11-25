@@ -14,7 +14,7 @@ var gTabIdCorrectToWrong = {};
 browser.tabs.query({}).then(aTabs => {
   for (let tab of aTabs) {
     gTabs[tab.id] = {
-      url: tab.url,
+      url: normalizeTabURI(tab.url),
       newTab: false
     };
   }
@@ -22,27 +22,33 @@ browser.tabs.query({}).then(aTabs => {
 
 browser.tabs.onCreated.addListener(aTab => {
   gTabs[aTab.id] = {
-    url: aTab.url,
+    url: normalizeTabURI(aTab.url),
     newTab: true
   };
 });
 
 browser.tabs.onUpdated.addListener((aTabId, aChangeInfo, aTab) => {
-  if (!('url' in aChangeInfo))
-    return;
-
   // workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1398272
   var correctId = gTabIdWrongToCorrect[aTabId];
   if (correctId)
     aTabId = aTab.id = correctId;
 
-  var tab = gTabs[aTab.id];
-  tab.previousUrl = tab.url;
-  tab.url = aChangeInfo.url;
-  if (tab.newTab && tab.previousUrl == 'about:blank')
-    tab.previousUrl = null;
-  tab.newTab = false;
+  if ('url' in aChangeInfo) {
+    let tab = gTabs[aTab.id];
+    tab.previousUrl = tab.url;
+    tab.url = normalizeTabURI(aChangeInfo.url);
+    if (tab.newTab && tab.previousUrl == 'about:blank')
+      tab.previousUrl = null;
+    tab.newTab = false;
+  }
 });
+
+function normalizeTabURI(aURI) {
+  if (aURI.indexOf('about:reader?') == 0) {
+    aURI = decodeURIComponent(aURI.replace(/^about:reader\?url=/, ''));
+  }
+  return aURI;
+}
 
 browser.tabs.onRemoved.addListener(aTabId => {
   // workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1398272
@@ -79,6 +85,7 @@ browser.tabs.onAttached.addListener(async (aTabId, aAttachInfo) => {
 
 function tryRedirectToNewTab(aDetails) {
   log('tryRedirectToNewTab', aDetails);
+  var loadingURI = normalizeTabURI(aDetails.url);
   var tab = gTabs[aDetails.tabId];
   log('tab ', tab);
   var url = tab.previousUrl || tab.url;
@@ -90,7 +97,7 @@ function tryRedirectToNewTab(aDetails) {
     }
   }
 
-  if (url.split('#')[0] == aDetails.url.split('#')[0]) {
+  if (url.split('#')[0] == loadingURI.split('#')[0]) {
     log(' => in-page jump');
     return false;
   }
