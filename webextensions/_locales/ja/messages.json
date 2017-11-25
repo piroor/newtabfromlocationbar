@@ -3,8 +3,8 @@
   "extensionDescription": { "message": "ロケーションバーから条件に応じてタブを開きます。" },
 
   "config.allowBlockRequest.caption": { "message": "ブロック方法" },
-  "config.allowBlockRequest.true": { "message": "webRequest" },
-  "config.allowBlockRequest.false": { "message": "webNavigation" },
+  "config.allowBlockRequest.true": { "message": "webRequest：現在のタブの内容は損なわれませんが、ロケーションバー以外の読み込みをロケーションバーからの読み込みと誤認してタブで開き直す場合があります。" },
+  "config.allowBlockRequest.false": { "message": "webNavigation：ロケーションバーからの読み込みを確実に判別できますが、現在のタブのスクロール位置などは損なわれます。" },
   "config.newTabForSameOrigin.caption": { "message": "読み込もうとしているURIのオリジンが現在のタブと同じ場合" },
   "config.newTabForSameOrigin.current": { "message": "現在のタブで開く" },
   "config.newTabForSameOrigin.tab": { "message": "新しいタブで開く" },
