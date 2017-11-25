@@ -8,6 +8,8 @@
 gLogContext = 'BG';
 
 var gTabs = {};
+var gTabIdWrongToCorrect = {};
+var gTabIdCorrectToWrong = {};
 
 browser.tabs.query({}).then(aTabs => {
   for (let tab of aTabs) {
@@ -28,13 +30,25 @@ browser.tabs.onCreated.addListener(aTab => {
 browser.tabs.onUpdated.addListener((aTabId, aChangeInfo, aTab) => {
   if (!('url' in aChangeInfo))
     return;
-  let tab = gTabs[aTab.id];
+
+  // workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1398272
+  var correctId = gTabIdWrongToCorrect[aTabId];
+  if (correctId)
+    aTabId = aTab.id = correctId;
+
+  var tab = gTabs[aTab.id];
   tab.previousUrl = tab.url;
   tab.url = aChangeInfo.url;
   tab.newTab = false;
 });
 
 browser.tabs.onRemoved.addListener(aTabId => {
+  // workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1398272
+  var wrongId = gTabIdCorrectToWrong[aTabId];
+  if (wrongId)
+    delete gTabIdWrongToCorrect[wrongId];
+  delete gTabIdCorrectToWrong[aTabId];
+
   delete gTabs[aTabId];
 });
 
@@ -42,6 +56,22 @@ browser.windows.onRemoved.addListener(aWindowId => {
   for (let tabId of Object.keys(gTabs)) {
     if (gTabs[tabId].windowId == aWindowId)
       delete gTabs[tabId];
+  }
+});
+
+browser.tabs.onAttached.addListener(async (aTabId, aAttachInfo) => {
+  // workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1398272
+  try {
+    let tab = await browser.tabs.get(aTabId);
+    if (tab && tab.id != aTabId) {
+      let oldWrongId = gTabIdCorrectToWrong[aTabId];
+      if (oldWrongId)
+        delete gTabIdWrongToCorrect[oldWrongId];
+      gTabIdWrongToCorrect[tab.id] = aTabId;
+      gTabIdCorrectToWrong[aTabId] = tab.id;
+    }
+  }
+  catch(e) {
   }
 });
 
