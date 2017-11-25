@@ -26,7 +26,7 @@ configs = new Configs({
   newTabForSameOrigin:     true,
   openAsChildIfSameOrigin: true,
   recycleBlankCurrentTab:  true,
-  recycleTabUrlPattern:    '^(about:(newtab|home))$',
+  recycleTabUrlPattern:    '^about:(newtab|home|privatebrowsing)$',
 
   debug: false
 });
