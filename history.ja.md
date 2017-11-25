@@ -1,6 +1,7 @@
 # 更新履歴
 
  - master/HEAD
+ - 3.1.0 (2017.11.26)
    * `browser.webRequest.onBeforeRequest`に基づくモードを実装した（Joshua Cantara, thanks a lot!）
    * 初期状態で`about:privatebrowsing`も再利用対象の空のタブと認識するようにした
  - 3.0.2 (2017.11.24)
