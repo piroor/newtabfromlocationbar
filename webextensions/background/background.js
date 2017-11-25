@@ -39,7 +39,7 @@ browser.tabs.onUpdated.addListener((aTabId, aChangeInfo, aTab) => {
   var tab = gTabs[aTab.id];
   tab.previousUrl = tab.url;
   tab.url = aChangeInfo.url;
-  if (tab.newTab && isBlankTabURI(tab.previousUrl))
+  if (tab.newTab && tab.previousUrl == 'about:blank')
     tab.previousUrl = null;
   tab.newTab = false;
 });
@@ -77,18 +77,14 @@ browser.tabs.onAttached.addListener(async (aTabId, aAttachInfo) => {
   }
 });
 
-function isBlankTabURI(aURI) {
-  return (aURI == 'about:blank' ||
-          (new RegExp(configs.recycleTabUrlPattern)).test(aURI));
-}
-
 function tryRedirectToNewTab(aDetails) {
   log('tryRedirectToNewTab', aDetails);
   var tab = gTabs[aDetails.tabId];
   log('tab ', tab);
   var url = tab.previousUrl || tab.url;
   if (configs.recycleBlankCurrentTab) {
-    if (isBlankTabURI(url)) {
+    if (url == 'about:blank' ||
+        (new RegExp(configs.recycleTabUrlPattern)).test(url)) {
       log(' => blank tab, recycle it');
       return false;
     }
