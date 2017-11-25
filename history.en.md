@@ -1,6 +1,8 @@
 # History
 
  - master/HEAD
+   * Add new blocking mode based on `browser.webRequest.onBeforeRequest`. Joshua Cantara, thanks a lot!
+   * Detect `about:privatebrowsing` as recycled tabs, by default.
  - 3.0.2 (2017.11.24)
    * Fix missing options page.
  - 3.0.1 (2017.11.24)
