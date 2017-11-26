@@ -15,9 +15,10 @@ var gTabIdCorrectToWrong = {};
 browser.tabs.query({}).then(aTabs => {
   for (let tab of aTabs) {
     gTabs[tab.id] = {
-      url:    normalizeTabURI(tab.url),
-      newTab: false,
-      active: tab.active
+      url:      normalizeTabURI(tab.url),
+      newTab:   false,
+      active:   tab.active,
+      windowId: tab.windowId
     };
     if (tab.active)
       gActiveTabsInWindow[tab.windowId] = tab.id;
@@ -26,9 +27,10 @@ browser.tabs.query({}).then(aTabs => {
 
 browser.tabs.onCreated.addListener(aTab => {
   gTabs[aTab.id] = {
-    url:    normalizeTabURI(aTab.url),
-    newTab: true,
-    active: aTab.active
+    url:      normalizeTabURI(aTab.url),
+    newTab:   true,
+    active:   aTab.active,
+    windowId: aTab.windowId
   };
   if (aTab.active)
     gActiveTabsInWindow[aTab.windowId] = aTab.id;
@@ -40,10 +42,11 @@ browser.tabs.onActivated.addListener(aTabId => {
   if (correctId)
     aTabId = correctId;
 
-  let lastActiveTab = gTabs[gActiveTabsInWindow[aTab.windowId]];
+  let tab = gTabs[aTabId];
+  let lastActiveTab = gTabs[gActiveTabsInWindow[tab.windowId]];
   if (lastActiveTab)
     lastActiveTab.active = false;
-  gActiveTabsInWindow[aTab.windowId] = aTabId;
+  gActiveTabsInWindow[tab.windowId] = aTabId;
   gTabs[aTabId].active = true;
 });
 
@@ -98,10 +101,12 @@ browser.tabs.onAttached.addListener(async (aTabId, aAttachInfo) => {
         delete gTabIdWrongToCorrect[oldWrongId];
       gTabIdWrongToCorrect[tab.id] = aTabId;
       gTabIdCorrectToWrong[aTabId] = tab.id;
+      aTabId = tab.id;
     }
   }
   catch(e) {
   }
+  gTabs[aTabId].windowId = aAttachInfo.newWindowId;
 });
 
 function isBlankTabURI(aURI) {
