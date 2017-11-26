@@ -210,15 +210,15 @@ browser.webNavigation.onCommitted.addListener(
       return;
     }
     else {
-    if (!maybeFromLocationBar)
-      return;
+      if (!maybeFromLocationBar)
+        return;
 
-    let url = tab.previousUrl || tab.url;
-    if (tryRedirectToNewTab(aDetails, url))
-      browser.tabs.executeScript(aDetails.tabId, {
-        code:  'history.back()',
-        runAt: 'document_start'
-      });
+      let url = tab.previousUrl || tab.url;
+      if (tryRedirectToNewTab(aDetails, url))
+        browser.tabs.executeScript(aDetails.tabId, {
+          code:  'history.back()',
+          runAt: 'document_start'
+        });
     }
   }
 );
