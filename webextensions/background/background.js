@@ -8,23 +8,43 @@
 gLogContext = 'BG';
 
 var gTabs = {};
+var gActiveTabsInWindow = {};
 var gTabIdWrongToCorrect = {};
 var gTabIdCorrectToWrong = {};
 
 browser.tabs.query({}).then(aTabs => {
   for (let tab of aTabs) {
     gTabs[tab.id] = {
-      url: normalizeTabURI(tab.url),
-      newTab: false
+      url:    normalizeTabURI(tab.url),
+      newTab: false,
+      active: tab.active
     };
+    if (tab.active)
+      gActiveTabsInWindow[tab.windowId] = tab.id;
   }
 });
 
 browser.tabs.onCreated.addListener(aTab => {
   gTabs[aTab.id] = {
-    url: normalizeTabURI(aTab.url),
-    newTab: true
+    url:    normalizeTabURI(aTab.url),
+    newTab: true,
+    active: aTab.active
   };
+  if (aTab.active)
+    gActiveTabsInWindow[aTab.windowId] = aTab.id;
+});
+
+browser.tabs.onActivated.addListener(aTabId => {
+  // workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1398272
+  var correctId = gTabIdWrongToCorrect[aTabId];
+  if (correctId)
+    aTabId = correctId;
+
+  let lastActiveTab = gTabs[gActiveTabsInWindow[aTab.windowId]];
+  if (lastActiveTab)
+    lastActiveTab.active = false;
+  gActiveTabsInWindow[aTab.windowId] = aTabId;
+  gTabs[aTabId].active = true;
 });
 
 browser.tabs.onUpdated.addListener((aTabId, aChangeInfo, aTab) => {
@@ -65,6 +85,7 @@ browser.windows.onRemoved.addListener(aWindowId => {
     if (gTabs[tabId].windowId == aWindowId)
       delete gTabs[tabId];
   }
+  delete gActiveTabsInWindow[aWindowId];
 });
 
 browser.tabs.onAttached.addListener(async (aTabId, aAttachInfo) => {
@@ -133,13 +154,16 @@ browser.webRequest.onBeforeRequest.addListener(
         gTabs[aDetails.tabId].newTab)
       return { cancel: false };
 
+    var tab = gTabs[aDetails.tabId];
+    if (!tab.active)
+      return { cancel: false };
+
     log('onBeforeRequest loading on existing tab');
 
-    var tab = gTabs[aDetails.tabId];
     log('tab ', tab);
     if (tab.wrongRedirectionReverted) {
       delete tab.wrongRedirectionReverted;
-      return { cancl: false };
+      return { cancel: false };
     }
     return { cancel: tryRedirectToNewTab(aDetails, tab.url) };
   },
@@ -152,9 +176,11 @@ browser.webNavigation.onCommitted.addListener(
     if (aDetails.frameId != 0)
       return;
 
-    log('onCommitted ', aDetails);
-
     var tab = gTabs[aDetails.tabId];
+    if (!tab.active)
+      return;
+
+    log('onCommitted ', aDetails);
     log('tab ', tab);
 
     var maybeFromLocationBar = (
