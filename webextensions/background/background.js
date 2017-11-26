@@ -200,7 +200,6 @@ browser.webNavigation.onCommitted.addListener(
           code:  'history.back()',
           runAt: 'document_start'
         });
-    }
   }
 );
 
