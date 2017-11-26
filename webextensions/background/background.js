@@ -108,7 +108,7 @@ function tryRedirectToNewTab(aDetails, aCurrentURI) {
     url:    aDetails.url
   };
   var origin = extractOriginPart(aDetails.url);
-  if (origin && extractOriginPart(aCurrentURI)) {
+  if (origin && origin == extractOriginPart(aCurrentURI)) {
     if (!configs.newTabForSameOrigin) {
       log(' => same origin');
       return false;
