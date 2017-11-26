@@ -162,13 +162,7 @@ browser.webRequest.onBeforeRequest.addListener(
     if (!tab.active)
       return { cancel: false };
 
-    log('onBeforeRequest loading on existing tab');
-
-    log('tab ', tab);
-    if (tab.wrongRedirectionReverted) {
-      delete tab.wrongRedirectionReverted;
-      return { cancel: false };
-    }
+    log('onBeforeRequest loading on existing tab ', tab);
     return { cancel: tryRedirectToNewTab(aDetails, tab.url) };
   },
   { urls: ['<all_urls>'] },
@@ -184,6 +178,9 @@ browser.webNavigation.onCommitted.addListener(
     if (!tab.active)
       return;
 
+    if (configs.allowBlockRequest)
+      return;
+
     log('onCommitted ', aDetails);
     log('tab ', tab);
 
@@ -194,21 +191,6 @@ browser.webNavigation.onCommitted.addListener(
     var sourceTabId = tab.redirectionSourceTabId;
     delete tab.redirectionSourceTabId;
 
-    if (configs.allowBlockRequest) {
-      let sourceTab = sourceTabId && gTabs[sourceTabId];
-      if (configs.revertWrongRedirection &&
-          sourceTab &&
-          !maybeFromLocationBar) {
-        sourceTab.wrongRedirectionReverted = true;
-        browser.tabs.update(sourceTabId, {
-          active: true,
-          url:    aDetails.url
-        });
-        browser.tabs.remove(aDetails.tabId);
-      }
-      return;
-    }
-    else {
       if (!maybeFromLocationBar)
         return;
 

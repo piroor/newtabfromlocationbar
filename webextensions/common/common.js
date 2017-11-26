@@ -23,7 +23,6 @@ function log(aMessage, ...aArgs)
 
 configs = new Configs({
   allowBlockRequest:       true,
-  revertWrongRedirection:  true,
   newTabForSameOrigin:     true,
   openAsChildIfSameOrigin: true,
   recycleBlankCurrentTab:  true,
