@@ -116,7 +116,9 @@ function tryRedirectToNewTab(aDetails, aCurrentURI) {
     if (configs.openAsChildIfSameOrigin)
       newTabParams.openerTabId = aDetails.tabId;
   }
-  browser.tabs.create(newTabParams);
+  browser.tabs.create(newTabParams).then(aTab => {
+    gTabs[aTab.id].redirectionSourceTabId = aDetails.tabId;
+  });
   log('Redirect to new tab');
   return true;
 }
@@ -135,6 +137,10 @@ browser.webRequest.onBeforeRequest.addListener(
 
     var tab = gTabs[aDetails.tabId];
     log('tab ', tab);
+    if (tab.wrongRedirectionReverted) {
+      delete tab.wrongRedirectionReverted;
+      return { cancl: false };
+    }
     return { cancel: tryRedirectToNewTab(aDetails, tab.url) };
   },
   { urls: ['<all_urls>'] },
@@ -143,22 +149,46 @@ browser.webRequest.onBeforeRequest.addListener(
 
 browser.webNavigation.onCommitted.addListener(
   aDetails => {
-    if (configs.allowBlockRequest)
+    if (aDetails.frameId != 0)
       return;
 
-    log('onCommitted');
-    if (aDetails.transitionType != 'typed' &&
-        aDetails.transitionType != 'generated' /* search result */)
-      return;
+    log('onCommitted ', aDetails);
 
     var tab = gTabs[aDetails.tabId];
     log('tab ', tab);
-    var url = tab.previousUrl || tab.url;
+
+    var maybeFromLocationBar = (
+      aDetails.transitionType == 'typed' ||
+      aDetails.transitionType == 'generated' /* search result */
+    );
+    var sourceTabId = tab.redirectionSourceTabId;
+    delete tab.redirectionSourceTabId;
+
+    if (configs.allowBlockRequest) {
+      let sourceTab = sourceTabId && gTabs[sourceTabId];
+      if (configs.revertWrongRedirection &&
+          sourceTab &&
+          !maybeFromLocationBar) {
+        sourceTab.wrongRedirectionReverted = true;
+        browser.tabs.update(sourceTabId, {
+          active: true,
+          url:    aDetails.url
+        });
+        browser.tabs.remove(aDetails.tabId);
+      }
+      return;
+    }
+    else {
+    if (!maybeFromLocationBar)
+      return;
+
+    let url = tab.previousUrl || tab.url;
     if (tryRedirectToNewTab(aDetails, url))
       browser.tabs.executeScript(aDetails.tabId, {
         code:  'history.back()',
         runAt: 'document_start'
       });
+    }
   }
 );
 
