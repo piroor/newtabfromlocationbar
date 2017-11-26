@@ -36,18 +36,17 @@ browser.tabs.onCreated.addListener(aTab => {
     gActiveTabsInWindow[aTab.windowId] = aTab.id;
 });
 
-browser.tabs.onActivated.addListener(aTabId => {
+browser.tabs.onActivated.addListener(aActiveInfo => {
   // workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1398272
-  var correctId = gTabIdWrongToCorrect[aTabId];
+  var correctId = gTabIdWrongToCorrect[aActiveInfo.tabId];
   if (correctId)
-    aTabId = correctId;
+    aActiveInfo.tabId = correctId;
 
-  let tab = gTabs[aTabId];
-  let lastActiveTab = gTabs[gActiveTabsInWindow[tab.windowId]];
+  var lastActiveTab = gTabs[gActiveTabsInWindow[aActiveInfo.windowId]];
   if (lastActiveTab)
     lastActiveTab.active = false;
-  gActiveTabsInWindow[tab.windowId] = aTabId;
-  gTabs[aTabId].active = true;
+  gActiveTabsInWindow[aActiveInfo.windowId] = aActiveInfo.tabId;
+  gTabs[aActiveInfo.tabId].active = true;
 });
 
 browser.tabs.onUpdated.addListener((aTabId, aChangeInfo, aTab) => {
