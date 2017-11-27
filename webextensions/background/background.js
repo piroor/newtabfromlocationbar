@@ -14,8 +14,10 @@ var gTabIdCorrectToWrong = {};
 
 browser.tabs.query({}).then(aTabs => {
   for (let tab of aTabs) {
+    let url = normalizeTabURI(tab.url);
     gTabs[tab.id] = {
-      url:      normalizeTabURI(tab.url),
+      url:      url,
+      initialUrl: url,
       newTab:   false,
       active:   tab.active,
       windowId: tab.windowId
@@ -26,8 +28,10 @@ browser.tabs.query({}).then(aTabs => {
 });
 
 browser.tabs.onCreated.addListener(aTab => {
+  var url = normalizeTabURI(aTab.url);
   gTabs[aTab.id] = {
-    url:      normalizeTabURI(aTab.url),
+    url:      url,
+    initialUrl: url,
     newTab:   true,
     active:   aTab.active,
     windowId: aTab.windowId
@@ -61,6 +65,8 @@ browser.tabs.onUpdated.addListener((aTabId, aChangeInfo, aTab) => {
     tab.url = normalizeTabURI(aChangeInfo.url);
     if (tab.newTab && isBlankTabURI(tab.previousUrl))
       tab.previousUrl = null;
+    if (isBlankTabURI(tab.initialUrl))
+      tab.initialUrl = aChangeInfo.url;
     tab.newTab = false;
   }
 });
@@ -163,6 +169,12 @@ browser.webRequest.onBeforeRequest.addListener(
       return { cancel: false };
 
     log('onBeforeRequest loading on existing tab ', tab);
+
+    if (tab.initialUrl == aDetails.url) {
+      log(' => initial page of the tab');
+      return { cancel: false };
+    }
+
     return { cancel: tryRedirectToNewTab(aDetails, tab.url) };
   },
   { urls: ['<all_urls>'] },
@@ -178,11 +190,9 @@ browser.webNavigation.onCommitted.addListener(
     if (!tab.active)
       return;
 
-    if (configs.allowBlockRequest)
+    if (configs.allowBlockRequest &&
+        tab.initialUrl != aDetails.url)
       return;
-
-    log('onCommitted ', aDetails);
-    log('tab ', tab);
 
     var maybeFromLocationBar = (
       aDetails.transitionType == 'typed' ||
@@ -193,6 +203,9 @@ browser.webNavigation.onCommitted.addListener(
 
     if (!maybeFromLocationBar)
       return;
+
+    log('onCommitted ', aDetails);
+    log('tab ', tab);
 
     let url = tab.previousUrl || tab.url;
     if (tryRedirectToNewTab(aDetails, url))
