@@ -1,6 +1,9 @@
 # History
 
  - master/HEAD
+ - 3.1.1 (2017.11.27)
+   * Don't open new tab for "Back" navigation to the initial history entry of a tab.
+   * Don't open new tab as a child of the current for a URI with different origin.
  - 3.1.0 (2017.11.26)
    * Add new blocking mode based on `browser.webRequest.onBeforeRequest`. Joshua Cantara, thanks a lot!
    * Detect `about:privatebrowsing` as recycled tabs, by default.

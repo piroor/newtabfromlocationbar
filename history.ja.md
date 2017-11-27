@@ -1,6 +1,9 @@
 # 更新履歴
 
  - master/HEAD
+ - 3.1.1 (2017.11.27)
+   * タブの最初のページに戻るときに新しいタブが意図せず開かれてしまう問題に対処
+   * オリジンが異なるURLに対して新しいタブを子タブとして開いてしまう場合があったのを修正
  - 3.1.0 (2017.11.26)
    * `browser.webRequest.onBeforeRequest`に基づくモードを実装した（Joshua Cantara, thanks a lot!）
    * 初期状態で`about:privatebrowsing`も再利用対象の空のタブと認識するようにした
