@@ -196,7 +196,8 @@ browser.webNavigation.onCommitted.addListener(
 
     var maybeFromLocationBar = (
       aDetails.transitionType == 'typed' ||
-      aDetails.transitionType == 'generated' /* search result */
+      aDetails.transitionType == 'generated' ||
+      aDetails.transitionType == 'keyword_generated'
     );
     var sourceTabId = tab.redirectionSourceTabId;
     delete tab.redirectionSourceTabId;
