@@ -156,6 +156,7 @@ function tryRedirectToNewTab(aDetails, aCurrentURI) {
 
   browser.tabs.create(newTabParams).then(aTab => {
     gTabs[aTab.id].redirectionSourceTabId = aDetails.tabId;
+    gTabs[aTab.id].redirectionSourceURI   = aCurrentURI;
   });
   log('Redirect to new tab');
   return true;
@@ -182,7 +183,9 @@ browser.webRequest.onBeforeRequest.addListener(
       return { cancel: false };
     }
 
-    return { cancel: tryRedirectToNewTab(aDetails, tab.url) };
+    var redirected  = tryRedirectToNewTab(aDetails, tab.url);
+    var isLocalPage = /^(about|file|resource|chrome|moz-extension):/.test(tab.url);
+    return { cancel: redirected && !isLocalPage };
   },
   { urls: ['<all_urls>'] },
   ['blocking']
@@ -206,8 +209,19 @@ browser.webNavigation.onCommitted.addListener(
       aDetails.transitionType == 'generated' ||
       aDetails.transitionType == 'keyword_generated'
     );
+
     var sourceTabId = tab.redirectionSourceTabId;
     delete tab.redirectionSourceTabId;
+    var sourceURI = tab.redirectionSourceURI;
+    delete tab.redirectionSourceURI;
+    browser.tabs.get(sourceTabId).then(aTab => {
+      if (aTab.url == sourceURI)
+        return;
+      browser.tabs.executeScript(sourceTabId, {
+        code:  'history.back()',
+        runAt: 'document_start'
+      });
+    });
 
     if (!maybeFromLocationBar)
       return;
