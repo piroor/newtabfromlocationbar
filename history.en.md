@@ -1,6 +1,8 @@
 # History
 
  - master/HEAD
+   * Add workaround for data-loss probelm when an input is redirected to new tab from the current `about:` URI tab.
+   * Add ability to open new tab for same path URIs.
  - 3.1.1 (2017.11.27)
    * Don't open new tab for "Back" navigation to the initial history entry of a tab.
    * Don't open new tab as a child of the current for a URI with different origin.
