@@ -23,6 +23,8 @@ function log(aMessage, ...aArgs)
 
 configs = new Configs({
   allowBlockRequest:       true,
+  newTabForSamePath:       false,
+  openAsChildIfSamePath:   true,
   newTabForSameOrigin:     true,
   openAsChildIfSameOrigin: true,
   recycleBlankCurrentTab:  true,

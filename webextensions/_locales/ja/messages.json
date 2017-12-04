@@ -5,10 +5,14 @@
   "config.allowBlockRequest.caption": { "message": "ブロック方法" },
   "config.allowBlockRequest.true": { "message": "webRequest：現在のタブの内容は損なわれませんが、ロケーションバー以外の読み込みをロケーションバーからの読み込みと誤認してタブで開き直す場合があります。" },
   "config.allowBlockRequest.false": { "message": "webNavigation：ロケーションバーからの読み込みを確実に判別できますが、現在のタブのスクロール位置などは損なわれます。" },
-  "config.newTabForSameOrigin.caption": { "message": "読み込もうとしているURIのオリジンが現在のタブと同じ場合" },
-  "config.newTabForSameOrigin.current": { "message": "現在のタブで開く" },
-  "config.newTabForSameOrigin.tab": { "message": "新しいタブで開く" },
-  "config.openAsChildIfSameOrigin.label": { "message": "現在のタブの「子タブ」として開く" },
+
+  "config.newTabFor.caption":           { "message": "読み込もうとしているURIが現在のページと似ている・同じ場合" },
+  "config.newTabFor.current":           { "message": "現在のタブで開く" },
+  "config.newTabFor.tab":               { "message": "新しいタブで開く" },
+  "config.newTabFor.openAsChild.label": { "message": "現在のタブの「子タブ」として開く" },
+  "config.newTabForSamePath.label":     { "message": "同じパス:" },
+  "config.newTabForSameOrigin.label":   { "message": "同じオリジン:" },
+
   "config.recycleBlankCurrentTab.label": { "message": "現在のタブが空の時は、新しいタブを開かず現在のタブに読み込む" },
   "config.recycleTabUrlPattern.label": { "message": "URIが以下の正規表現に当てはまるタブも空のタブと見なす:" },
 

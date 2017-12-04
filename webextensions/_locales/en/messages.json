@@ -5,10 +5,14 @@
   "config.allowBlockRequest.caption": { "message": "Blocking method" },
   "config.allowBlockRequest.true": { "message": "webRequest: Keep the contents of the current tab completely. But some non-location bar loadings can be misdetected as loadings from the location bar." },
   "config.allowBlockRequest.false": { "message": "webNavigation: Certainly detect loadings from the location bar. But some status of the current tab (ex. scroll position) are lost." },
-  "config.newTabForSameOrigin.caption": { "message": "For a URI which has the origin same to the current page" },
-  "config.newTabForSameOrigin.current": { "message": "Load in the current tab" },
-  "config.newTabForSameOrigin.tab": { "message": "Open new tab" },
-  "config.openAsChildIfSameOrigin.label": { "message": "Open as a \"child\" of the current tab" },
+
+  "config.newTabFor.caption":           { "message": "Behavior for a URI which is similar/same to the current page" },
+  "config.newTabFor.current":           { "message": "Load in the current tab" },
+  "config.newTabFor.tab":               { "message": "Open new tab" },
+  "config.newTabFor.openAsChild.label": { "message": "Open as a \"child\" of the current tab" },
+  "config.newTabForSamePath.label":     { "message": "Same path part:" },
+  "config.newTabForSameOrigin.label":   { "message": "Same origin:" },
+
   "config.recycleBlankCurrentTab.label": { "message": "Recycle current blank tab, instead of new tab" },
   "config.recycleTabUrlPattern.label": { "message": "Recycle more tabs with URI matchis to following regular expression:" },
 

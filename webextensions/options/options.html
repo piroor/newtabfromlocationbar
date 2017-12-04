@@ -27,19 +27,23 @@
     </fieldset>
 
     <fieldset>
-      <legend>__MSG_config.newTabForSameOrigin.caption__</legend>
-      <ul>
-        <li><label><input type="radio"
-                          name="newTabForSameOrigin" value="false">
-              __MSG_config.newTabForSameOrigin.current__</label></li>
-        <li><label><input type="radio"
-                          name="newTabForSameOrigin" value="true">
-              __MSG_config.newTabForSameOrigin.tab__</label>
-            <p class="sub">
-              <label><input id="openAsChildIfSameOrigin"
-                            type="checkbox">
-                     __MSG_config.openAsChildIfSameOrigin.label__</label></p></li>
-      </ul>
+      <legend>__MSG_config.newTabFor.caption__</legend>
+      <p><label>__MSG_config.newTabForSamePath.label__
+           <select name="newTabForSamePath">
+             <option value="false">__MSG_config.newTabFor.current__</option>
+             <option value="true">__MSG_config.newTabFor.tab__</option>
+           </select></label>
+         <label><input id="openAsChildIfSamePath"
+                       type="checkbox">
+                __MSG_config.newTabFor.openAsChild.label__</label></p>
+      <p><label>__MSG_config.newTabForSameOrigin.label__
+           <select name="newTabForSameOrigin">
+             <option value="false">__MSG_config.newTabFor.current__</option>
+             <option value="true">__MSG_config.newTabFor.tab__</option>
+           </select></label>
+         <label><input id="openAsChildIfSameOrigin"
+                       type="checkbox">
+                __MSG_config.newTabFor.openAsChild.label__</label></p>
     </fieldset>
 
     <p><label><input id="recycleBlankCurrentTab"

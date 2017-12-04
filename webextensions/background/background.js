@@ -129,17 +129,23 @@ function tryRedirectToNewTab(aDetails, aCurrentURI) {
     }
   }
 
-  if (aCurrentURI.split('#')[0] == loadingURI.split('#')[0]) {
-    log(' => in-page jump');
-    return false;
-  }
+  var samePath     = aCurrentURI.split('#')[0] == loadingURI.split('#')[0];
+  var origin       = extractOriginPart(aDetails.url);
+  var sameOrigin   = origin && origin == extractOriginPart(aCurrentURI);
 
   var newTabParams = {
     active: true,
     url:    aDetails.url
   };
-  var origin = extractOriginPart(aDetails.url);
-  if (origin && origin == extractOriginPart(aCurrentURI)) {
+  if (samePath) {
+    if (!configs.newTabForSamePath) {
+      log(' => same path');
+      return false;
+    }
+    if (configs.openAsChildIfSamePath)
+      newTabParams.openerTabId = aDetails.tabId;
+  }
+  else if (sameOrigin) {
     if (!configs.newTabForSameOrigin) {
       log(' => same origin');
       return false;
@@ -147,6 +153,7 @@ function tryRedirectToNewTab(aDetails, aCurrentURI) {
     if (configs.openAsChildIfSameOrigin)
       newTabParams.openerTabId = aDetails.tabId;
   }
+
   browser.tabs.create(newTabParams).then(aTab => {
     gTabs[aTab.id].redirectionSourceTabId = aDetails.tabId;
   });
