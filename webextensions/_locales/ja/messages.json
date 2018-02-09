@@ -2,21 +2,21 @@
   "extensionName": { "message": "ロケーションバーから新しいタブを開く" },
   "extensionDescription": { "message": "ロケーションバーから条件に応じてタブを開きます。" },
 
-  "config.allowBlockRequest.caption": { "message": "ブロック方法" },
-  "config.allowBlockRequest.true": { "message": "webRequest：現在のタブの内容は損なわれませんが、ロケーションバー以外の読み込みをロケーションバーからの読み込みと誤認してタブで開き直す場合があります。" },
-  "config.allowBlockRequest.false": { "message": "webNavigation：ロケーションバーからの読み込みを確実に判別できますが、現在のタブのスクロール位置などは損なわれます。" },
+  "config_allowBlockRequest_caption": { "message": "ブロック方法" },
+  "config_allowBlockRequest_true": { "message": "webRequest：現在のタブの内容は損なわれませんが、ロケーションバー以外の読み込みをロケーションバーからの読み込みと誤認してタブで開き直す場合があります。" },
+  "config_allowBlockRequest_false": { "message": "webNavigation：ロケーションバーからの読み込みを確実に判別できますが、現在のタブのスクロール位置などは損なわれます。" },
 
-  "config.newTabFor.caption":           { "message": "読み込もうとしているURIが現在のページと似ている・同じ場合" },
-  "config.newTabFor.current":           { "message": "現在のタブで開く" },
-  "config.newTabFor.tab":               { "message": "新しいタブで開く" },
-  "config.newTabFor.openAsChild.label": { "message": "現在のタブの「子タブ」として開く" },
-  "config.newTabForSamePath.label":     { "message": "同じパス:" },
-  "config.newTabForSameOrigin.label":   { "message": "同じオリジン:" },
+  "config_newTabFor_caption":           { "message": "読み込もうとしているURIが現在のページと似ている・同じ場合" },
+  "config_newTabFor_current":           { "message": "現在のタブで開く" },
+  "config_newTabFor_tab":               { "message": "新しいタブで開く" },
+  "config_newTabFor_openAsChild_label": { "message": "現在のタブの「子タブ」として開く" },
+  "config_newTabForSamePath_label":     { "message": "同じパス:" },
+  "config_newTabForSameOrigin_label":   { "message": "同じオリジン:" },
 
-  "config.recycleBlankCurrentTab.label": { "message": "現在のタブが空の時は、新しいタブを開かず現在のタブに読み込む" },
-  "config.recycleTabUrlPattern.label": { "message": "URIが以下の正規表現に当てはまるタブも空のタブと見なす:" },
+  "config_recycleBlankCurrentTab_label": { "message": "現在のタブが空の時は、新しいタブを開かず現在のタブに読み込む" },
+  "config_recycleTabUrlPattern_label": { "message": "URIが以下の正規表現に当てはまるタブも空のタブと見なす:" },
 
-  "config.debug.caption": { "message": "開発用" },
-  "config.debug.label": { "message": "デバッグモード" },
-  "config.all.caption": { "message": "すべての設定" }
+  "config_debug_caption": { "message": "開発用" },
+  "config_debug_label": { "message": "デバッグモード" },
+  "config_all_caption": { "message": "すべての設定" }
 }

@@ -2,21 +2,21 @@
   "extensionName": { "message": "New Tab from Location Bar" },
   "extensionDescription": { "message": "Opens new tabs from the location bar, by conditions." },
 
-  "config.allowBlockRequest.caption": { "message": "Blocking method" },
-  "config.allowBlockRequest.true": { "message": "webRequest: Keep the contents of the current tab completely. But some non-location bar loadings can be misdetected as loadings from the location bar." },
-  "config.allowBlockRequest.false": { "message": "webNavigation: Certainly detect loadings from the location bar. But some status of the current tab (ex. scroll position) are lost." },
+  "config_allowBlockRequest_caption": { "message": "Blocking method" },
+  "config_allowBlockRequest_true": { "message": "webRequest: Keep the contents of the current tab completely. But some non-location bar loadings can be misdetected as loadings from the location bar." },
+  "config_allowBlockRequest_false": { "message": "webNavigation: Certainly detect loadings from the location bar. But some status of the current tab (ex. scroll position) are lost." },
 
-  "config.newTabFor.caption":           { "message": "Behavior for a URI which is similar/same to the current page" },
-  "config.newTabFor.current":           { "message": "Load in the current tab" },
-  "config.newTabFor.tab":               { "message": "Open new tab" },
-  "config.newTabFor.openAsChild.label": { "message": "Open as a \"child\" of the current tab" },
-  "config.newTabForSamePath.label":     { "message": "Same path part:" },
-  "config.newTabForSameOrigin.label":   { "message": "Same origin:" },
+  "config_newTabFor_caption":           { "message": "Behavior for a URI which is similar/same to the current page" },
+  "config_newTabFor_current":           { "message": "Load in the current tab" },
+  "config_newTabFor_tab":               { "message": "Open new tab" },
+  "config_newTabFor_openAsChild_label": { "message": "Open as a \"child\" of the current tab" },
+  "config_newTabForSamePath_label":     { "message": "Same path part:" },
+  "config_newTabForSameOrigin_label":   { "message": "Same origin:" },
 
-  "config.recycleBlankCurrentTab.label": { "message": "Recycle current blank tab, instead of new tab" },
-  "config.recycleTabUrlPattern.label": { "message": "Recycle more tabs with URI matchis to following regular expression:" },
+  "config_recycleBlankCurrentTab_label": { "message": "Recycle current blank tab, instead of new tab" },
+  "config_recycleTabUrlPattern_label": { "message": "Recycle more tabs with URI matchis to following regular expression:" },
 
-  "config.debug.caption": { "message": "Development" },
-  "config.debug.label": { "message": "Debug mode" },
-  "config.all.caption": { "message": "All Configs" }
+  "config_debug_caption": { "message": "Development" },
+  "config_debug_label": { "message": "Debug mode" },
+  "config_all_caption": { "message": "All Configs" }
 }
