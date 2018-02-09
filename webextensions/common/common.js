@@ -31,4 +31,14 @@ configs = new Configs({
   recycleTabUrlPattern:    '^about:(newtab|home|privatebrowsing)$',
 
   debug: false
+}, {
+  syncKeys: `
+    allowBlockRequest
+    newTabForSamePath
+    openAsChildIfSamePath
+    newTabForSameOrigin
+    openAsChildIfSameOrigin
+    recycleBlankCurrentTab
+    recycleTabUrlPattern
+  `.trim().split('\n').map(aKey => aKey.trim()).filter(aKey => aKey && aKey.indexOf('//') != 0)
 });
