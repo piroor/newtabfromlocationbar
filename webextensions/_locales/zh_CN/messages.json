@@ -1,0 +1,22 @@
+{
+  "extensionName": { "message": "New Tab from Location Bar" },
+  "extensionDescription": { "message": "根据条件以新标签页打开地址栏网址。" },
+
+  "config_allowBlockRequest_caption": { "message": "拦截方法" },
+  "config_allowBlockRequest_true": { "message": "webRequest：完全保留当前标签页的内容，但有些并非来自地址栏的加载可能被错误检测为来自地址栏。" },
+  "config_allowBlockRequest_false": { "message": "webNavigation：准确检测出自地址栏的加载，但当前标签页的某些状态（例如滚动位置）可能丢失。" },
+
+  "config_newTabFor_caption":           { "message": "如何对待与当前标签页类似或相同的网址" },
+  "config_newTabFor_current":           { "message": "当前标签页中加载" },
+  "config_newTabFor_tab":               { "message": "新建标签页加载" },
+  "config_newTabFor_openAsChild_label": { "message": "认作当前标签页的子标签页" },
+  "config_newTabForSamePath_label":     { "message": "同路径：" },
+  "config_newTabForSameOrigin_label":   { "message": "同源：" },
+
+  "config_recycleBlankCurrentTab_label": { "message": "重用当前的空标签页" },
+  "config_recycleTabUrlPattern_label": { "message": "重用网址匹配此正则表达式的标签页" },
+
+  "config_debug_caption": { "message": "开发" },
+  "config_debug_label": { "message": "调试模式" },
+  "config_all_caption": { "message": "所有配置" }
+}
